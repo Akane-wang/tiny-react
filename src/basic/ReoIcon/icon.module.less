@@ -1,0 +1,16 @@
+.iconWrap {
+    width: fit-content;
+    cursor: pointer;
+    color: var(--svg-fill);
+    font-size: var(--font-size);
+    @media screen and (min-width: 1280px) {
+        &:hover {
+            color: var(--svg-hover-fill);
+        }
+    }
+    &.icon-display {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

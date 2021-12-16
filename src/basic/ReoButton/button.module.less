@@ -1,0 +1,352 @@
+.button-baseline {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonChild(@space) {
+
+    span.icon-span {
+        margin-left: @space;
+    }
+}
+
+/* button样式 */
+.publicButtonFontAndBg(@fontColor, @background, @border) {
+    color: @fontColor;
+    background: @background;
+    border: @border;
+    transition: all 0.3s;
+}
+
+/* close 按钮 */
+.closeBtn {
+    width: var(--closeBtn-width);
+    height: var(--closeBtn-height);
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--closeBtn-background);
+    cursor: pointer;
+}
+
+// 公用样式，不受type或其他属性限制
+.buttonWrap {
+    /* 公共样式 */
+    &.publicStyle {
+        box-sizing: border-box;
+        line-height: 1.2;
+        cursor: pointer;
+        font-weight: 500;
+        position: relative;
+    }
+
+    /* buttonStyle: unset-type */
+    &.buttonStyle {
+        @media (min-width: 1280px) {
+            .toggleGhost.ghost&:hover {
+                .publicButtonFontAndBg(var(--font-color), var(--background-color), 1px solid var(--border-color));
+            }
+            &.toggleGhost:hover {
+                .publicButtonFontAndBg(var(--background-color), var(--font-color), 1px solid var(--background-color));
+            }
+        }
+        & {
+            .publicButtonFontAndBg(var(--font-color), var(--background-color), 1px solid var(--border-color));
+        }
+        &.ghost {
+            .publicButtonFontAndBg(var(--background-color), var(--font-color), 1px solid var(--background-color));
+        }
+    }
+
+    // type = primary, gradientRedPrimary
+    &.buttonStyle-primary,&buttonStyle-gradientRedPrimary {
+        color: white;
+        border: 1px solid transparent;
+    }
+    &.buttonStyle-linkButton{
+        color: #00ade5;
+        border: 1px solid transparent;
+        line-height: 1.2;
+        font-size: 14px;
+        font-weight: 500;
+        height: max-content;
+        border-radius: 0;
+        background-color: unset;
+
+    }
+    &.primary {
+        @media (min-width: 1280px) {
+            .toggleGhost&:not(.border-square):hover {
+                .publicButtonFontAndBg(#00ade5, #fff, 1px solid #00ade5);
+            }
+            .toggleGhost.ghost&:not(.border-square):hover {
+                .publicButtonFontAndBg(#fff, linear-gradient(148deg, #1E7FF2 0%, #1DC4E4 100%), 1px solid transparent);
+            }
+            .border-square&:hover {
+                .publicButtonFontAndBg(#fff, #1E7FF2, 1px solid #1E7FF2);
+            }
+        }
+        // ghost为true， 或者toggleGhost为true的hover情况
+        &.ghost {
+            .publicButtonFontAndBg(#00ade5, #fff, 1px solid #00ade5);
+        }
+        // primary, ghost && toggleGhost为true
+        & {
+            .publicButtonFontAndBg(#fff, linear-gradient(148deg, #1E7FF2 0%, #1DC4E4 100%), 1px solid transparent);
+        }
+    }
+
+    &.gradientRedPrimary {
+        @media (min-width: 1280px) {
+            .toggleGhost&:hover {
+                .publicButtonFontAndBg(#F45C43, #fff, 1px solid #F45C43);
+            }
+            .toggleGhost.ghost&:hover {
+                .publicButtonFontAndBg(#fff, linear-gradient(90deg, #EB3349 0%, #F45C43 100%), 1px solid transparent);
+            }
+
+            .border-square&:hover {
+                .publicButtonFontAndBg(#fff, #EB3349, 1px solid #EB3349);
+            }
+        }
+        &.ghost {
+            .publicButtonFontAndBg(#F45C43, #fff, 1px solid #F45C43);
+        }
+        & {
+            .publicButtonFontAndBg(#fff, linear-gradient(90deg, #EB3349 0%, #F45C43 100%), 1px solid transparent);
+        }
+    }
+
+    // size
+    &.size-large {
+        height: 48px;
+        padding: 14px 24px;
+        font-size: 16px;
+    }
+    &.size-medium {
+        height: 36px;
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    &.size-small {
+        height: 30px;
+        padding: 6px 14px;
+        font-size: 14px;
+    }
+    &.hoverFloat:not(.border-square) {
+        transform: translateY(0);
+        transition: transform 0.4s;
+        @media (min-width: 1280px) {
+            &:hover {
+                transform: translateY(-6px);
+                position: relative;
+                transition: transform 0.4s;
+            }
+            .primary&:hover {
+                box-shadow: 0px 5px 8px rgba(21, 102, 164, 0.4);
+            }
+            .gradientRedPrimary&:hover {
+                box-shadow:  0px 5px 8px rgba(177, 69, 56, 0.4);
+            }
+        }
+    }
+
+    // loading
+    &.loading {
+        pointer-events: none;
+        .loadingWrap {
+            position: absolute;
+            left: calc( 50% - var(--icon-width) / 2);
+            border-radius: 0.1rem;
+            margin: 0 auto;
+            animation-name: loadingCircle;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            .button-baseline();
+            &.linkButton {
+                position: relative;
+            }
+        }
+        .loading-large {
+            width: 20px;
+            height: 20px;
+        }
+        .loading-medium {
+            width: 18px;
+            height: 18px;
+        }
+        .loading-small {
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    &:disabled { /* 普通button 禁用 */
+        pointer-events: none;
+        background: #ccc;
+        color: #FFFFFF;
+        border: 1px solid #ccc;
+    }
+
+    &.ghost:disabled {
+        /* ghost禁用 */
+        pointer-events: none;
+        background: #F7F8F9;
+        color: #ccc;
+        border: 1px solid #ccc;
+    }
+    &.loading {
+        background: #ccc;
+        border: 1px solid #ccc;
+    }
+    &.loading.linkButton {
+        border: none;
+        background: transparent;
+    }
+    &.loading.ghost {
+        background: #F7F8F9;
+        border: 1px solid #ccc;
+
+    }
+
+    // border-radius设置
+    &.border-rounded {
+        border-radius: 24px;
+    }
+    &.border-square {
+        border-radius: 8px;
+    }
+
+    // children
+    .buttonBaseline {
+        .button-baseline();
+        &.textWrap {
+            width: 100%;
+            overflow: hidden;
+        }
+        &.childrenPosition {
+            flex-direction: row-reverse;
+        }
+        &.visibilityHidden {
+            visibility: hidden;
+        }
+        &.hidden {
+            display: none;
+        }
+        .textShow {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .icon-left {
+            margin-left: var(--icon-space);
+        }
+        .icon-right {
+            margin-right: var(--icon-space);
+        }
+    }
+}
+
+/* loading动画 */
+@keyframes loadingCircle {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+.loading.linkButton {
+    border: none;
+    background: #FFF;
+}
+
+
+
+//* 光影动效
+.lightShadow {
+    top: 0;
+    left: 0;
+    height: 100%;
+    display: block;
+    width: 40%;
+    transform: skewX(-25deg);
+    background: linear-gradient(297deg, rgba(255, 255, 255, 0.5) 10%, transparent 70%);
+    animation-name: lightShadow;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    position: absolute;
+}
+
+@keyframes lightShadow {
+    0% {
+        left: -41%;
+    }
+
+    88% {
+        left: -41%;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+
+/* 切换按钮样式 */
+.carouselButtonWrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    .iconStyle {
+        background-color: var(--background-color);
+        box-shadow: var(--box-shadow);
+        @media (min-width: 1280px) {
+            & {
+                display: none;
+            }
+        }
+        &:hover {
+            background-color: var(--hover-background-color);
+            box-shadow: var(--hover-box-shadow);
+        }
+    }
+    .children-wrap {
+        // 超出了随便处理处理，隐藏算了，但是其实可以做成用一部分tab切换，留出一部分位置来
+        overflow: hidden;
+        width: calc(1200px * 0.9 - 40px);
+        @media (max-width: 1280px) {
+            width: calc(100% - 40px);
+            // padding: 0 30px;
+        }
+        .children-container {
+            transform: translate(var(--translate-x), 0);
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            width: max-content;
+        }
+    }
+
+}
+
+// 隐藏按钮
+.visibleTransition {
+    display: none;
+    animation: 0.4s forwards visibilityTransition;
+    pointer-events: none;
+}
+
+@keyframes visibilityTransition {
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 0;
+    }
+}

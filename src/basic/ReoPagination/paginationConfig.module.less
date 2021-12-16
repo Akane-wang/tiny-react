@@ -1,0 +1,49 @@
+.paginationContainer {
+    display: flex;
+    .iconStyle {
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .iconLeft {
+        margin-right: 10px;
+    }
+    .iconRight {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .disabled {
+        cursor: not-allowed;
+    }
+    .pageRangeContainer {
+        width: 28px;
+        height: 28px;
+        margin-left:  14px;
+        margin-right: 14px;
+        & + & {
+            margin-right: 4px;
+        }
+        .pageRange {
+            line-height: 1.2;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            color: #555;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            cursor: pointer;
+            background-color: transparent;
+            &:hover {
+                color: #333;
+            }
+        }
+        .active {
+            color: #333;
+            background-color: #f3f3f3;
+            border-radius: 100%;
+        }
+    }
+}

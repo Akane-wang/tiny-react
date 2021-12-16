@@ -1,0 +1,38 @@
+{
+    "include": [
+        "./src/**.ts",
+        "./src/**/**.ts",
+        "./src/**/**.tsx",
+    ],
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "allowJs": true,
+        "baseUrl": "",
+        "declaration": true,
+        "forceConsistentCasingInFileNames": true,
+        "jsx": "react",
+        "lib": [
+            "ES2015",
+            "DOM",
+            "ES2016.Array.Include"
+        ],
+        "module": "es2020",
+        "moduleResolution": "node",
+        "noUnusedParameters": true,
+        "noImplicitAny": true,
+        "noEmitOnError": true,
+        "rootDir": "src",
+        "outDir": "dist",
+        "paths": {
+            "@/*": [
+                "src/*"
+            ]
+        },
+        "resolveJsonModule": true,
+        "strictNullChecks": true,
+        "sourceMap": true,
+        "target": "es2020",
+        
+    }
+  }
+  

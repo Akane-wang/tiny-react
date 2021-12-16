@@ -1,0 +1,1099 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?re5wz8');
+  src:  url('fonts/icomoon.eot?re5wz8#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.woff2?re5wz8') format('woff2'),
+    url('fonts/icomoon.ttf?re5wz8') format('truetype'),
+    url('fonts/icomoon.woff?re5wz8') format('woff'),
+    url('fonts/icomoon.svg?re5wz8#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-rd-party-software:before {
+  content: "\e900";
+}
+.icon-accessories:before {
+  content: "\e901";
+}
+.icon-announcements-and-news:before {
+  content: "\e902";
+}
+.icon-camera-captures:before {
+  content: "\e903";
+}
+.icon-firmware-upgrade:before {
+  content: "\e904";
+}
+.icon-general-discussion:before {
+  content: "\e905";
+}
+.icon-news:before {
+  content: "\e906";
+}
+.icon-playsay-program:before {
+  content: "\e907";
+}
+.icon-poe-cameras1:before {
+  content: "\e908";
+}
+.icon-poe-camera-systems:before {
+  content: "\e909";
+}
+.icon-product-release:before {
+  content: "\e90a";
+}
+.icon-reolink-client:before {
+  content: "\e90b";
+}
+.icon-reolink-mobile-app:before {
+  content: "\e90c";
+}
+.icon-security-cameras:before {
+  content: "\e90d";
+}
+.icon-security-systems:before {
+  content: "\e90e";
+}
+.icon-software:before {
+  content: "\e90f";
+}
+.icon-software-upgrade:before {
+  content: "\e910";
+}
+.icon-suggestion-box:before {
+  content: "\e911";
+}
+.icon-tips-and-tricks:before {
+  content: "\e912";
+}
+.icon-top-reolinkcaptures-awards:before {
+  content: "\e913";
+}
+.icon-wifi-cameras:before {
+  content: "\e914";
+}
+.icon-wifi-camera-system:before {
+  content: "\e915";
+}
+.icon-wire-free-cameras:before {
+  content: "\e916";
+}
+.icon-color-night-vision:before {
+  content: "\e917";
+}
+.icon-icon_2-Powering-Options:before {
+  content: "\e918";
+}
+.icon-icon_3x-zoom:before {
+  content: "\e919";
+}
+.icon-icon_4k-cycle:before {
+  content: "\e91a";
+}
+.icon-icon_4x-zoom:before {
+  content: "\e91b";
+}
+.icon-icon_8-channel2:before {
+  content: "\e91c";
+}
+.icon-icon_16-channel2:before {
+  content: "\e91d";
+}
+.icon-icon_24-7-recording:before {
+  content: "\e91e";
+}
+.icon-icon_123-TB:before {
+  content: "\e91f";
+}
+.icon-icon_1080p-82:before {
+  content: "\e920";
+}
+.icon-icon_1440p-81:before {
+  content: "\e921";
+}
+.icon-icon_audio:before {
+  content: "\e922";
+}
+.icon-icon_battery-power:before {
+  content: "\e923";
+}
+.icon-icon_ik10-vandal-proof-90:before {
+  content: "\e924";
+}
+.icon-icon_motion-sensor1:before {
+  content: "\e925";
+}
+.icon-icon_night-vision-89:before {
+  content: "\e926";
+}
+.icon-icon_plug-and-play2:before {
+  content: "\e927";
+}
+.icon-icon_poe-79:before {
+  content: "\e928";
+}
+.icon-icon_pt:before {
+  content: "\e929";
+}
+.icon-icon_sd-card:before {
+  content: "\e92a";
+}
+.icon-icon_Starlight-Night-Vision:before {
+  content: "\e92b";
+}
+.icon-icon_two-way-audio-84:before {
+  content: "\e92c";
+}
+.icon-icon_waterproof-80:before {
+  content: "\e92d";
+}
+.icon-icon_wifi-100:before {
+  content: "\e92e";
+}
+.icon-icon-detection-0723:before {
+  content: "\e92f";
+}
+.icon-product-banner-5x_zoom:before {
+  content: "\e930";
+}
+.icon-product-banner-auto_tracking:before {
+  content: "\e931";
+}
+.icon-product-banner-PTZ:before {
+  content: "\e932";
+}
+.icon-product-banner-wide_viewing_angle:before {
+  content: "\e933";
+}
+.icon-siren:before {
+  content: "\e934";
+}
+.icon-spotlight-2:before {
+  content: "\e935";
+}
+.icon-alerts-2:before {
+  content: "\e936";
+}
+.icon-antennas2:before {
+  content: "\e937";
+}
+.icon-Color-Night-Vision-2:before {
+  content: "\e938";
+}
+.icon-ftp-30:before {
+  content: "\e939";
+}
+.icon-HDD-Storage:before {
+  content: "\e93a";
+}
+.icon-HDD-Storage-2:before {
+  content: "\e93b";
+}
+.icon-icon_app-facet:before {
+  content: "\e93c";
+}
+.icon-icon_cloud1:before {
+  content: "\e93d";
+}
+.icon-icon_customized-voice-recordable-alerts-facet:before {
+  content: "\e93e";
+}
+.icon-icon_email-facet:before {
+  content: "\e940";
+}
+.icon-icon_Rechargeable-facet:before {
+  content: "\e941";
+}
+.icon-icon_siren-facet:before {
+  content: "\e942";
+}
+.icon-icon_Starlight-facet:before {
+  content: "\e943";
+}
+.icon-icon_talk-2:before {
+  content: "\e944";
+}
+.icon-icon_voice:before {
+  content: "\e945";
+}
+.icon-led:before {
+  content: "\e946";
+}
+.icon-motion-detection-2:before {
+  content: "\e947";
+}
+.icon-night-2:before {
+  content: "\e948";
+}
+.icon-nvr-30:before {
+  content: "\e949";
+}
+.icon-person-vehicle-detection-2:before {
+  content: "\e94a";
+}
+.icon-plug-play-2:before {
+  content: "\e94b";
+}
+.icon-product-fill-5x_zoom:before {
+  content: "\e94c";
+}
+.icon-product-fill-auto_tracking:before {
+  content: "\e94d";
+}
+.icon-product-fill-manual_pantilt:before {
+  content: "\e94e";
+}
+.icon-product-fill-motion_zone:before {
+  content: "\e94f";
+}
+.icon-product-fill-twin_Lenses:before {
+  content: "\e950";
+}
+.icon-reliable-connection:before {
+  content: "\e951";
+}
+.icon-sd-card-30:before {
+  content: "\e952";
+}
+.icon-spotlight:before {
+  content: "\e953";
+}
+.icon-subscription-2:before {
+  content: "\e954";
+}
+.icon-viewing-angle:before {
+  content: "\e955";
+}
+.icon-waterproof-2:before {
+  content: "\e956";
+}
+.icon-wifi4:before {
+  content: "\e957";
+}
+.icon-wire-free:before {
+  content: "\e958";
+}
+.icon-X-Optical-Zoom:before {
+  content: "\e959";
+}
+.icon-X-Optical-Zoom-line:before {
+  content: "\e95a";
+}
+.icon-TB:before {
+  content: "\e95b";
+}
+.icon-mp-line:before {
+  content: "\e95c";
+}
+.icon-TB1:before {
+  content: "\e95d";
+}
+.icon-1080p:before {
+  content: "\e95e";
+}
+.icon-p1:before {
+  content: "\e95f";
+}
+.icon-icon_3X-Optical-Zoom-line:before {
+  content: "\e960";
+}
+.icon-icon_4-channel-line:before {
+  content: "\e961";
+}
+.icon-icon_4G-3G-Mobile-Network:before {
+  content: "\e962";
+}
+.icon-icon_4k:before {
+  content: "\e963";
+}
+.icon-icon_4k1:before {
+  content: "\e964";
+}
+.icon-icon_4X-Optical-Zoom-line:before {
+  content: "\e965";
+}
+.icon-icon_5MP-4MP-line:before {
+  content: "\e966";
+}
+.icon-icon_8-channel-line:before {
+  content: "\e967";
+}
+.icon-icon_16-channel-line:before {
+  content: "\e968";
+}
+.icon-icon_24-7-Recording-line:before {
+  content: "\e969";
+}
+.icon-icon_120-Wide-Viewing-Angle:before {
+  content: "\e96a";
+}
+.icon-icon_130-Wide-Viewing-Angle:before {
+  content: "\e96b";
+}
+.icon-icon_180-Days:before {
+  content: "\e96c";
+}
+.icon-icon_1080p-hd2:before {
+  content: "\e96d";
+}
+.icon-icon_Day-and-Night-2:before {
+  content: "\e96f";
+}
+.icon-icon_detection-no-circle:before {
+  content: "\e970";
+}
+.icon-icon_DIY-line:before {
+  content: "\e971";
+}
+.icon-icon_Expand-System:before {
+  content: "\e972";
+}
+.icon-icon_HDD-Storage-Built-in-line:before {
+  content: "\e973";
+}
+.icon-icon_IK10-Vandal-Proof-line:before {
+  content: "\e974";
+}
+.icon-icon_IK10-Vandal-Proof-line1:before {
+  content: "\e975";
+}
+.icon-icon_Innovative-Installation-Design:before {
+  content: "\e976";
+}
+.icon-icon_Innovative-Installation-Design1:before {
+  content: "\e977";
+}
+.icon-icon_Intelligent-Alerts:before {
+  content: "\e978";
+}
+.icon-icon_Local-Cloud-Storage-line:before {
+  content: "\e979";
+}
+.icon-icon_Low-Battery-Notifications:before {
+  content: "\e97a";
+}
+.icon-icon_Mobile-Viewing-2:before {
+  content: "\e97b";
+}
+.icon-icon_Motion-Detection-Record:before {
+  content: "\e97c";
+}
+.icon-icon_Move-Anywhere:before {
+  content: "\e97d";
+}
+.icon-icon_Night-Vision-line:before {
+  content: "\e97e";
+}
+.icon-icon_Other-Smart-Features:before {
+  content: "\e97f";
+}
+.icon-icon_Plug-and-Play-line2:before {
+  content: "\e980";
+}
+.icon-icon_Plug-and-Play-line21:before {
+  content: "\e981";
+}
+.icon-icon_poe-cameras-line:before {
+  content: "\e982";
+}
+.icon-icon_POE-line-2:before {
+  content: "\e983";
+}
+.icon-icon_PoE-Systems-line:before {
+  content: "\e984";
+}
+.icon-icon_Powering-Options-line:before {
+  content: "\e985";
+}
+.icon-icon_product-PIR-Motion-Sensor:before {
+  content: "\e986";
+}
+.icon-icon_product-Wire-Free:before {
+  content: "\e987";
+}
+.icon-icon_PT-line:before {
+  content: "\e988";
+}
+.icon-icon_PTZ-line:before {
+  content: "\e989";
+}
+.icon-icon_PTZ-line1:before {
+  content: "\e98a";
+}
+.icon-icon_Rapid-Wake-Up:before {
+  content: "\e98b";
+}
+.icon-icon_Remote-Access:before {
+  content: "\e98c";
+}
+.icon-icon_See-Listen-and-Talk-line:before {
+  content: "\e98d";
+}
+.icon-icon_Share-Access:before {
+  content: "\e98e";
+}
+.icon-icon_simple-poe-or-dual-band-wifi1:before {
+  content: "\e98f";
+}
+.icon-icon_siren-line:before {
+  content: "\e990";
+}
+.icon-icon_Starlight-Night-Vision-line:before {
+  content: "\e991";
+}
+.icon-icon_Two-Way-Audio:before {
+  content: "\e992";
+}
+.icon-icon_Waterproof-Design:before {
+  content: "\e993";
+}
+.icon-icon_Wide-Viewing-Angle:before {
+  content: "\e994";
+}
+.icon-icon_WiFi-Cameras-line:before {
+  content: "\e995";
+}
+.icon-icon_WiFi-Cameras-Systems-line:before {
+  content: "\e996";
+}
+.icon-icon_wifi-line:before {
+  content: "\e997";
+}
+.icon-icon_WiFi-or-4G-Connection-line:before {
+  content: "\e998";
+}
+.icon-icon_With-Audio-line:before {
+  content: "\e999";
+}
+.icon-icon_Work-with-without-Internet-line:before {
+  content: "\e99a";
+}
+.icon-icon_Zoom_line:before {
+  content: "\e99b";
+}
+.icon-icon2_Customized-Voice-Recordable-Alerts:before {
+  content: "\e99c";
+}
+.icon-Motion-Zone-2:before {
+  content: "\e99d";
+}
+.icon-Plug-In-Power:before {
+  content: "\e99e";
+}
+.icon-pre-record:before {
+  content: "\e99f";
+}
+.icon-privacy-masking:before {
+  content: "\e9a0";
+}
+.icon-product-outline-5mp:before {
+  content: "\e9a1";
+}
+.icon-product-outline-5x_zoom:before {
+  content: "\e9a2";
+}
+.icon-product-outline-auto_tracking:before {
+  content: "\e9a3";
+}
+.icon-product-outline-duo:before {
+  content: "\e9a4";
+}
+.icon-product-outline-go_pt:before {
+  content: "\e9a5";
+}
+.icon-product-outline-hands_free_control:before {
+  content: "\e9a6";
+}
+.icon-product-outline-local_storage:before {
+  content: "\e9a7";
+}
+.icon-product-outline-nvr:before {
+  content: "\e9a8";
+}
+.icon-product-outline-playback:before {
+  content: "\e9a9";
+}
+.icon-product-outline-twin_Lenses:before {
+  content: "\e9aa";
+}
+.icon-recording:before {
+  content: "\e9ab";
+}
+.icon-sd-card-cloud:before {
+  content: "\e9ac";
+}
+.icon-spotlight-line:before {
+  content: "\e9ad";
+}
+.icon-wire-free-line:before {
+  content: "\e9ae";
+}
+.icon-coupon2:before {
+  content: "\e9af";
+}
+.icon-icon_shipping:before {
+  content: "\e9b0";
+}
+.icon-icon-coupon-0902:before {
+  content: "\e9b1";
+}
+.icon-icon-Estimated-time-of-arrival:before {
+  content: "\e9b2";
+}
+.icon-stock:before {
+  content: "\e9b3";
+}
+.icon-alert-line:before {
+  content: "\e9b4";
+}
+.icon-icon_16-sd-card:before {
+  content: "\e9b5";
+}
+.icon-icon_app:before {
+  content: "\e9b6";
+}
+.icon-icon_email:before {
+  content: "\e9b7";
+}
+.icon-icon_ftp:before {
+  content: "\e9b8";
+}
+.icon-motion-alerts:before {
+  content: "\e9b9";
+}
+.icon-motion-zone:before {
+  content: "\e9ba";
+}
+.icon-playback:before {
+  content: "\e9bb";
+}
+.icon-schedule:before {
+  content: "\e9bc";
+}
+.icon-simultaneous-live:before {
+  content: "\e9bd";
+}
+.icon-battery-cam:before {
+  content: "\e9be";
+}
+.icon-icon_Accessories:before {
+  content: "\e9bf";
+}
+.icon-icon_WiFi-Cameras-Systems-line1:before {
+  content: "\e9c0";
+}
+.icon-indoor-cam:before {
+  content: "\e9c1";
+}
+.icon-indoor-cam-discarded:before {
+  content: "\e9c2";
+}
+.icon-indoor-cam-discarded1:before {
+  content: "\e9c3";
+}
+.icon-kit:before {
+  content: "\e9c4";
+}
+.icon-nvr:before {
+  content: "\e9c5";
+}
+.icon-poe-cam:before {
+  content: "\e9c6";
+}
+.icon-store-dual_lenses_cameras:before {
+  content: "\e9c7";
+}
+.icon-wifi-cam:before {
+  content: "\e9c8";
+}
+.icon-wifi-free-cam:before {
+  content: "\e9c9";
+}
+.icon-wifi-poe-cam:before {
+  content: "\e9ca";
+}
+.icon-bin:before {
+  content: "\e9cb";
+}
+.icon-bin-line:before {
+  content: "\e9cc";
+}
+.icon-firmware:before {
+  content: "\e9cd";
+}
+.icon-hole-template:before {
+  content: "\e9ce";
+}
+.icon-icon_ask-community:before {
+  content: "\e9cf";
+}
+.icon-icon_cloud:before {
+  content: "\e9d0";
+}
+.icon-icon_cloud-vedio:before {
+  content: "\e9d1";
+}
+.icon-icon_contact-support:before {
+  content: "\e9d2";
+}
+.icon-icon_screenshot:before {
+  content: "\e9d3";
+}
+.icon-icon_stra:before {
+  content: "\e9d4";
+}
+.icon-icon2-125:before {
+  content: "\e9d5";
+}
+.icon-icon2-Accessories-checked:before {
+  content: "\e9d6";
+}
+.icon-icon2-Clean--evaluate-products:before {
+  content: "\e9d7";
+}
+.icon-icon2-Functional-test--firmware-upgrade:before {
+  content: "\e9d8";
+}
+.icon-icon2-Product-returned:before {
+  content: "\e9d9";
+}
+.icon-icon2-Repackaged--labeled-as-refurbished:before {
+  content: "\e9da";
+}
+.icon-icon2-Sold-as-Refurbished:before {
+  content: "\e9db";
+}
+.icon-icon-User-Manual-107:before {
+  content: "\e9dc";
+}
+.icon-lab:before {
+  content: "\e9dd";
+}
+.icon-qsg:before {
+  content: "\e9de";
+}
+.icon-pinterst-1:before {
+  content: "\ea61";
+}
+.icon-pinterst-2:before {
+  content: "\ea62";
+}
+.icon-Aliexpress:before {
+  content: "\e9df";
+}
+.icon-amazon:before {
+  content: "\e9e0";
+}
+.icon-icon_amazon:before {
+  content: "\e9e1";
+}
+.icon-icon_apple-store:before {
+  content: "\e9e2";
+}
+.icon-icon_edge:before {
+  content: "\e9e3";
+}
+.icon-icon_facebook:before {
+  content: "\e9e4";
+}
+.icon-icon_facebook-2:before {
+  content: "\e9e5";
+}
+.icon-icon_facebook-3:before {
+  content: "\e9e6";
+}
+.icon-icon_facebook-4:before {
+  content: "\e9e7";
+}
+.icon-icon_facebook-l:before {
+  content: "\e9e8";
+}
+.icon-icon_firefox:before {
+  content: "\e9e9";
+}
+.icon-icon_gmail-3:before {
+  content: "\e9ea";
+}
+.icon-icon_google:before {
+  content: "\e9eb";
+}
+.icon-icon_google-play:before {
+  content: "\e9ec";
+}
+.icon-icon_ie:before {
+  content: "\e9ed";
+}
+.icon-icon_ins:before {
+  content: "\e9ee";
+}
+.icon-icon_ins-4:before {
+  content: "\e9ef";
+}
+.icon-icon_mac-os:before {
+  content: "\e9f0";
+}
+.icon-icon_safari:before {
+  content: "\e9f1";
+}
+.icon-icon_twitter:before {
+  content: "\e9f2";
+}
+.icon-icon_twitter-2:before {
+  content: "\e9f3";
+}
+.icon-icon_twitter-3:before {
+  content: "\e9f4";
+}
+.icon-icon_twitter-4:before {
+  content: "\e9f5";
+}
+.icon-icon_twitter-l:before {
+  content: "\e9f6";
+}
+.icon-icon_windows:before {
+  content: "\e9f7";
+}
+.icon-icon_youtube-4:before {
+  content: "\e9f8";
+}
+.icon-icon_youtube-logo:before {
+  content: "\e9f9";
+}
+.icon-icon-reddit:before {
+  content: "\e9fa";
+}
+.icon-unfold:before {
+  content: "\ea63";
+}
+.icon-pack-up:before {
+  content: "\ea64";
+}
+.icon-cross:before {
+  content: "\e96e";
+}
+.icon-day-line:before {
+  content: "\ea4f";
+}
+.icon-hd:before {
+  content: "\ea50";
+}
+.icon-icon_3x:before {
+  content: "\ea51";
+}
+.icon-icon_5mp:before {
+  content: "\ea52";
+}
+.icon-icon_account:before {
+  content: "\ea53";
+}
+.icon-icon_back:before {
+  content: "\ea54";
+}
+.icon-icon_compare:before {
+  content: "\ea55";
+}
+.icon-icon_information:before {
+  content: "\ea56";
+}
+.icon-icon_night:before {
+  content: "\ea57";
+}
+.icon-icon_play-video:before {
+  content: "\ea58";
+}
+.icon-icon_support:before {
+  content: "\ea59";
+}
+.icon-icon_top:before {
+  content: "\ea5a";
+}
+.icon-icon_youtube:before {
+  content: "\ea5b";
+}
+.icon-icon-replay:before {
+  content: "\ea5c";
+}
+.icon-listen-talk-line:before {
+  content: "\ea5d";
+}
+.icon-night-line:before {
+  content: "\ea5e";
+}
+.icon-pan-tilt-line:before {
+  content: "\ea5f";
+}
+.icon-wifi3:before {
+  content: "\ea60";
+}
+.icon-icon_download:before {
+  content: "\ea4e";
+}
+.icon-icon_cart-color:before {
+  content: "\ea4d";
+}
+.icon-icon_reolink:before {
+  content: "\e93f";
+}
+.icon-icon_cart-2:before {
+  content: "\ea49";
+}
+.icon-icon_person-2:before {
+  content: "\ea4a";
+}
+.icon-icon_search-2:before {
+  content: "\ea4b";
+}
+.icon-icon_star-line:before {
+  content: "\ea4c";
+}
+.icon-blog-cons:before {
+  content: "\e9fb";
+}
+.icon-blog-pros:before {
+  content: "\e9fc";
+}
+.icon-blog-note:before {
+  content: "\e9fd";
+}
+.icon-blog-warning:before {
+  content: "\e9fe";
+}
+.icon-check:before {
+  content: "\e9ff";
+}
+.icon-attach-file:before {
+  content: "\ea00";
+}
+.icon-close:before {
+  content: "\ea01";
+}
+.icon-coupon:before {
+  content: "\ea02";
+}
+.icon-cross2:before {
+  content: "\ea03";
+}
+.icon-eye:before {
+  content: "\ea04";
+}
+.icon-hot:before {
+  content: "\ea05";
+}
+.icon-icon_arrow-down:before {
+  content: "\ea06";
+}
+.icon-icon_arrow-left:before {
+  content: "\ea07";
+}
+.icon-icon_arrow-right:before {
+  content: "\ea08";
+}
+.icon-icon_arrow-up:before {
+  content: "\ea09";
+}
+.icon-icon_back1:before {
+  content: "\ea0a";
+}
+.icon-icon_caidan:before {
+  content: "\ea0b";
+}
+.icon-icon_cart-99:before {
+  content: "\ea0c";
+}
+.icon-icon_cart-992:before {
+  content: "\ea0d";
+}
+.icon-icon_clock:before {
+  content: "\ea0e";
+}
+.icon-icon_cross2:before {
+  content: "\ea0f";
+}
+.icon-icon_edit:before {
+  content: "\ea10";
+}
+.icon-icon_full-screen:before {
+  content: "\ea11";
+}
+.icon-icon_have:before {
+  content: "\ea12";
+}
+.icon-icon_down-2:before {
+  content: "\ea13";
+}
+.icon-icon_right-2:before {
+  content: "\ea14";
+}
+.icon-icon_left-2:before {
+  content: "\ea15";
+}
+.icon-icon_play:before {
+  content: "\ea16";
+}
+.icon-icon_play-2:before {
+  content: "\ea17";
+}
+.icon-icon_plus:before {
+  content: "\ea18";
+}
+.icon-icon_question:before {
+  content: "\ea19";
+}
+.icon-icon_question1:before {
+  content: "\ea1a";
+}
+.icon-icon_question2:before {
+  content: "\ea1b";
+}
+.icon-icon_repeat:before {
+  content: "\ea1c";
+}
+.icon-icon_Suppor:before {
+  content: "\ea1d";
+}
+.icon-icon_vote:before {
+  content: "\ea1e";
+}
+.icon-icon2_homepage:before {
+  content: "\ea1f";
+}
+.icon-icon2_security:before {
+  content: "\ea20";
+}
+.icon-icon-arrow_down:before {
+  content: "\ea21";
+}
+.icon-icon-arrow_left:before {
+  content: "\ea22";
+}
+.icon-icon-arrow_right:before {
+  content: "\ea23";
+}
+.icon-icon-arrow_up:before {
+  content: "\ea24";
+}
+.icon-icon-check:before {
+  content: "\ea25";
+}
+.icon-icon-date:before {
+  content: "\ea26";
+}
+.icon-icon-download-2:before {
+  content: "\ea27";
+}
+.icon-icon-error:before {
+  content: "\ea28";
+}
+.icon-icon-error-2:before {
+  content: "\ea29";
+}
+.icon-icon-error-3:before {
+  content: "\ea2a";
+}
+.icon-icon-error-4:before {
+  content: "\ea2b";
+}
+.icon-icon-hint-count_down:before {
+  content: "\ea2c";
+}
+.icon-icon-hint-error:before {
+  content: "\ea2d";
+}
+.icon-icon-hint-success:before {
+  content: "\ea2e";
+}
+.icon-icon-hint-warning:before {
+  content: "\ea2f";
+}
+.icon-icon-hint-warning1:before {
+  content: "\ea30";
+}
+.icon-icon-loading-1:before {
+  content: "\ea31";
+}
+.icon-icon-loading-2:before {
+  content: "\ea32";
+}
+.icon-icon-navigation-back:before {
+  content: "\ea33";
+}
+.icon-icon-replay-2:before {
+  content: "\ea34";
+}
+.icon-icon-search-2:before {
+  content: "\ea35";
+}
+.icon-icon-share-2:before {
+  content: "\ea36";
+}
+.icon-icon-slide:before {
+  content: "\ea37";
+}
+.icon-icon-talk:before {
+  content: "\ea38";
+}
+.icon-right:before {
+  content: "\ea39";
+}
+.icon-question:before {
+  content: "\ea3d";
+}
+.icon-MP:before {
+  content: "\ea3a";
+}
+.icon-alert:before {
+  content: "\ea3b";
+}
+.icon-day:before {
+  content: "\ea3c";
+}
+.icon-listen:before {
+  content: "\ea3e";
+}
+.icon-night:before {
+  content: "\ea3f";
+}
+.icon-pan-tilt:before {
+  content: "\ea40";
+}
+.icon-phone:before {
+  content: "\ea41";
+}
+.icon-poe:before {
+  content: "\ea42";
+}
+.icon-poe-cameras:before {
+  content: "\ea43";
+}
+.icon-refund:before {
+  content: "\ea44";
+}
+.icon-sd-card:before {
+  content: "\ea45";
+}
+.icon-talk:before {
+  content: "\ea46";
+}
+.icon-waterproof:before {
+  content: "\ea47";
+}
+.icon-wifi:before {
+  content: "\ea48";
+}

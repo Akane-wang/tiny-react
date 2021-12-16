@@ -1,0 +1,80 @@
+/* link： 替换箭头的icon */
+.linkNormal {
+    font-size: var(--link-font);
+    color: var(--link-color);
+    &:hover {
+        color: var(--link-hover-color);
+    }
+}
+
+/* link 按钮 */
+.linkClass {
+    .linkNormal();
+    display: inline-flex;
+    align-items: center;
+    line-height: 1.2;
+    text-decoration: none;
+    cursor: pointer;
+    width: max-content;
+    @media (min-width: 1280px) {
+        &:hover {
+            .link:not(.hasIcon)::before {
+                transform: scale(1) translateY(0px);
+                opacity: 1;
+            }
+            .link.hasIcon,
+            .link-right-arrow {
+                border-bottom: 1px solid var(--link-border-bottom-color);
+            }
+        }
+    }
+    .hasIcon {
+        margin-right: 16px;
+        padding-bottom: 2px;
+    }
+    
+    .noUnderline {
+        padding-bottom: 0;
+        border: 1px solid transparent;
+    }
+    .link {
+        border-bottom: 1px solid transparent;
+        position: relative;
+        @media (min-width: 1280px) {
+            &:not(.hasIcon)::before {
+                content: "";
+                opacity: 0;
+                transform-origin: center center;
+                transform: scale(0) translateY(5px);
+                transition: all 1s cubic-bezier(0.1, 0.1, 0, 1);
+                position: absolute;
+                bottom: -1px;
+                width: 100%;
+                height: 1px;
+                background-color: var(--link-border-bottom-color);
+                margin-left: auto;
+                margin-right: auto;
+                left: 0;
+                right: 0;
+            }
+        }
+    }
+    .link-right-arrow {
+        border-bottom: 1px solid transparent;
+        & + span {
+            position: relative;
+            right: 0px;
+            color: #00ade5;
+            transition: right .3s;
+            margin-left: 8px;
+        }
+        @media (min-width: 1280px) {
+            &:hover+span {
+                position: relative;
+                right: -4px;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
