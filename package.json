@@ -2,7 +2,7 @@
     "name": "@akane-wangqian/basic-component",
     "version": "1.0.5",
     "description": "akane's basic-component",
-    "main": "dist/index.js",
+    "main": "dist/js/index.js",
     "scripts": {
         "prepare": "npm run rebuild",
         "build": "npm run clean &&cross-env NODE_ENV=production webpack --config build/webpack.config.js",
