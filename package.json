@@ -1,6 +1,6 @@
 {
     "name": "@akane-wangqian/basic-component",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "description": "akane's basic-component",
     "main": "dist/js/index.js",
     "scripts": {
