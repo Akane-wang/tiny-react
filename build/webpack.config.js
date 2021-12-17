@@ -4,18 +4,23 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
     mode: 'production',
     context: path.join(__dirname, '..'),
-    mode: "production",
     entry: resolve("src/index.ts"),
     output: {
         path: resolve("dist"),
         filename: 'index.js',
+        libraryTarget: 'commonjs2'
+    },
+    externals: {
+        react: 'react'
     },
     resolve: {
         extensions: ['.js', '.ts', '.tsx', '.jsx', '.json', '.d.ts', '.css', '.less', '.module.less'],
         alias: {
-            '@': resolve("src")
+            '@': resolve("src"),
+            react: resolve('./node_modules/react')
         },
     },
+    devtool: 'eval-source-map',
     stats: "detailed",
     module: {
         rules: [
@@ -58,13 +63,13 @@ module.exports = {
                     compiler: 'ttypescript',
                 },
             },
-            {
-                test: /\.jsx?$/,
-                loader: 'babel-loader',
-                include: [
-                    resolve('src')
-                ]
-            }
+            // {
+            //     test: /\.jsx?$/,
+            //     loader: 'babel-loader',
+            //     include: [
+            //         resolve('src')
+            //     ]
+            // }
         ]
     },
     plugins: [
