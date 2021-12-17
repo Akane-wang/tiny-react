@@ -2,13 +2,13 @@ const path = require('path');
 const { resolve } = require('./utils');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
+    mode: 'production',
     context: path.join(__dirname, '..'),
     mode: "production",
-    entry: [resolve("src/index.ts")],
+    entry: resolve("src/index.ts"),
     output: {
         path: resolve("dist"),
-        filename: 'js/index.js',
-        chunkFilename: 'js/[name].[chunkhash].js',
+        filename: 'index.js',
     },
     resolve: {
         extensions: ['.js', '.ts', '.tsx', '.jsx', '.json', '.d.ts', '.css', '.less', '.module.less'],
@@ -17,7 +17,6 @@ module.exports = {
         },
     },
     stats: "detailed",
-    target: 'web',
     module: {
         rules: [
             {

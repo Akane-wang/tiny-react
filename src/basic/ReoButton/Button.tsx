@@ -181,3 +181,4 @@ const ReoButton: React.FC<IProps>= (props) => {
 };
 
 export default ReoButton;
+export { IProps };
