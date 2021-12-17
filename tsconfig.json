@@ -6,6 +6,7 @@
     ],
     "compilerOptions": {
         "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
         "allowJs": true,
         "baseUrl": "",
         "declaration": true,
@@ -31,7 +32,7 @@
         "resolveJsonModule": true,
         "strictNullChecks": true,
         "sourceMap": true,
-        "target": "es2015",
+        "target": "es5",
         "plugins": [
             { "transform": "typescript-transform-paths" },
             // Transform paths in output .d.ts files (Include this line if you output declarations files)

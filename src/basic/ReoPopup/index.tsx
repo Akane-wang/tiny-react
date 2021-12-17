@@ -13,7 +13,7 @@ const ReoPopup = (props: IProps): React.ReactElement => {
 
     const handleClick = useCallback(() => {
         props.onOutsideClick?.();
-    }, []);
+    }, [props]);
     return (
         props.static
             ? (
