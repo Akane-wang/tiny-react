@@ -1,2 +1,2 @@
-# what is this package
-    - this is a basic-component of akane; like button or select, once belong to ant-design
+# 基础组件库
+ - 基础组件库使用方式见 awesome-frontend-architecture 项目的基础组件模块的 markdown
