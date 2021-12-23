@@ -98,4 +98,10 @@ const iconWidth = {
     }
 };
 
-export { defaultIcon, iconSizeSpace, loadingWidth, iconWidth };
+const loadingHeight = {
+    large: 48,
+    medium: 36,
+    small: 30
+};
+
+export { defaultIcon, iconSizeSpace, loadingWidth, iconWidth, loadingHeight };

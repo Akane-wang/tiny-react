@@ -12,11 +12,11 @@
 }
 
 /* button样式 */
-.publicButtonFontAndBg(@fontColor, @background, @border) {
+.publicButtonFontAndBg(@fontColor, @background, @border, @transition: all 0.3s) {
     color: @fontColor;
     background: @background;
     border: @border;
-    transition: all 0.3s;
+    transition: @transition;
 }
 
 /* close 按钮 */
@@ -33,6 +33,18 @@
 
 // 公用样式，不受type或其他属性限制
 .buttonWrap {
+    &.size-large {
+        line-height: 48px;
+        padding: 0 24px;
+    }
+    &.size-medium {
+        line-height: 36px;
+        padding: 0 20px;
+    }
+    &.size-small {
+        line-height: 30px;
+        padding: 0 14px;
+    }
     /* 公共样式 */
     &.publicStyle {
         box-sizing: border-box;
@@ -79,43 +91,53 @@
     &.primary {
         @media (min-width: 1280px) {
             .toggleGhost&:not(.border-square):hover {
-                .publicButtonFontAndBg(#00ade5, #fff, 1px solid #00ade5);
+                .publicButtonFontAndBg(#00ade5, transparent, 1px solid #00ade5);
             }
             .toggleGhost.ghost&:not(.border-square):hover {
                 .publicButtonFontAndBg(#fff, linear-gradient(148deg, #1E7FF2 0%, #1DC4E4 100%), 1px solid transparent);
+                border-right-color: #1DC4E4;
             }
             .border-square&:hover {
-                .publicButtonFontAndBg(#fff, #1E7FF2, 1px solid #1E7FF2);
+                .publicButtonFontAndBg(#fff, #1E7FF2, 1px solid #1E7FF2, none);
             }
         }
         // ghost为true， 或者toggleGhost为true的hover情况
         &.ghost {
-            .publicButtonFontAndBg(#00ade5, #fff, 1px solid #00ade5);
+            .publicButtonFontAndBg(#00ade5, transparent, 1px solid #00ade5);
         }
         // primary, ghost && toggleGhost为true
         & {
             .publicButtonFontAndBg(#fff, linear-gradient(148deg, #1E7FF2 0%, #1DC4E4 100%), 1px solid transparent);
+        }
+        &:not(:hover) {
+
+            border-right-color: #1DC4E4;
         }
     }
 
     &.gradientRedPrimary {
         @media (min-width: 1280px) {
             .toggleGhost&:hover {
-                .publicButtonFontAndBg(#F45C43, #fff, 1px solid #F45C43);
+                .publicButtonFontAndBg(#F45C43, transparent, 1px solid #F45C43);
             }
             .toggleGhost.ghost&:hover {
                 .publicButtonFontAndBg(#fff, linear-gradient(90deg, #EB3349 0%, #F45C43 100%), 1px solid transparent);
+                border-right-color: #F45C43;
             }
 
             .border-square&:hover {
-                .publicButtonFontAndBg(#fff, #EB3349, 1px solid #EB3349);
+                .publicButtonFontAndBg(#fff, #EB3349, 1px solid #EB3349, none);
             }
         }
         &.ghost {
-            .publicButtonFontAndBg(#F45C43, #fff, 1px solid #F45C43);
+            .publicButtonFontAndBg(#F45C43, transparent, 1px solid #F45C43);
         }
         & {
             .publicButtonFontAndBg(#fff, linear-gradient(90deg, #EB3349 0%, #F45C43 100%), 1px solid transparent);
+        }
+        &:not(:hover) {
+            border-right-color: #F45C43;
+    
         }
     }
 
@@ -165,6 +187,7 @@
             animation-duration: 1s;
             animation-iteration-count: infinite;
             animation-timing-function: linear;
+            height: var(--icon-height);
             .button-baseline();
             &.linkButton {
                 position: relative;

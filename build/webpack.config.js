@@ -2,7 +2,7 @@ const path = require('path');
 const { resolve } = require('./utils');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
-    mode: 'production',
+    mode: 'development',
     context: path.join(__dirname, '..'),
     entry: resolve("src/index.ts"),
     output: {
@@ -20,7 +20,7 @@ module.exports = {
             react: resolve('./node_modules/react')
         },
     },
-    devtool: 'eval-source-map',
+    devtool: 'source-map',
     stats: "detailed",
     module: {
         rules: [

@@ -1,7 +1,7 @@
 {
-    "name": "@akane-wangqian/basic-component",
-    "version": "1.0.10",
-    "description": "akane's basic-component",
+    "name": "@reolink/web.basic-component",
+    "version": "0.1.0",
+    "description": "reolink basic-component",
     "main": "dist/index.js",
     "scripts": {
         "prepare": "npm run rebuild",
@@ -15,7 +15,7 @@
         "npm",
         "basic-component"
     ],
-    "author": "akane-wangqian<mnwangqian@163.com>",
+    "author": "akane-wangqian<wangqian@sz-bcs.com.cn>",
     "repository": {
         "type": "git",
         "url": "git+https://git.develop.reolink.com.cn/wangqian/basic-component.git"

@@ -2,7 +2,7 @@ import React, { CSSProperties, useCallback, useMemo, useState } from 'react';
 import style from './button.module.less';
 import ReoIcon from '../ReoIcon';
 import classnames from 'classnames';
-import {iconWidth, iconSizeSpace, loadingWidth } from './style';
+import {iconWidth, iconSizeSpace, loadingWidth, loadingHeight } from './style';
 import { IProps, IChildrenNode } from './interface';
 import { suffixPx } from '@/dom-utils';
 import { getGlobal } from '@/shared';
@@ -133,6 +133,7 @@ const ReoButton: React.FC<IProps>= (props) => {
                         [classnames(style.loading)]: prop.loading
                     },
                     style[`border-${prop.borderRadius ?? 'rounded'}`],
+                    style[`size-${prop.size}`],
                     prop.className
                 ) }
                 style={{ ...cssStyle, ...prop.style }}
@@ -150,7 +151,8 @@ const ReoButton: React.FC<IProps>= (props) => {
                                     [style.linkButton]: prop.type === 'linkButton'
                                 }
                             ) }
-                            style={{'--icon-width': suffixPx(loadingWidth[prop.size!]) } as CSSProperties}
+                            style={{'--icon-width': suffixPx(loadingWidth[prop.size!]),
+                            '--icon-height': suffixPx(loadingHeight[prop.size!]) } as CSSProperties}
                         >
                             <ReoIcon
                                 name={ 'icon-icon-loading-1' }

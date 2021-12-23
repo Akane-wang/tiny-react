@@ -88,7 +88,12 @@ const RangeItem: React.FC<IRangeItem> = (props) => {
     }, [props]);
     return (
         <div
-            className={ classnames(style.pageRangeContainer, style.pageRangeContainer ) }
+            className={ classnames(
+                style.pageRangeContainer,
+                {
+                    [style['active-wrap']]: props.current === props.item
+                }
+            ) }
             onClick={ handleClick }
         >
             <span
@@ -209,11 +214,17 @@ const ReoPagination: React.FC<IProps> = (prop) => {
                     )
                     : null
             }
-            <RangeItem
-                item={ totalPage }
-                current={ paginationConfig.current }
-                onClick={ (active) => handleClick(active) }
-            />
+            {
+                totalPage > 1
+                    ? (
+                        <RangeItem
+                            item={ totalPage }
+                            current={ paginationConfig.current }
+                            onClick={ (active) => handleClick(active) }
+                        />
+                    )
+                    : null
+            }
             <ReoIcon
                 name={ 'icon-icon_arrow-right' }
                 onClick={ handleNext }
