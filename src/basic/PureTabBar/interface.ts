@@ -1,5 +1,6 @@
 export interface IProps {
     title: string;
+    href: string;
     tabBar: ITabBar[];
     className?: string | React.CSSProperties; // 加给整体的类
 }
