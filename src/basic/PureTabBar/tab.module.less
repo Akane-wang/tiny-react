@@ -45,6 +45,13 @@
                     justify-content: center;
                 }
             }
+            .carousel-button-left, .carousel-button-right {
+                @media (min-width: 1280px) {
+                    & {
+                        display: none; // pureTab1280以上应该隐藏起来
+                    }
+                }
+            }
             .carousel-button-left {
                 padding-left: 30px;
                 background: linear-gradient(45deg, transparent, #fff);
@@ -81,7 +88,7 @@
                     color: #00ADE5;
                 }
             }
-    
+
         }
     }
 }

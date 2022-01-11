@@ -249,6 +249,9 @@ export type EIconType = 'icon-rd-party-software' |
 'icon-icon_youtube-4' |
 'icon-icon_youtube-logo' |
 'icon-icon-reddit' |
+'icon-Rating-3' |
+'icon-Rating-2' |
+'icon-Rating-1' |
 'icon-unfold' |
 'icon-pack-up' |
 'icon-cross' |

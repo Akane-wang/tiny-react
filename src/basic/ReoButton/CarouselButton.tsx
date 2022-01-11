@@ -13,7 +13,7 @@ const defaultProps = {
     transition: true,
     initIndex: 0,
     loop: false,
-    showCount: 0
+    showCount: 0 // 两套方案，showCount !== 0 ? 显示个数配置；showCount > 0 ? 显示宽度配置
 };
 
 function reducerCurrentCount(state: number, action: IAction): any {
@@ -104,15 +104,34 @@ const CarouselButton: React.FC<IGhost | IDark | ILight | IUnset> = (prop) => {
             '--background-color': props.bgColor ?? icon?.bgColor,
             '--hover-background-color': props.hoverBgColor ?? icon?.hoverBgColor,
             '--box-shadow': props.boxShadow ?? icon?.boxShadow,
-            '--hover-box-shadow': props.hoverBoxShadow ?? icon?.hoverBoxShadow
+            '--hover-box-shadow': props.hoverBoxShadow ?? icon?.hoverBoxShadow,
+            '--carousel-button-padding': suffixPx(iconWidthPadding.padding?.[props.size as Size] ?? 0)
         } as CSSProperties;
 
-    }, [iconWidthPadding, props.bgColor, props.hoverBgColor, props.boxShadow, props.hoverBoxShadow]);
+    }, [iconWidthPadding, props.bgColor, props.hoverBgColor, props.boxShadow, props.hoverBoxShadow, props.size]);
     const childrenContainer = useMemo(() => {
         return {
             '--translate-x': suffixPx(swipeCount * -childrenWidth.current)
         } as CSSProperties;
     }, [swipeCount]);
+
+    const validChildren = useMemo(() => {
+        const validRes = React.Children.map(props.children,
+            item => {
+                if(!React.isValidElement(item)) {
+                    return null;
+                }
+                return Object.assign({}, {child: item, value: item.props.value});
+            }
+        );
+
+        return validRes?.filter((item, index) => {
+            if(currentIndex <= index && index < (currentIndex + props.showCount)) {
+                return item;
+            }
+        });
+
+    }, [currentIndex, props.children, props.showCount]);
 
     return(
 
@@ -121,11 +140,10 @@ const CarouselButton: React.FC<IGhost | IDark | ILight | IUnset> = (prop) => {
                 name={ iconWidthPadding.icon.left as EIconType }
                 width={ iconWidthPadding.width?.[props.size as Size] }
                 className={ classnames(
-                    `p-${iconWidthPadding.padding?.[props.size as Size]}`,
-                    'rounded-100',
                     style.iconStyle,
-                    'cursor-pointer',
-                    { [style.visibleTransition]: (props.showCount > 0 && currentIndex <= 0) || swipeCount <= 0 },
+                    {
+                        [style.visibleTransition]: props.showCount > 0 ? currentIndex <= 0 : swipeCount <= 0
+                    },
                     props.iconRightClassName,
 
                 ) }
@@ -139,41 +157,40 @@ const CarouselButton: React.FC<IGhost | IDark | ILight | IUnset> = (prop) => {
                 className={ classnames(style['children-wrap']) }
                 ref={ containerRef }
             >
-
-                <div
-                    className={ classnames(style['children-container'], props.childrenClassName) }
-                    style={ childrenContainer }
-                    ref={ realContentRef }
-                >
-                    {
-                        React.Children.map(props.children,
-                            item => {
-                                if(!React.isValidElement(item)) {
-                                    return null;
-                                }
-                                return item;
+                {
+                    props.showCount
+                    ? validChildren?.map(item => item.child)
+                    : (
+                        <div
+                            className={ classnames(style['children-container'], props.childrenClassName) }
+                            style={ childrenContainer }
+                            ref={ realContentRef }
+                        >
+                            {
+                                React.Children.map(props.children,
+                                    item => {
+                                        if(!React.isValidElement(item)) {
+                                            return null;
+                                        }
+                                        return item;
+                                    }
+                                )
                             }
-                        )
-                }
 
-                </div>
+                        </div>
+                    )
+                }
             </div>
             <ReoIcon
                 name={ iconWidthPadding.icon.right as EIconType }
                 width={ iconWidthPadding.width?.[props.size as Size] }
                 className={ classnames(
-                    `p-${iconWidthPadding.padding?.[props.size as Size]}`,
-                    'rounded-100',
                     style.iconStyle,
-                    'cursor-pointer',
                     {
-                        [style.visibleTransition]: (
-                            props.showCount > 0
-                            && (currentIndex + props.showCount) >= childrenLength
-                        )
-                        || (
-                            (swipeCount + 1) * childrenWidth.current > (realContentRef.current?.clientWidth ?? 0)
-                        )
+                        [style.visibleTransition]:
+                            props.showCount > 0 // 表示是方案一：即显示个数
+                            ? (currentIndex + props.showCount) >= childrenLength
+                            : (swipeCount + 1) * childrenWidth.current > (realContentRef.current?.clientWidth ?? 0)
                     },
                     props.iconLeftClassName
                 ) }

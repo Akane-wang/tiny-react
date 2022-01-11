@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?re5wz8');
-  src:  url('fonts/icomoon.eot?re5wz8#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.woff2?re5wz8') format('woff2'),
-    url('fonts/icomoon.ttf?re5wz8') format('truetype'),
-    url('fonts/icomoon.woff?re5wz8') format('woff'),
-    url('fonts/icomoon.svg?re5wz8#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?w9tz99');
+  src:  url('fonts/icomoon.eot?w9tz99#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.woff2?w9tz99') format('woff2'),
+    url('fonts/icomoon.ttf?w9tz99') format('truetype'),
+    url('fonts/icomoon.woff?w9tz99') format('woff'),
+    url('fonts/icomoon.svg?w9tz99#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -778,6 +778,15 @@
 }
 .icon-icon-reddit:before {
   content: "\e9fa";
+}
+.icon-Rating-3:before {
+  content: "\ea65";
+}
+.icon-Rating-2:before {
+  content: "\ea66";
+}
+.icon-Rating-1:before {
+  content: "\ea67";
 }
 .icon-unfold:before {
   content: "\ea63";

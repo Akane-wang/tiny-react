@@ -17,6 +17,7 @@ export interface IRangeItem {
 export interface IAction {
     type: IActionType;
     active?: number;
+    state?: IState;
 }
 
 export type IActionType = 'prev' | 'next' | 'click' | 'preload';

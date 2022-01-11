@@ -24,3 +24,9 @@ export { ReoBlueIconSearch, ReoSearch } from '@/basic/ReoSearch';
 export type { IProps as ISearchProps } from '@/basic/ReoSearch';
 export { default as ReoSelect } from '@/basic/ReoSelect';
 export type { IProps as ISelectProps, IInnerOption, IOptionsList, TOptionKey, IDropDown,  IOption } from '@/basic/ReoSelect';
+
+export { default as ReoRate } from '@/basic/ReoRate';
+export type { IProps as IReoRateProps } from '@/basic/ReoRate';
+
+export { default as ReoTag } from '@/basic/ReoTag';
+export type { IProps as IReoTagProps } from '@/basic/ReoTag';

@@ -1,0 +1,17 @@
+.rating-wrap {
+
+    .rating {
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s;
+        &:hover {
+            transform: scale(1.083);
+        }
+        &.check-disabled {
+            pointer-events: none;
+        }
+    }
+    .rating + .rating {
+        margin-left: var(--rating-margin-left);
+    }
+}

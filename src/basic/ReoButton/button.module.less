@@ -137,7 +137,7 @@
         }
         &:not(:hover) {
             border-right-color: #F45C43;
-    
+
         }
     }
 
@@ -327,13 +327,11 @@
     justify-content: center;
     width: 100%;
     .iconStyle {
+        border-radius: 100px;
+        padding: var(--carousel-button-padding);
+        cursor: pointer;
         background-color: var(--background-color);
         box-shadow: var(--box-shadow);
-        @media (min-width: 1280px) {
-            & {
-                display: none;
-            }
-        }
         &:hover {
             background-color: var(--hover-background-color);
             box-shadow: var(--hover-box-shadow);

@@ -73,7 +73,7 @@ function getNewState(type: IActionType, state: IState, active?: number): IState 
 function paginationReducer(state: IState, action: IAction): any {
 
     switch(action.type) {
-        case 'preload':
+        case 'preload': return getNewState(action.type, {...state, ...action.state});
         case 'prev':
         case 'next': return getNewState(action.type, state);
         case 'click': return getNewState(action.type, state, action.active);
@@ -123,7 +123,7 @@ const ReoPagination: React.FC<IProps> = (prop) => {
     const initState = useMemo(() => {
         return {
             current: props.current, // 当前页
-            pageRange: [2, 3, 4, 5], // 显示范围
+            pageRange: [], // 显示范围
             totalPage, // 总页数
             showPage: props.showPage, // 一次显示多少页
         };
@@ -132,8 +132,8 @@ const ReoPagination: React.FC<IProps> = (prop) => {
     /* reducer */
     const [ paginationConfig, dispatchPagination ] = useReducer(paginationReducer, initState);
     useEffect(() => {
-        dispatchPagination({type: 'preload'});
-    }, []);
+        dispatchPagination({type: 'preload', state: initState});
+    }, [initState]);
     useEffect(() => {
         prop.onChange?.(paginationConfig.current);
     }, [paginationConfig, prop]);
