@@ -24,7 +24,8 @@ const ReoVideoPlay: React.FC<IProps> = (prop) => {
             className={ classnames(
                     style['play'],
                     style['position'],
-                    style[props.size][props.type],
+                    style[props.size],
+                    style[props.type],
                     props.className
             ) }
             onClick={ handleClick }
