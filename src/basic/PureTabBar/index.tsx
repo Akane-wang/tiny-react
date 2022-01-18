@@ -8,7 +8,7 @@ class PureTabBar extends React.Component<IProps> {
     public render(): React.ReactElement {
         return (
             <div className={ classnames(style['tab-wrap']) }>
-                <div className={ classnames('layout', style['tab-content'], this.props.className) }>
+                <div className={ classnames('main-container', style['tab-content'], this.props.className) }>
                     <ReoLink
                         className={ classnames(style['tab-title']) }
                         href={ this.props.href }

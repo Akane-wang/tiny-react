@@ -15,7 +15,7 @@ const ReoTable: React.FC<IProps> = (prop) => {
     }, [prop]);
 
     return (
-        <div className={ classnames(style['table-wrap'], 'layout', props.className) }>
+        <div className={ classnames(style['table-wrap'], 'main-container', props.className) }>
             <ReoCarouselButton
                 type='dark'
                 size='large'
