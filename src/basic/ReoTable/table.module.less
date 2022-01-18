@@ -1,0 +1,106 @@
+.table-wrap {
+    position: relative;
+    width: 100%;
+    .table-note {
+        font-weight: 500;
+        color: #777;
+        font-size: 16px;
+        line-height: 1.2;
+        margin-top: 24px;
+        text-align: center;
+        width: 100%;
+        @media (max-width: 767px) {
+            & {
+                margin-top: 20px;
+            }
+        }
+    }
+    .icon-carousel {
+        .children-container {
+            width: 100%;
+            &.disabled-carousel-button {
+                overflow-x: auto;
+            }
+        }
+        .children-content {
+            margin: 0 auto;
+        }
+        .icon-left, .icon-right {
+            position: absolute;
+            &.hidden-carousel-button {
+                display: none;
+            }
+        }
+        .icon-left {
+            border-radius: 100px 0 0 100px;
+            padding: 37px 10px 37px 18px;
+            right: 0px;
+        }
+        .icon-right {
+            border-radius: 0 100px 100px 0;
+            padding: 37px 18px 37px 10px;
+            left: 0px;
+        }
+    }
+    table {
+        width: 100%;
+        margin: 0 auto;
+        border-collapse: collapse;
+        // tbody {
+        // }
+        tr {
+            border-bottom: 1px solid #DFDFDF;
+            th {
+                background-color: #414141;
+                border: 1px solid #fff;
+                border-right: 0px;
+                color: #fff;
+                padding: 14px;
+                font-size: 16px;
+                line-height: 1.2;
+                font-weight: 700;
+                width: 180px;
+                @media (max-width: 767px) {
+                    & {
+                        width: 160px;
+                    }
+                }
+            }
+            td {
+                padding: 20px 14px;
+                border-bottom: 1px solid #DFDFDF;
+                text-align: center;
+                font-size: 16;
+                line-height: 1.2;
+                color: #333;
+                font-weight: 500;
+                width: 220px;
+                @media (max-width: 767px) {
+                    & {
+                        padding: 14px;
+                        width: 190px;
+                    }
+                }
+                &.row-title {
+                    font-weight: 700;
+                }
+                &:nth-of-type(odd) {
+                    background-color: #F7F8F9;
+                }
+
+                .icon-checked, .icon-unchecked {
+                    border-radius: 100%;
+                    width: 24px;
+                    height: 24px;
+                }
+                .icon-checked {
+                    background-color: #00ADE5;
+                }
+
+                .icon-unchecked {
+                    background-color: #CCCCCC;
+                }
+            }
+        }
+    }
+}

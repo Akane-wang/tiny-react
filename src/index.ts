@@ -1,3 +1,4 @@
+import '@/assets/common.less';
 export { default as PureTabBar } from '@/basic/PureTabBar';
 export type { IProps as IPureTabBarProps, ITabBar } from '@/basic/PureTabBar';
 export { default as ReoIcon } from '@/basic/ReoIcon';
@@ -30,3 +31,9 @@ export type { IProps as IReoRateProps } from '@/basic/ReoRate';
 
 export { default as ReoTag } from '@/basic/ReoTag';
 export type { IProps as IReoTagProps } from '@/basic/ReoTag';
+
+export { default as ReoVideoPlay } from '@/basic/ReoVideoPlay';
+export type { IProps as IReoVideoPlayProps } from '@/basic/ReoVideoPlay';
+
+export { default as ReoTable } from '@/basic/ReoTable';
+export type { IProps as IReoTableProps } from '@/basic/ReoTable';

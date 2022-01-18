@@ -332,9 +332,16 @@
         cursor: pointer;
         background-color: var(--background-color);
         box-shadow: var(--box-shadow);
+        z-index: 1;
         &:hover {
             background-color: var(--hover-background-color);
             box-shadow: var(--hover-box-shadow);
+        }
+        // 隐藏按钮
+        &.visibleTransition {
+            display: none;
+            animation: 0.4s forwards visibilityTransition;
+            pointer-events: none;
         }
     }
     .children-wrap {
@@ -354,13 +361,6 @@
         }
     }
 
-}
-
-// 隐藏按钮
-.visibleTransition {
-    display: none;
-    animation: 0.4s forwards visibilityTransition;
-    pointer-events: none;
 }
 
 @keyframes visibilityTransition {

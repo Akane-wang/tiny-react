@@ -1,4 +1,5 @@
 import { EIconType } from '@/basic/ReoIcon';
+import { CSSProperties, ReactNode } from 'react';
 
 export type Types = 'primary' | 'gradientRedPrimary' | 'linkButton' | 'unset';
 
@@ -21,12 +22,12 @@ export interface IProps {
     iconWidth?: number | string;
     iconHeight?: number | string;
     width?: number | string;
-    className?: string | React.CSSProperties;
-    style?: React.CSSProperties;
+    className?: string | CSSProperties;
+    style?: CSSProperties;
     backgroundColor?: string;
     color?: string;
     borderColor?: string;
-    children?: React.ReactNode;
+    children?: ReactNode;
     onClick?: (e: any) => any;
 }
 
@@ -43,16 +44,17 @@ export interface ICloseProps {
 export type Size = 'large' | 'small' | 'medium';
 
 export interface ICarouselButtonProps {
-    className?: string;
-    childrenClassName?: string; // 作用于children
-    iconLeftClassName?: string | React.CSSProperties; // 作用于button
-    iconRightClassName?: string | React.CSSProperties; // 作用于button
+    className?: string | CSSProperties;
+    childrenClassName?: string | CSSProperties; // 作用于children
+    childrenContainerClassName?: string | CSSProperties; // 作用于children的外层，当没有showCount的时候
+    iconLeftClassName?: string | CSSProperties; // 作用于button
+    iconRightClassName?: string | CSSProperties; // 作用于button
     next?: (currentIndex: number) => any;
     prev?: (currentIndex: number) => any;
     showCount?: number;// 显示的个数
     initIndex?: number;// 从第几个开始显示默认：0
     loop?: boolean; // 是否结束时要循环按钮
-    children: React.ReactNode[] | React.ReactNode;
+    children: ReactNode[] | ReactNode;
     boxShadow?: string;
     hoverBoxShadow?: string;
     color?: string;

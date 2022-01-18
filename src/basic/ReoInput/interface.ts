@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 import { EIconType } from '@/basic/ReoIcon';
 
 export interface IProps {
@@ -19,8 +19,8 @@ export interface IProps {
     label?: boolean;
     onBlur?: () => any;
     children?: React.ReactNode;
-    className?: string;
-    inputClassName?: string; // 作用于input本身
+    className?: string | CSSProperties;
+    inputClassName?: string | CSSProperties; // 作用于input本身
     onFocus?: () => any;
     autoComplete?: string;
     name?: string;

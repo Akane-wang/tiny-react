@@ -47,13 +47,11 @@ const CarouselButton: React.FC<IGhost | IDark | ILight | IUnset> = (prop) => {
     const containerRef = useRef<HTMLDivElement>(null); // 容器盒子
     const realContentRef = useRef<HTMLDivElement>(null); // 绑定真实盒子
     const [swipeCount, setSwipeCount] = useState(0); // 还可以切换的次数
-    const childrenWidth = useRef(0); // 一版的显示宽度
+    const [childrenWidth, setChildrenWidth] = useState(0); // 一版的显示宽度
     const { widthOfWindow } = useResize();
-    const swipeTotal = useRef(0);
     useEffect(() => {
-        childrenWidth.current = ((containerRef.current?.clientWidth??0) * 0.9);
-        swipeTotal.current = Math.ceil((realContentRef.current?.clientWidth ?? 0) / childrenWidth.current);
-    }, [widthOfWindow]);
+        setChildrenWidth((containerRef.current?.clientWidth??0));
+    }, [childrenWidth, swipeCount, widthOfWindow]);
 
     const [currentIndex, dispatchCurrentCount] = useReducer(reducerCurrentCount, props.initIndex);
 
@@ -111,9 +109,9 @@ const CarouselButton: React.FC<IGhost | IDark | ILight | IUnset> = (prop) => {
     }, [iconWidthPadding, props.bgColor, props.hoverBgColor, props.boxShadow, props.hoverBoxShadow, props.size]);
     const childrenContainer = useMemo(() => {
         return {
-            '--translate-x': suffixPx(swipeCount * -childrenWidth.current)
+            '--translate-x': suffixPx(swipeCount * -childrenWidth)
         } as CSSProperties;
-    }, [swipeCount]);
+    }, [childrenWidth, swipeCount]);
 
     const validChildren = useMemo(() => {
         const validRes = React.Children.map(props.children,
@@ -142,7 +140,7 @@ const CarouselButton: React.FC<IGhost | IDark | ILight | IUnset> = (prop) => {
                 className={ classnames(
                     style.iconStyle,
                     {
-                        [style.visibleTransition]: props.showCount > 0 ? currentIndex <= 0 : swipeCount <= 0
+                        [classnames(style.visibleTransition)]: props.showCount > 0 ? currentIndex <= 0 : swipeCount <= 0
                     },
                     props.iconRightClassName,
 
@@ -154,7 +152,12 @@ const CarouselButton: React.FC<IGhost | IDark | ILight | IUnset> = (prop) => {
                 ref={ clickPrevRef }
             />
             <div
-                className={ classnames(style['children-wrap']) }
+                className={ classnames(
+                    style['children-wrap'],
+                    props.showCount
+                    ? props.childrenClassName // 有count的时候此为children的直接外层
+                    : props.childrenContainerClassName // 没有count的时候此为children父级的外层
+                ) }
                 ref={ containerRef }
             >
                 {
@@ -187,10 +190,10 @@ const CarouselButton: React.FC<IGhost | IDark | ILight | IUnset> = (prop) => {
                 className={ classnames(
                     style.iconStyle,
                     {
-                        [style.visibleTransition]:
-                            props.showCount > 0 // 表示是方案一：即显示个数
-                            ? (currentIndex + props.showCount) >= childrenLength
-                            : (swipeCount + 1) * childrenWidth.current > (realContentRef.current?.clientWidth ?? 0)
+                        [classnames(style.visibleTransition)]:
+                            props.showCount // 表示是方案一：即显示个数
+                            ? ((currentIndex + props.showCount) >= childrenLength)
+                            : (((swipeCount + 1) * childrenWidth) > (realContentRef.current?.clientWidth ?? 0))
                     },
                     props.iconLeftClassName
                 ) }
@@ -206,3 +209,5 @@ const CarouselButton: React.FC<IGhost | IDark | ILight | IUnset> = (prop) => {
 };
 
 export default CarouselButton;
+
+// TODO: bug 缩小到一定程度导致有多个板块可以被拖动后，再次放大板块，会导致好几个模块是空白

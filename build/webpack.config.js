@@ -1,8 +1,9 @@
 const path = require('path');
 const { resolve } = require('./utils');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 module.exports = {
-    mode: 'development',
+    mode: 'production',
     context: path.join(__dirname, '..'),
     entry: resolve("src/index.ts"),
     output: {
@@ -77,6 +78,10 @@ module.exports = {
             filename: 'css/[name].css',
             chunkFilename: 'css/[name].css',
             ignoreOrder: true
-        })
+        }),
+        // new BundleAnalyzerPlugin({
+        //     analyzerMode: 'static',
+        //     openAnalyzer: false
+        // })
     ],
 }

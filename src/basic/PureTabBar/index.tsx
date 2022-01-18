@@ -19,10 +19,12 @@ class PureTabBar extends React.Component<IProps> {
                     </ReoLink>
                     <div className={ classnames(style['tab-bar-wrap']) }>
                         <ReoCarouselButton
+                            color={ '#333' }
                             type='ghost'
                             size='medium'
                             iconRightClassName={ style['carousel-button-right'] }
                             iconLeftClassName={ style['carousel-button-left'] }
+                            childrenContainerClassName={ this.props.childrenContainerClassName }
                         >
                             {
                                 this.props.tabBar.map(item => {
