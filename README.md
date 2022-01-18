@@ -26,3 +26,8 @@
  - 首先，包文件夹中的 npm 链接将在全局文件夹{ prefix }/lib/node _ modules/< package > 中创建一个符号链接，该符号链接指向执行 npm link 命令的包。它还将包中的任何箱子链接到{ prefix }/bin/{ name }。请注意，npm link 使用全局前缀(参见 npm 前缀 -g 的值)。
 - 去目标目录下使用npm link 【当前包名】
   - 提示链接成功即可使用
+
+## 下载该包不成功
+- 可能情况：
+  - 1.检查是否登录
+    - npm registry
