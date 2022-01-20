@@ -6,6 +6,7 @@
     top: 50%;
     border-radius: 100%;
     transform: translate(-50%, 50%);
+    cursor: pointer;
     &:hover {
         background-color: rgba(255, 255, 255, 0.2);
     }
@@ -17,6 +18,8 @@
     }
 }
 .large {
+    min-width: 80px;
+    min-height: 80px;
     &.replay {
         padding: 26px;
     }
@@ -25,6 +28,8 @@
     }
 }
 .medium {
+    min-width: 50px;
+    min-height: 50px;
     &.replay {
         padding: 15px;
         @media (max-width: 767px) {
@@ -46,6 +51,8 @@
 
 }
 .small {
+    min-width: 36px;
+    min-height: 36px;
     &.replay {
         padding: 12px;
     }
