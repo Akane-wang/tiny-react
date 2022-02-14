@@ -164,10 +164,10 @@ const ReoPagination: React.FC<IProps> = (prop) => {
                 name={ 'icon-icon_arrow-left' }
                 onClick={ handlePrev }
                 { ...iconConfig }
-                color={ paginationConfig.current === 1 ? disabledIconConfig.color : undefined }
+                color={ (props.total === 0 || paginationConfig.current === 1) ? disabledIconConfig.color : undefined }
                 className={ classnames(style.iconStyle,
                     style.iconLeft,
-                    { [classnames(style.disabled)]: paginationConfig.current === 1 }
+                    { [classnames(style.disabled)]: props.total === 0 || paginationConfig.current === 1 }
                 ) }
             />
             <RangeItem
@@ -182,7 +182,6 @@ const ReoPagination: React.FC<IProps> = (prop) => {
                         <RangeItem
                             item={ '...' }
                             current={ paginationConfig.current }
-                            title={ `向前${props.showPage}页` }
                             onClick={ active => handleClick(active - props.showPage) }
                         />
                     )
@@ -208,7 +207,6 @@ const ReoPagination: React.FC<IProps> = (prop) => {
                         <RangeItem
                             item={ '...' }
                             current={ paginationConfig.current }
-                            title={ `向后${props.showPage}页` }
                             onClick={ active => handleClick(active + props.showPage) }
                         />
                     )
@@ -229,11 +227,11 @@ const ReoPagination: React.FC<IProps> = (prop) => {
                 name={ 'icon-icon_arrow-right' }
                 onClick={ handleNext }
                 { ...iconConfig }
-                color={ paginationConfig.current === totalPage ? disabledIconConfig.color : undefined }
+                color={ (props.total === 0 || paginationConfig.current === totalPage) ? disabledIconConfig.color : undefined }
                 className={ classnames(
                     style.iconStyle,
                     style.iconRight,
-                    { [classnames(style.disabled)]: paginationConfig.current === totalPage }
+                    { [classnames(style.disabled)]: props.total === 0 || paginationConfig.current === totalPage }
                 ) }
             />
         </div>

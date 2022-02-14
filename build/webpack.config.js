@@ -12,7 +12,8 @@ module.exports = {
         libraryTarget: 'commonjs2'
     },
     externals: {
-        react: 'react'
+        react: 'react',
+        'react-dom': 'react-dom'
     },
     resolve: {
         extensions: ['.js', '.ts', '.tsx', '.jsx', '.json', '.d.ts', '.css', '.less', '.module.less'],

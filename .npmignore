@@ -9,3 +9,5 @@ tslint.json
 src/*
 build/*
 .editorconfig
+/public/icon
+/public/selection.js
