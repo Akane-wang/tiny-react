@@ -5,7 +5,7 @@ import classnames from 'classnames';
 import {iconWidth, iconSizeSpace, loadingWidth, loadingHeight } from './style';
 import { IProps, IChildrenNode } from './interface';
 import { suffixPx } from '@/dom-utils';
-import { getGlobal } from '@/shared';
+import { getGlobal } from '@reolink/web.fe.utils';
 
 const defaultProps: IProps = {
     type: 'primary',
