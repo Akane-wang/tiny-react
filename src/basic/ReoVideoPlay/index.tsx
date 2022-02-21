@@ -13,9 +13,13 @@ const ReoVideoPlay: React.FC<IProps> = (prop) => {
         };
         return {...defaultProps, ...prop};
     }, [prop]);
+
     const handleClick = useCallback(() => {
+
         props.onClick?.();
+
     }, [props]);
+
     return (
         <ReoIcon
             name={ props.type === 'play' ? 'icon-icon_play-2' : 'icon-icon-replay-2' }

@@ -1,0 +1,92 @@
+.counterWrap {
+    display: flex;
+    width: max-content;
+    user-select: none;
+    &.bordered {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+    &.disabledBorderWrap {
+        background-color: #f0f0f0;
+    }
+    &.disabled {
+        pointer-events: none;
+    }
+    // icon
+    .icon {
+        @media (min-width: 1280px) {
+            &:hover {
+                background-color: #f0f0f0;
+            }
+        }
+        &.counterHandle {
+            &-small {
+                padding: 10px;
+            }
+            // &-medium {
+                // 无padding
+            // }
+            &-large {
+                padding: 14px;
+            }
+        }
+        &.leftSpacing {
+            padding-right: 16px;
+        }
+        &.rightSpacing {
+            padding-left: 16px;
+        }
+        &.disabled {
+            pointer-events: none;
+        }
+    }
+
+    // input
+    .centerAlign {
+        display: flex;
+        align-items: center;
+        justify-self: center;
+        &.noBorderValue {
+            border: 1px solid #ddd;
+            width: 32px;
+            font-size: 16px;
+            line-height: 1.2;
+            color: #777;
+            font-weight: 500;
+            text-align: center;
+            outline: none;
+        }
+        &.value {
+            &-small {
+                width: 36px;
+                font-size: 14px;
+                line-height: 1.2;
+                color: #777;
+                font-weight: 500;
+                border: none;
+                text-align: center;
+                outline: none;
+            }
+            &-medium {
+                text-align: center;
+                outline: none;
+            }
+            &-large {
+                width: 46px;
+                font-size: 16px;
+                line-height: 1.2;
+                color: #777;
+                font-weight: 500;
+                border: none;
+                text-align: center;
+                outline: none;
+            }
+        }
+        &.disabledBorderWrap {
+            background-color: #f0f0f0;
+        }
+    }
+}
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}

@@ -1,0 +1,62 @@
+.radioWrap {
+    display: inline-block;
+    .label {
+        display: flex;
+        align-items: center;
+        &.label-left {
+            justify-content: flex-start;
+        }
+        &.label-center {
+            justify-content: center;
+        }
+        &.label-right {
+            justify-content: flex-end;
+        }
+    }
+    .reoRadio[type='radio'] {
+        display: none;
+    }
+    .reoRadio[type='radio'] + .spanBox {
+        border: 1px solid #ccc;
+        width: 16px;
+        height: 16px;
+        border-radius: 100%;
+        .spanInBox {
+            border-radius: 100%;
+            width: 8px;
+            height: 8px;
+            border: 1px solid transparent;
+            display: inline-flex;
+            margin: 4px;
+            box-sizing: border-box;
+            background: transparent;
+        }
+    }
+    .reoRadio[type='radio'] + .spanBox:hover {
+        border-color:#00ADE5
+    }
+
+    .reoRadio[type='radio']:checked + .spanBox {
+        border-color:#00ADE5;
+        .spanInBox {
+            border: 1px solid #00ADE5;
+            background: #00ADE5;
+        }
+    }
+
+    .reoRadio[type='radio']:disabled + .spanBox {
+        border-color:#CCCCCC;
+        pointer-events: none;
+        .spanInBox {
+            border-radius: 100%;
+            width: 8px;
+            height: 8px;
+            border: 1px solid #CCCCCC;
+            display: inline-block;
+            margin: 2px;
+            box-sizing: content-box;
+            background: #CCCCCC;
+        }
+    }
+}
+

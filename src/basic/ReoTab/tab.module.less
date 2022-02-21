@@ -1,0 +1,112 @@
+.tab-wrap {
+    .swipe-wrap {
+        overflow: hidden;
+        &.background {
+            // component模块-背景色设置
+            background: var(--background-color);
+        }
+        &.hasBg {
+            opacity: 0.85;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        &.hasNoBg-top {
+            border: 0px solid #ddd;
+            border-top: 1px;
+        }
+        &.hasNoBg-bottom {
+            border: 0px solid #ccc;
+            border-bottom-width: 1px;
+        }
+        &.fullContentArea {
+            width: 100%;
+        }
+        .swipe-children-wrap {
+            width: max-content;
+            display: flex;
+            .hoverColor {
+                &.item {
+                    font-size: 16px;
+                    font-weight: 500;
+                    line-height: 1.2;
+                    cursor: pointer;
+                    text-align: center;
+                }
+                &.bgItem {
+                    border: 0px solid; // 颜色在下面，根据不同状态设置透明或者是主题色border
+                    border-top: 4px;
+                    box-sizing: border-box;
+                    padding-top: 10px;
+                    padding-bottom: 14px;
+                }
+                &.noBgItem-top {
+                    border: 0px solid;
+                    border-top: 4px;
+                    box-sizing: border-box;
+                    padding-top: 10px;
+                    padding-bottom: 14px;
+                }
+                &.noBgItem-bottom {
+                    border: 0px solid;
+                    border-bottom-width: 3px;
+                    box-sizing: border-box;
+                    padding-bottom: 10px;
+                }
+                &.activeAnimatedItem {
+                    border-color: transparent;
+                }
+                &.activeItem {
+                    border-color: #00ade5;
+                }
+                &.normalItem {
+                    border-color: transparent;
+                    opacity: 0.85;
+                }
+                &.activeColor {
+                    color: var(--active-color);
+                }
+                &.color {
+                    color: var(--color);
+                }
+                &.item.spacing {
+                    @media (min-width: 1280px) {
+                        &:hover {
+                            color: var(--hover-color);
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+            // 间距
+            .spacing + .spacing {
+                margin-left: var(--tab-bar-gutter);
+            }
+            .animation {
+                transition: all 0.4s;
+                left: var(--left);
+                width: var(--width);
+                position: absolute;
+                height: 3px;
+                bottom: 0px;
+                background-color: #00ade5;
+            }
+        }
+    }
+    .children-wrap {
+        position: relative;
+        .tab-children {
+            &.must-be-hidden {
+                display: none !important;
+            }
+        }
+    }
+}
+
+.tabWrap.movingTransformCss {
+    transform: translate3d(var(--translateTempX), 0, 0);
+}
+
+.transformCss {
+    transform: translate3d(var(--translateX), 0, 0);
+
+}
+

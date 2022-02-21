@@ -37,3 +37,33 @@ export type { IProps as IReoVideoPlayProps } from '@/basic/ReoVideoPlay';
 
 export { default as ReoTable } from '@/basic/ReoTable';
 export type { IProps as IReoTableProps } from '@/basic/ReoTable';
+
+export type { IProps as IReoCheckboxProps, IReoCheckboxOption, ISingleCheckedProps } from '@/basic/ReoCheckbox';
+export { ReoCheckbox, SingleCheckbox } from '@/basic/ReoCheckbox';
+
+export type {
+    IProps as IReoBalloonProps,
+    EPlacement,
+    Type,
+    Trigger,
+    IOffsetAndProps,
+    IBalloon,
+    IPlacement,
+    IArrowPoint
+} from '@/basic/ReoBalloon';
+export { default as ReoBalloon } from '@/basic/ReoBalloon';
+
+export { default as ReoCounter } from '@/basic/ReoCounter';
+export type { IProps as IReoCounterProps, IAction } from '@/basic/ReoCounter';
+
+export { ReoRadio, SingleReoRadio } from '@/basic/ReoRadio';
+export type { IProps as IReoRadioProps, ISingleProps, IOptions } from '@/basic/ReoRadio';
+
+export { default as ReoTab } from '@/basic/ReoTab';
+export type { IProps as IReoTabProps, ITabItem, TabItem } from '@/basic/ReoTab';
+
+export { default as ReoTextarea } from '@/basic/ReoTextarea';
+export type { IProps as IReoTextareaProps, Tips, Resize } from '@/basic/ReoTextarea';
+
+export { default as ReoTip } from '@/basic/ReoTip';
+export type { IProps as IReoTipProps } from '@/basic/ReoTip';

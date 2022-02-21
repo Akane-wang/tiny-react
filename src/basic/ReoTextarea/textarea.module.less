@@ -1,0 +1,106 @@
+/* textarea */
+.textareaWrap {
+    position: relative;
+    .textareaClass {
+        outline: none;
+        background-color: transparent;
+        font-weight: 500;
+        color: #333;
+        line-height: 1.4;
+        font-size: 16px;
+        padding: 14px 20px;
+        border-radius: 5px;
+        width: 100%;
+        height: 100%;
+        border: 1px solid #ccc;
+        font-family: Quicksand;
+        &:disabled {
+            pointer-events: none;
+        }
+        width: var(--width);
+        height: var(--height);
+        resize: var(--resize);
+        min-height: var(--height);
+        box-sizing: border-box;
+        &:not(:disabled):hover,
+        &:not(:disabled):focus {
+            border: 1px solid #00ade5;
+        }
+        &:disabled {
+            border: 1px solid #ccc;
+            background: #F7F8F9;
+        }
+        &::placeholder {
+            color: #BBBBBB;
+            font-weight: 500;
+        }
+        &.hasValueClass~.showTextarea,&:focus~.showTextarea {
+            border-top: 1px solid #fff;
+        }
+        &.hasValueClass~.showTextarea[data-label]::before {
+            color: #777777;
+        }
+        &:focus~.showTextarea[data-label]::before {
+            color: #00ADE5;
+        }
+        &~.showTextarea[data-label]::before {
+            content: attr(data-label);
+            display: inline-block;
+            transition: .3s ease-in-out;
+            white-space: nowrap;
+            padding: 14px 4px;
+        }
+        &:focus~.showTextarea[data-label]::before, &.hasValueClass~.showTextarea[data-label]::before {
+            content: attr(data-label);
+            transition-duration: .2s;
+            transform: translateY(-50%);
+            font-size: 14px;
+            height: 20px;
+            line-height: 20px;
+        }
+
+        //  tips提示框
+        &.error:not(:focus) {
+            border-color: #BF352E;
+        }
+        &:not(:focus)~.errorLabel,
+        &:not(:focus)~.errorInfo {
+            color: #BF352E;
+        }
+        &:focus~.errorInfo {
+            display: none;
+        }
+    }
+    .textareaLabel {
+        &.showTextarea {
+            font-size: 16px;
+            color: #bbb;
+            font-weight: 500;
+            position: absolute;
+            top: 0;
+            left: 20px;
+            height: 48px;
+            line-height: 1;
+            border: none;
+            pointer-events: none;
+            margin: 0;
+            box-sizing: border-box;
+        }
+    }
+    .required {
+        color: #d74330;
+        font-size: 16px;
+        line-height: 1.2;
+        position: absolute;
+        padding-left: 1px;
+        top: 0;
+    }
+    .tipsInfo {
+        margin-top: 6px;
+        padding: 0;
+        background-color: transparent;
+        font-size: 14px;
+        font-weight: 500;
+        display: block;
+    }
+}

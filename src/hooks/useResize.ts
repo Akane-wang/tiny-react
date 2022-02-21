@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState} from 'react';
-import { getGlobalProperty } from '@/shared';
+import { getGlobalProperty } from '@reolink/web.fe.utils';
 
 interface IWindowSize {
     widthOfWindow: number;

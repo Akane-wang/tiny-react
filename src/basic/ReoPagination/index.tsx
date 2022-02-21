@@ -1,12 +1,11 @@
-import React, { useCallback, useEffect, useMemo, useReducer } from 'react';
-import { IProps, IRangeItem, IAction, IState, IActionType } from './interface';
-import ReoIcon from '../ReoIcon';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { IProps, IRangeItem, IState, IActionType } from './interface';
+import ReoIcon from '@/basic/ReoIcon';
 import classnames from 'classnames';
 import { iconConfig, disabledIconConfig } from './style';
 import style from './paginationConfig.module.less';
 
 const defaultProps = {
-    current: 1,
     pageSize: 5,
     hideOnSinglePage: false,
     showQuickJumper: false,
@@ -18,7 +17,15 @@ function getNewState(type: IActionType, state: IState, active?: number): IState 
     const resVal = { ...state };
     /* 拿到正确的current值 */
     switch(type) {
-        case 'preload': break;
+        case 'preload':
+            if(resVal.current > resVal.totalPage) {
+                resVal.current = resVal.totalPage;
+            }
+            else if(resVal.current < 1) {
+                resVal.current = 1;
+            }
+            // else: 本身
+            break;
         case 'prev': resVal.current = resVal.current - 1; break;
         case 'next': resVal.current = resVal.current + 1; break;
         case 'click':
@@ -70,17 +77,6 @@ function getNewState(type: IActionType, state: IState, active?: number): IState 
     return resVal;
 }
 
-function paginationReducer(state: IState, action: IAction): any {
-
-    switch(action.type) {
-        case 'preload': return getNewState(action.type, {...state, ...action.state});
-        case 'prev':
-        case 'next': return getNewState(action.type, state);
-        case 'click': return getNewState(action.type, state, action.active);
-        default: throw new Error('Invalid type');
-    }
-}
-
 /* 页item，点点点 */
 const RangeItem: React.FC<IRangeItem> = (props) => {
     const handleClick = useCallback(() => {
@@ -97,7 +93,8 @@ const RangeItem: React.FC<IRangeItem> = (props) => {
             onClick={ handleClick }
         >
             <span
-                className={ classnames(style.pageRange,
+                className={ classnames(
+                    style.pageRange,
                     { [classnames(style.active)]: props.current === props.item }
                 ) }
                 title={ props.title }
@@ -110,90 +107,143 @@ const RangeItem: React.FC<IRangeItem> = (props) => {
 
 const ReoPagination: React.FC<IProps> = (prop) => {
 
-    const props = useMemo(() => {
-        return {...defaultProps, ...prop};
+    const pageSize = useMemo(function() {
+
+        return prop.pageSize ?? defaultProps.pageSize;
+
+    }, [prop]);
+
+    const showPage = useMemo(function() {
+
+        return prop.showPage ?? defaultProps.showPage;
+
     }, [prop]);
 
     /* 获取pagination的页数 */
     const totalPage = useMemo(() => {
-        return Math.ceil(props.total / props.pageSize);
-    }, [props]);
+        // total为0时totalPage理应为1
 
-    /* 设置pagination属性初始值 */
-    const initState = useMemo(() => {
-        return {
-            current: props.current, // 当前页
-            pageRange: [], // 显示范围
-            totalPage, // 总页数
-            showPage: props.showPage, // 一次显示多少页
-        };
-    }, [props, totalPage]);
+        if(prop.total) {
 
-    /* reducer */
-    const [ paginationConfig, dispatchPagination ] = useReducer(paginationReducer, initState);
-    useEffect(() => {
-        dispatchPagination({type: 'preload', state: initState});
-    }, [initState]);
-    useEffect(() => {
-        prop.onChange?.(paginationConfig.current);
-    }, [paginationConfig, prop]);
-    // 上一页
-    const handlePrev = useCallback(() => {
-        if(paginationConfig.current === 1) {
-            return;
+            return Math.ceil(prop.total / pageSize);
+
         }
-        dispatchPagination({ type: 'prev' });
-    }, [paginationConfig]);
+        else {
+            return 1;
+        }
+
+    }, [prop, pageSize]);
+
+    // 触发外部onChange
+    const handleChangeCurrent = useMemo(function() {
+
+        return function handle(current: number) {
+
+            prop.onChange?.(current);
+        };
+    }, [prop]);
+
+    const [pageRange, setPageRange] = useState<number[]>([]);
 
     // 下一页
-    const handleNext = useCallback(() => {
-        if(paginationConfig.current === totalPage) {
-            return;
+    const handleChange = useCallback((type: IActionType, nextCurrent?: number) => {
+
+        let result;
+
+        if (type === 'click') {
+
+            result = getNewState(
+                type,
+                {
+                    current: prop.current,
+                    pageRange: [],
+                    showPage: showPage,
+                    totalPage: totalPage
+                },
+                nextCurrent
+            );
         }
-        dispatchPagination({ type: 'next' });
-    }, [paginationConfig, totalPage]);
+        else {
+
+            result = getNewState(
+                type,
+                {
+                    current: prop.current,
+                    pageRange: [],
+                    showPage: showPage,
+                    totalPage: totalPage
+                }
+            );
+        }
+
+        handleChangeCurrent(result.current);
+        setPageRange(result.pageRange);
+
+    }, [handleChangeCurrent, prop, showPage, totalPage]);
+
+    useEffect(() => {
+
+        handleChange('preload');
+
+    }, [handleChange]);
 
     /* 点击（某页 || 往前/往后跳转showPage页）触发事件 */
     const handleClick = useCallback((active) => {
-        dispatchPagination({ type: 'click', active: active });
-    }, []);
+
+        handleChange('click', active);
+
+    }, [handleChange]);
+
+    const handlePrev = useCallback(() => {
+        handleChange('prev');
+
+    }, [handleChange]);
+
+    const handleNext = useCallback(() => {
+
+        handleChange('next');
+
+    }, [handleChange]);
 
     return (
-        <div className={ classnames('pagination-container', style.paginationContainer, props.className) }>
+        <div className={ classnames('pagination-container', style.paginationContainer, prop.className) }>
             <ReoIcon
                 name={ 'icon-icon_arrow-left' }
                 onClick={ handlePrev }
                 { ...iconConfig }
-                color={ (props.total === 0 || paginationConfig.current === 1) ? disabledIconConfig.color : undefined }
-                className={ classnames(style.iconStyle,
-                    style.iconLeft,
-                    { [classnames(style.disabled)]: props.total === 0 || paginationConfig.current === 1 }
-                ) }
+                color={ (prop.total === 0 || prop.current === 1) ? disabledIconConfig.color : undefined }
+                className={
+                    classnames(
+                        style.iconStyle,
+                        style.iconLeft,
+                        { [classnames(style.disabled)]: prop.total === 0 || prop.current === 1 }
+                )
+            }
             />
             <RangeItem
                 item={ 1 }
-                current={ paginationConfig.current }
+                current={ prop.current }
                 onClick={ (active) => handleClick(active) }
             />
             {/* 点点点 */}
             {
-                paginationConfig.pageRange[0] - 1 > 1
+                pageRange[0] - 1 > 1
                     ? (
                         <RangeItem
                             item={ '...' }
-                            current={ paginationConfig.current }
-                            onClick={ active => handleClick(active - props.showPage) }
+                            current={ prop.current }
+                            onClick={ active => handleClick(active - showPage) }
                         />
                     )
                     : null
             }
             {
-                paginationConfig.pageRange.map((item: number) => {
+                pageRange.map((item: number) => {
                     return (
                         <RangeItem
                             key={ item }
                             item={ item }
-                            current={ paginationConfig.current }
+                            current={ prop.current }
                             onClick={ (active) => handleClick(active) }
                         />
                     );
@@ -202,12 +252,12 @@ const ReoPagination: React.FC<IProps> = (prop) => {
             }
             {/* 点点点 */}
             {
-                paginationConfig.pageRange[paginationConfig.pageRange.length - 1] + 1 < totalPage
+                pageRange[pageRange.length - 1] + 1 < totalPage
                     ? (
                         <RangeItem
                             item={ '...' }
-                            current={ paginationConfig.current }
-                            onClick={ active => handleClick(active + props.showPage) }
+                            current={ prop.current }
+                            onClick={ active => handleClick(active + showPage) }
                         />
                     )
                     : null
@@ -217,7 +267,7 @@ const ReoPagination: React.FC<IProps> = (prop) => {
                     ? (
                         <RangeItem
                             item={ totalPage }
-                            current={ paginationConfig.current }
+                            current={ prop.current }
                             onClick={ (active) => handleClick(active) }
                         />
                     )
@@ -227,12 +277,14 @@ const ReoPagination: React.FC<IProps> = (prop) => {
                 name={ 'icon-icon_arrow-right' }
                 onClick={ handleNext }
                 { ...iconConfig }
-                color={ (props.total === 0 || paginationConfig.current === totalPage) ? disabledIconConfig.color : undefined }
-                className={ classnames(
-                    style.iconStyle,
-                    style.iconRight,
-                    { [classnames(style.disabled)]: props.total === 0 || paginationConfig.current === totalPage }
-                ) }
+                color={ (prop.total === 0 || prop.current === totalPage) ? disabledIconConfig.color : undefined }
+                className={
+                    classnames(
+                        style.iconStyle,
+                        style.iconRight,
+                        { [classnames(style.disabled)]: prop.total === 0 || prop.current === totalPage }
+                )
+            }
             />
         </div>
     );

@@ -11,8 +11,14 @@
     }
 }
 
+.primary, .gradientRedPrimary  {
+    @media (min-width: 1280px) {
+        transition: all 0.2s;
+    }
+}
+
 /* button样式 */
-.publicButtonFontAndBg(@fontColor, @background, @border, @transition: all 0.3s) {
+.publicButtonFontAndBg(@fontColor, @background, @border, @transition: all 0.2s) {
     color: @fontColor;
     background: @background;
     border: @border;
@@ -90,15 +96,11 @@
     }
     &.primary {
         @media (min-width: 1280px) {
-            .toggleGhost&:not(.border-square):hover {
-                .publicButtonFontAndBg(#00ade5, transparent, 1px solid #00ade5);
+            .toggleGhost&:hover {
+                .publicButtonFontAndBg(#fff, #00ADE5, 1px solid #00ade5);
             }
-            .toggleGhost.ghost&:not(.border-square):hover {
-                .publicButtonFontAndBg(#fff, linear-gradient(148deg, #1E7FF2 0%, #1DC4E4 100%), 1px solid transparent);
-                border-right-color: #1DC4E4;
-            }
-            .border-square&:hover {
-                .publicButtonFontAndBg(#fff, #1E7FF2, 1px solid #1E7FF2, none);
+            .toggleGhost.ghost&:hover {
+                .publicButtonFontAndBg(#00ADE5, rgb(0 173 229 / 8%), 1px solid #00ADE5);
             }
         }
         // ghost为true， 或者toggleGhost为true的hover情况
@@ -109,7 +111,7 @@
         & {
             .publicButtonFontAndBg(#fff, linear-gradient(148deg, #1E7FF2 0%, #1DC4E4 100%), 1px solid transparent);
         }
-        &:not(:hover) {
+        &:not(.ghost), &:not(:disabled) {
 
             border-right-color: #1DC4E4;
         }
@@ -118,24 +120,19 @@
     &.gradientRedPrimary {
         @media (min-width: 1280px) {
             .toggleGhost&:hover {
-                .publicButtonFontAndBg(#F45C43, transparent, 1px solid #F45C43);
+                .publicButtonFontAndBg(#fff, #F45C43, 1px solid #F45C43);
             }
             .toggleGhost.ghost&:hover {
-                .publicButtonFontAndBg(#fff, linear-gradient(90deg, #EB3349 0%, #F45C43 100%), 1px solid transparent);
-                border-right-color: #F45C43;
-            }
-
-            .border-square&:hover {
-                .publicButtonFontAndBg(#fff, #EB3349, 1px solid #EB3349, none);
+                .publicButtonFontAndBg(#E74300, rgb(231 67 0 / 8%), 1px solid #E74300);
             }
         }
         &.ghost {
-            .publicButtonFontAndBg(#F45C43, transparent, 1px solid #F45C43);
+            .publicButtonFontAndBg(#E74300, transparent, 1px solid #E74300);
         }
         & {
             .publicButtonFontAndBg(#fff, linear-gradient(90deg, #EB3349 0%, #F45C43 100%), 1px solid transparent);
         }
-        &:not(:hover) {
+        &:not(.ghost), &:not(:disabled) {
             border-right-color: #F45C43;
 
         }

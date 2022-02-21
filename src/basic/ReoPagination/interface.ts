@@ -1,5 +1,5 @@
 export interface IProps {
-    current?: number;
+    current: number;
     pageSize?: number;
     total: number;
     showPage?: number;

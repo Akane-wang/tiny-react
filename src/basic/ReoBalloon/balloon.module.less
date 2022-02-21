@@ -1,0 +1,103 @@
+.balloonWrap {
+    width: max-content;
+    padding: 0;
+    margin: 0;
+    &.singleLine {
+        position: relative;
+    }
+}
+// !注意： 挂载到body下的dom节点不能把css写入父节点css下
+.popContent {
+    left: var(--left);
+    top: var(--top);
+    background-color: var(--background-color);
+    transition: display 0.4s;
+    border-radius: 5px;
+    position: absolute;
+    box-sizing: border-box;
+    box-shadow: 0px 6px 12px rgb(0 0 0 / 14%);
+    &.simpleTipsPopContent {
+        font-size: 14px;
+        font-weight: 500;
+        color: #fff;
+        padding: 6px 14px;
+        height: 28px;
+        width: max-content;
+    }
+    &.detailedTipsPopContent {
+        width: 300px;
+        padding: 20px 14px;
+        font-weight: 500;
+        color: #fff;
+        line-height: 1.6;
+    }
+    &.popContentTopBottomArrowMiddle {
+        transform: translateX(-50%);
+    }
+    &.popContentLeftRightArrowMiddle {
+        transform: translateY(-50%);
+    }
+    .arrow {
+        width: 0px;
+        height: 0px;
+        position: absolute;
+        box-shadow: 0px 6px 12px rgb(0 0 0 / 14%);
+        border-style: solid;
+        box-sizing: border-box;
+        border-width: 5px;
+        &.placement-top {
+            border-color: var(--background-color) transparent transparent;
+            bottom: -10px;
+        }
+        &.placement-bottom {
+            border-color: transparent transparent var(--background-color);
+            top: -10px;
+        }
+        &.placement-right {
+            border-color: transparent var(--background-color) transparent transparent;
+            left: -10px;
+        }
+        &.placement-left {
+            border-color: transparent transparent transparent var(--background-color);
+            right: -10px;
+        }
+        &.arrowPoint-left {
+            left: 14px;
+        }
+        &.arrowPoint-top {
+            top: 5px;
+        }
+        &.arrowPoint-right {
+            right: 14px;
+        }
+        &.arrowPoint-bottom {
+            bottom: 5px;
+        }
+        // 该类型用不上
+        // &.arrowPoint-middle {
+
+        // }
+        &.arrPointPlaceTopBottomMiddle {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        &.arrPointPlaceLeftRightMiddle {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        &.hidden-in-sm {
+            @media (max-width: 767px) {
+                & {
+                    display: none;
+                }
+            }
+        }
+    }
+    .children {
+        margin: 0;
+        padding: 0;
+        line-height: 1.2;
+    }
+}

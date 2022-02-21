@@ -1,7 +1,7 @@
 export interface IProps {
     type?: Type;
     onClick?: () => any;
-    className?: string;
+    className?: string | React.CSSProperties;
     size?: Size;
 }
 

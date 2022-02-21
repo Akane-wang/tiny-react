@@ -1,0 +1,108 @@
+.normalClass {
+    line-height: 1.2;
+    padding: 10px 20px;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    display: flex;
+}
+
+.normalTextClass {
+    display: flex;
+    align-items: center;
+}
+.tips-wrap {
+    &.success {
+        background-color: #dff1d9;
+        color: #318c31;
+        .normalClass();
+    }
+    &.countdown, &.warning {
+        background-color: #F5eabc;
+        color: #d57304;
+        .normalClass();
+    }
+    &.original {
+        background-color: #bddeef;
+        color: #184e7f;
+        .normalClass();
+    }
+    &.error {
+        background-color: #f4dddd;
+        color: #bf352e;
+        .normalClass();
+    }
+    &.notice {
+        background-color: rgba(0,0,0, 0.88);
+        color: #fff;
+        line-height: 1.4;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        font-size: 16px;
+        @media (max-width: 767px) {
+            & {
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
+        }
+    }
+    .icon-class {
+        @media (max-width: 767px) {
+            & {
+                transform: scale(0.8);
+            }
+        }
+    }
+    .text {
+        &-countdown, &-error, &-success, &-warning, &-original {
+            margin-left: 12px;
+            .normalTextClass();
+        }
+        &-notice {
+            width: 100%;
+            box-sizing: border-box;
+            justify-content: space-between;
+            .normalTextClass();
+            @media (min-width: 1280px) {
+                & {
+                    width: 1200px;
+                    margin: 0 auto;
+                }
+            }
+            @media (max-width: 1279px) and (min-width: 1024px) {
+                & {
+                    padding-left: 40px;
+                    padding-right: 40px;
+                }
+            }
+            @media (max-width: 1023px) and (min-width: 768px) {
+                & {
+                    padding-left: 30px;
+                    padding-right: 30px;
+                }
+            }
+
+            @media (max-width: 767px) {
+                & {
+                    padding-left: 20px;
+                    padding-right: 20px;
+                }
+            }
+
+        }
+    }
+}
+
+.noticeWrap ~ .noticeWrap {
+    border-top: 1px solid #777777;
+}
+.iconSpan {
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    margin-right: 12px;
+}
+
+
+
+

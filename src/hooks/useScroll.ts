@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { getTargetAncestors } from '@/dom-utils';
-import { debounce } from '@/shared';
+import { debounce } from '@reolink/web.fe.utils';
 interface IPosition {
     left: number;
     top: number;
