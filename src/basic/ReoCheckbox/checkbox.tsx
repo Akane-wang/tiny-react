@@ -101,17 +101,26 @@ const ReoCheckbox = (prop: IProps): React.ReactElement => {
                                             color={ item.disabled ? '#999' : (ghost ? '#00ADE5' : '#fff') }
                                         />
                                     </span>
-                                    <label
-                                        htmlFor={ item.value }
-                                        className={ classnames(prop.className, style.labelSpan) }
-                                    >
-                                        {
-                                            item.required
-                                                ? <span className={ classnames(style.required) }>*</span>
-                                                : null
-                                        }
-                                        { item.label }
-                                    </label>
+                                    {
+                                        item.label
+                                        ? (
+                                            <label
+                                                htmlFor={ item.value }
+                                                className={ classnames(prop.className, style.labelSpan) }
+                                                dangerouslySetInnerHTML={{
+                                                    __html: item.required
+                                                    ? `<span
+                                                            className={ ${classnames(style.required)} }
+                                                        >
+                                                            *
+                                                        </span>${item.label}`
+                                                    : item.label
+                                                }}
+                                            >
+                                            </label>
+                                            )
+                                        : null
+                                    }
                                 </p>
                             </div>
 

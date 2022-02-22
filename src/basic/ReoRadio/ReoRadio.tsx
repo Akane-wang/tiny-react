@@ -62,9 +62,18 @@ const ReoRadio: React.FC<IProps> = (props) => {
 
                                         </span>
                                     </span>
-                                    <span className={ classNames(props.className) }>
-                                        { item.label }
-                                    </span>
+                                    {
+                                        item.label
+                                        ? (
+                                            <span
+                                                className={ classNames(props.className) }
+                                                dangerouslySetInnerHTML={{__html: item.label}}
+                                            >
+                                                { item.label }
+                                            </span>
+                                        )
+                                        : null
+                                    }
                                 </label>
                             </div>
                         );
