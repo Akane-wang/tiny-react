@@ -38,6 +38,8 @@ const ReoCheckbox = (prop: IProps): React.ReactElement => {
 
     }, [prop, value]);
 
+    const id = (Math.random() * 1000).toString();
+
     return (
         <>
             {
@@ -88,7 +90,7 @@ const ReoCheckbox = (prop: IProps): React.ReactElement => {
                                             checked={ prop.value.includes(item.value) }
                                             onChange={ handleInputChange }
                                             name={ item.value }
-                                            id={ item.value }
+                                            id={ id }
                                         />
                                         <ReoIcon
                                             name={ 'icon-icon-check' }
@@ -105,12 +107,12 @@ const ReoCheckbox = (prop: IProps): React.ReactElement => {
                                         item.label
                                         ? (
                                             <label
-                                                htmlFor={ item.value }
+                                                htmlFor={ id }
                                                 className={ classnames(prop.className, style.labelSpan) }
                                                 dangerouslySetInnerHTML={{
                                                     __html: item.required
                                                     ? `<span
-                                                            className={ ${classnames(style.required)} }
+                                                            className=${classnames(style.required)}
                                                         >
                                                             *
                                                         </span>${item.label}`
