@@ -1,6 +1,6 @@
 {
     "name": "@reolink/web.basic-component",
-    "version": "0.1.12",
+    "version": "0.1.13",
     "description": "reolink basic-component",
     "main": "dist/index.js",
     "scripts": {
