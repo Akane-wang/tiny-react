@@ -46,7 +46,7 @@ const ReoRate: React.FC<IProps> = (prop) => {
         } as CSSProperties;
     }, []);
     return (
-        <div className={ classnames(style['rating-wrap']) }>
+        <div className={ classnames(style['rating-wrap'], props.className) }>
             {
                 normalRating.map((item: number) => {
                     return (
@@ -54,7 +54,7 @@ const ReoRate: React.FC<IProps> = (prop) => {
                             key={ item }
                             className={ classnames(style['rating'], {
                                 [style['check-disabled']]: props.disabled
-                            }) }
+                            }, props.iconClassName) }
                             style={ ratingCss }
                             name={
                                 // hover时 且没有点击rating使得ratingChecked状态被改变
@@ -72,7 +72,7 @@ const ReoRate: React.FC<IProps> = (prop) => {
                              }
                             onMouseEnter={ () => handleMouseEnter(item) }
                             onMouseLeave={ handleMouseLeave }
-                            width={ ratingStyle.fontSize }
+                            width={ props.width ?? ratingStyle.fontSize }
                             color={ '#FA8C15' }
                             onClick={ (e) => handleClick(e, item) }
                         />
