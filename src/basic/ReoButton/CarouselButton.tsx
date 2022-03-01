@@ -16,6 +16,8 @@ const defaultProps = {
     showCount: 0 // 两套方案，showCount !== 0 ? 显示个数配置；showCount > 0 ? 显示宽度配置
 };
 
+// TODO: 需更新，隐藏的item不应该使用none或者直接不加载节点，而应该使用visible：hidden隐藏，并且，让节点在后面撑开高度
+
 function reducerCurrentCount(state: number, action: IAction): any {
     let resCount = state;
 

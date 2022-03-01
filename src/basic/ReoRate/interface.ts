@@ -1,6 +1,6 @@
 import { IProps as IIconProps } from '@/basic/ReoIcon';
 
-export interface IProps extends IIconProps {
+export interface IProps extends Partial<IIconProps> {
     className?: string | React.CSSProperties;
     rate?: number; // 默认为0
     disabled?: boolean; //是否可编辑

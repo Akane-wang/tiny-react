@@ -21,7 +21,7 @@ const defaultProps: IProps = {
     placeholder: '',
     disabled: false,
     size: 'large',
-    id: '',
+    id: undefined,
     value: '',
     width: '330px',
     currentState: 'normal',
