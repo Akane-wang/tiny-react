@@ -19,10 +19,10 @@ module.exports = {
     },
     context: path.join(__dirname, '..'),
     // TODO: 也许测试时不能有这个，发包时记得还回去
-    externals: {
-        react: 'react',
-        'react-dom': 'react-dom'
-    },
+    // externals: {
+    //     react: 'react',
+    //     'react-dom': 'react-dom'
+    // },
     resolve: {
         extensions: ['.js', '.ts', '.tsx', '.jsx', '.json', '.d.ts', '.css', '.less', '.module.less'],
         alias: {
