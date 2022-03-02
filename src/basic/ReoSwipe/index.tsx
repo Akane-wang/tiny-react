@@ -43,6 +43,7 @@ const ReoSwipe: React.FC<IProps> = (props) => {
         startX.current = e instanceof MouseEvent ? e.pageX : e.changedTouches[0].pageX;
         props.onChange?.(currentX.current);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, 16), []);
 
     const onMouseUpHandle = useMemo(() => () => {
