@@ -1,13 +1,17 @@
 import React, { CSSProperties, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { IProps, IUserCommentList, Target } from './interface';
 import classnames from 'classnames';
-import style from './evaluation.module.less';
-import { ReoLink, ReoRate, ReoCarouselButton } from '@reolink/web.basic-component';
-import { useResize } from '@/vm/hooks';
-import { suffixPx } from '@/vm/dom-utils/element';
+import style from './carousel.module.less';
+import { ReoLink, ReoRate, ReoCarouselButton } from '@/index';
+import { useResize } from '@/hooks';
+import { suffixPx } from '@/dom-utils/';
 import config from './config';
 
-// TODO：有一个问题是：如果在carouselButton内的children的长度，特别是两个屏幕的长度不同的，在resize之后就会height被设置成适应当前children（部分children）的高度，而导致另一屏比当前children更高的children显示不全，无论第一屏第二屏都会这样
+/**
+ * TODO：
+ * 有一个问题是：如果在carouselButton内的children的长度，特别是两个屏幕的长度不同的，
+ * 在resize之后就会height被设置成适应当前children（部分children）的高度，而导致另一屏比当前children更高的children显示不全，无论第一屏第二屏都会这样
+ */
 const Evaluation: React.FC<IProps> = (props): React.ReactElement => {
 
     // 初始时获取所有数据，根据window尺寸计算得出不限制宽高时单个card的宽度和高度
@@ -15,11 +19,20 @@ const Evaluation: React.FC<IProps> = (props): React.ReactElement => {
 
     const { widthOfWindow } = useResize();
 
-    const [cardWidth, setCardWidth] = useState(((widthOfWindow > 1280 ? 1200 : (widthOfWindow - 40)) - 30 * (config.showCard_1024 - 1) ) / config.showCard_1024);
+    const [cardWidth, setCardWidth] = useState((
+        (
+            widthOfWindow > 1280
+                ? 1200
+                : (widthOfWindow - 40)
+        )
+        - 30 * (config.showCard_1024 - 1) ) / config.showCard_1024
+    );
 
     const [cardHeight, setCardHeight] = useState(0);
 
     const containerRef = useRef<HTMLDivElement>(null);
+
+    const [cardSpace, setCardSpace] = useState(config.space_768up);
 
     const [showMoreState, setShowMoreState] = useState(true);
     const seeMore = 'See More';
@@ -40,6 +53,9 @@ const Evaluation: React.FC<IProps> = (props): React.ReactElement => {
         else if (widthOfWindow >= 1024) {
             setCardWidth(( ( widthOfWindow - 40 ) - 30 * (config.showCard_1024 - 1) ) / config.showCard_1024 );
         }
+        else if(widthOfWindow < 768) {
+            setCardSpace(config.space_767);
+        }
 
         setShowCount({outOfDocument: true, count: widthOfWindow >= 1024 ? config.showCard_1024 : props.userCommentList.length});
 
@@ -57,10 +73,10 @@ const Evaluation: React.FC<IProps> = (props): React.ReactElement => {
     return (
         <div className={ classnames(style.evaluation_wrap_container, props.className) }>
             <div
-                className={ classnames(style['evaluation-wrap'], 'layout') }
+                className={ classnames(style['evaluation-wrap'], 'main-container') }
                 id="review"
             >
-                <h2 className={ 'comp-header-title' }> { props.title } </h2>
+                <h2 className={ style['comp-header-title'] }> { props.title } </h2>
                 <div
                     className={ classnames(
                         style['container']
@@ -88,6 +104,8 @@ const Evaluation: React.FC<IProps> = (props): React.ReactElement => {
                                     ) }
                                     iconRightClassName={ classnames(style['icon'], style['icon-right']) }
                                     iconLeftClassName={ style['icon'] }
+                                    childWidth={ cardWidth }
+                                    childSpace={ cardSpace }
                                 >
                                     {
                                         props.userCommentList.map((item, index) => {

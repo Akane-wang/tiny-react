@@ -187,6 +187,7 @@ const ReoTab: React.FC<IProps> = (props) => {
 
         setActiveEffect(positionRef.current, swipeNodeRef.current, transPosition); //! 不要监听，只是作为一个值输入用于去掉存储其值的变量
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [p.active, setActiveEffect]);
 
     const handleClick = useCallback((e, item: ITabItem, onChange?: (key: string) => any): void => {

@@ -7,6 +7,27 @@
     }
     .evaluation-wrap {
         margin: 0px auto;
+        .comp-header-title {
+            font-weight: 700;
+            color: #333;
+            text-align: center;
+            font-size: 40px;
+            line-height: 1.2;
+            width: 80%;
+            margin: 0 auto 40px;
+            @media (max-width: 1023px) and (min-width: 768px) {
+                & {
+                    font-size: 32px;
+                }
+            }
+            @media (max-width: 767px) {
+                & {
+                    font-size: 24px;
+                    margin: 0 auto 24px;
+                    width: 100%;
+                }
+            }
+        }
         .container {
             @media (max-width: 767px) {
                 &{
@@ -19,13 +40,6 @@
                 position: relative;
                 &.carousel-max-w {
                     width: max-content;
-                }
-                .carousel-children {
-                    width: 100%;
-                    display: flex;
-                    &.carousel-children-max-w {
-                        width: max-content;
-                    }
                 }
             }
             .icon {
