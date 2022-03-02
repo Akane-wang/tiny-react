@@ -20,7 +20,7 @@
 ## tgz方案
 - build一个预备打包的dist
 - npm pack，打包成一个tgz文件
-- 在测试项目中npm install path + 打包出来的文件名即可正确安装使用
+- 在测试项目中`npm install【打包出来的文件的路径 + 打包出来的文件名】`即可正确安装使用
 ## npm-link
 - 在当前项目下使用 npm link 创建一个全局的链接
  - 首先，包文件夹中的 npm 链接将在全局文件夹{ prefix }/lib/node _ modules/< package > 中创建一个符号链接，该符号链接指向执行 npm link 命令的包。它还将包中的任何箱子链接到{ prefix }/bin/{ name }。请注意，npm link 使用全局前缀(参见 npm 前缀 -g 的值)。

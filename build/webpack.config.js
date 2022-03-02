@@ -1,16 +1,16 @@
 const path = require('path');
 const { resolve } = require('./utils');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const HtmlWebpackPlugin = require('html-webpack-plugin'); // TODO: 运行时放出来
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 module.exports = {
-    mode: 'development', //'production',
+    mode: 'production', //'production',
     entry: resolve("src/index.ts"), // 入口
-    // entry: resolve('src/pages/index'),
+    // entry: resolve('src/pages/index'), // TODO: 运行时放出来
     output: { // 出口
         path: resolve("dist"),
         filename: 'index.js',
-        // libraryTarget: 'commonjs2'
+        libraryTarget: 'commonjs2'
     },
     // 本地化开发
     devServer: {
@@ -27,7 +27,8 @@ module.exports = {
         extensions: ['.js', '.ts', '.tsx', '.jsx', '.json', '.d.ts', '.css', '.less', '.module.less'],
         alias: {
             '@': resolve("./src"),
-            react: resolve('./node_modules/react')
+            react: resolve('./node_modules/react'),
+            'react-dom': resolve('./node_modules/react-dom')
         },
     },
     devtool: 'source-map',
@@ -100,11 +101,12 @@ module.exports = {
             chunkFilename: 'css/[name].css',
             ignoreOrder: true
         }),
-        new HtmlWebpackPlugin(
-            {
-                template: 'src/demo/index.html'
-            }
-        )
+        // TODO：运行时demo放出来
+        // new HtmlWebpackPlugin(
+        //     {
+        //         template: 'src/demo/index.html'
+        //     }
+        // )
         // new BundleAnalyzerPlugin({
         //     analyzerMode: 'static',
         //     openAnalyzer: false
