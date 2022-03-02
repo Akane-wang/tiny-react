@@ -5,8 +5,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 module.exports = {
     mode: 'development', //'production',
-    // entry: resolve("src/index.ts"), // 入口
-    entry: resolve('src/pages/index'),
+    entry: resolve("src/index.ts"), // 入口
+    // entry: resolve('src/pages/index'),
     output: { // 出口
         path: resolve("dist"),
         filename: 'index.js',
