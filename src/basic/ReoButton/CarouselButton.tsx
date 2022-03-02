@@ -115,23 +115,20 @@ const CarouselButton: React.FC<IGhost | IDark | ILight | IUnset> = (prop) => {
         } as CSSProperties;
     }, [childrenWidth, swipeCount]);
 
-    const validChildren = useMemo(() => {
-        const validRes = React.Children.map(props.children,
-            item => {
-                if(!React.isValidElement(item)) {
-                    return null;
-                }
-                return Object.assign({}, {child: item, value: item.props.value});
-            }
-        );
+    const showChildrenContainer = useMemo(() => {
+        if(props.showCount) {
+            return {
+                '--show-count': props.showCount,
+                '--child-width': suffixPx(props.childWidth ?? 'unset'),
+                '--child-space': suffixPx(props.childSpace ?? 'unset'),
+                '--translate-x': suffixPx(-((props.childWidth ?? 0) + (props.childSpace ?? 0)) * currentIndex)
+            } as CSSProperties;
+        }
+        else {
+            return;
+        }
 
-        return validRes?.filter((item, index) => {
-            if(currentIndex <= index && index < (currentIndex + props.showCount)) {
-                return item;
-            }
-        });
-
-    }, [currentIndex, props.children, props.showCount]);
+    }, [currentIndex, props.childSpace, props.childWidth, props.showCount]);
 
     return(
 
@@ -157,14 +154,29 @@ const CarouselButton: React.FC<IGhost | IDark | ILight | IUnset> = (prop) => {
                 className={ classnames(
                     style['children-wrap'],
                     props.showCount
-                    ? props.childrenClassName // 有count的时候此为children的直接外层
+                    ? classnames(style.show_count_children_container, props.childrenClassName) // 有count的时候此为children的直接外层
                     : props.childrenContainerClassName // 没有count的时候此为children父级的外层
                 ) }
+                style={ showChildrenContainer }
                 ref={ containerRef }
             >
                 {
                     props.showCount
-                    ? validChildren?.map(item => item.child)
+                    ? React.Children.map(props.children,
+                        (item, index) => {
+                            if(!React.isValidElement(item)) {
+                                return null;
+                            }
+                            return React.cloneElement(item, {
+                                className: classnames(
+                                    style.child_self,
+                                    currentIndex <= index && index < (currentIndex + props.showCount)
+                                    ? style.show_item
+                                    : style.hidden_item
+                                )
+                            });
+                        }
+                    )
                     : (
                         <div
                             className={ classnames(style['children-container'], props.childrenClassName) }

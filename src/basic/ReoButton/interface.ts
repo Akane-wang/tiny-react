@@ -64,6 +64,8 @@ export interface ICarouselButtonProps {
     hoverBorderColor?: string; // 默认和color一样（icon)
     hoverColor?: string;
     // TODO: 增加接口支持button同比缩放
+    childWidth?: number;
+    childSpace?: number;
 }
 
 export interface IGhost extends ICarouselButtonProps {

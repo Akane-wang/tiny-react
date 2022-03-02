@@ -1,3 +1,6 @@
+* {
+    box-sizing: border-box;
+}
 .button-baseline {
     display: inline-flex;
     justify-content: center;
@@ -321,15 +324,16 @@
 .carouselButtonWrap {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
     width: 100%;
+    overflow: hidden;
+    position: relative;
     .iconStyle {
         border-radius: 100px;
         padding: var(--carousel-button-padding);
         cursor: pointer;
         background-color: var(--background-color);
         box-shadow: var(--box-shadow);
-        z-index: 1;
+        z-index: 2;
         &:hover {
             background-color: var(--hover-background-color);
             box-shadow: var(--hover-box-shadow);
@@ -347,14 +351,37 @@
         width: calc(1200px * 0.9 - 40px);
         @media (max-width: 1280px) {
             width: calc(100% - 40px);
-            // padding: 0 30px;
         }
+
+        &.show_count_children_container {
+
+            transform: translateX(var(--translate-x));
+            width: max-content;
+            display: flex;
+            z-index: 1;
+            flex-shrink: 0; // 默认为1，为0即不缩放
+        }
+
         .children-container {
             transform: translate(var(--translate-x), 0);
             display: flex;
             flex-wrap: nowrap;
             justify-content: flex-start;
             width: max-content;
+        }
+        .child_self + .child_self {
+            margin-left: var(--child-space);
+        }
+        .show_item, .hidden_item {
+            width: var(--child-width);
+        }
+        .show_item {
+            position: relative;
+            z-index: 0;
+        }
+        .hidden_item {
+            z-index: -1;
+            position: relative;
         }
     }
 
