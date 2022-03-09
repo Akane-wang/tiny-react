@@ -24,6 +24,7 @@ class PureTabBar extends React.Component<IProps> {
                             size='medium'
                             iconRightClassName={ classnames(style['carousel-button-right'], this.props.iconRightClassName) }
                             iconLeftClassName={ classnames(style['carousel-button-left'], this.props.iconLeftClassName) }
+                            className={ classnames(style['button-container']) }
                             childrenContainerClassName={ this.props.childrenContainerClassName }
                         >
                             {

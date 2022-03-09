@@ -38,20 +38,28 @@
             display: flex;
             justify-content: flex-end;
             align-items: center;
-            @media (max-width:1280px) {
+            @media (max-width:1279px) {
                 & {
                     width: calc(100% - 16px);
                     overflow: hidden;
                     justify-content: center;
                 }
             }
+            // 特别定制
+            .button-container {
+                @media (min-width: 1280px) {
+                    height: 24px;
+                    padding: 0 24px;
+                }
+            }
             .carousel-button-left, .carousel-button-right {
                 transform: scale(0.83);
-                @media (min-width: 1280px) {
-                    & {
-                        display: none; // pureTab1280以上应该隐藏起来
-                    }
-                }
+                // 特别定制
+                // @media (min-width: 1280px) {
+                //     & {
+                //         display: none; // pureTab1280以上应该隐藏起来
+                //     }
+                // }
             }
             .carousel-button-left {
                 padding-left: 30px;
@@ -59,6 +67,12 @@
                 position: absolute;
                 right: 8px;
                 background: linear-gradient(to right, transparent 0% 5%, #f7f8f91a 5% 10%,#f7f8f966 10% 20%, #f7f8f9cc 20% 40%, #f7f8f9 40% 100%);
+                // 特别定制
+                @media (min-width: 1280px) {
+                    & {
+                        right: 0px;
+                    }
+                }
             }
             .carousel-button-right {
                 padding-right: 30px;
