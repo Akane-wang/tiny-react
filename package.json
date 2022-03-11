@@ -10,7 +10,8 @@
         "test": "echo See directory sources/tests",
         "clean": "rm -rf dist",
         "lint": "eslint --ext ts --ext tsx src",
-        "dev": "webpack serve --config build/webpack.dev.config.js"
+        "dev": "webpack serve --config build/webpack.dev.config.js",
+        "dev:dashboard": "webpack-dashboard -- webpack-dev-server --config build/webpack.dev.config.js"
     },
     "keywords": [
         "npm",
@@ -59,6 +60,7 @@
         "webpack": "^5.65.0",
         "webpack-bundle-analyzer": "^4.5.0",
         "webpack-cli": "^4.9.1",
+        "webpack-dashboard": "^3.3.7",
         "webpack-merge": "^5.8.0"
     },
     "engines": {

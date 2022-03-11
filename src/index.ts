@@ -45,7 +45,6 @@ export { ReoCheckbox, SingleCheckbox } from '@/basic/ReoCheckbox';
 
 export type {
     IProps as IReoBalloonProps,
-    EPlacement,
     Type,
     Trigger,
     IOffsetAndProps,
@@ -53,7 +52,7 @@ export type {
     IPlacement,
     IArrowPoint
 } from '@/basic/ReoBalloon';
-export { default as ReoBalloon } from '@/basic/ReoBalloon';
+export { default as ReoBalloon, EPlacement } from '@/basic/ReoBalloon';
 
 export { default as ReoCounter } from '@/basic/ReoCounter';
 export type { IProps as IReoCounterProps, IAction } from '@/basic/ReoCounter';

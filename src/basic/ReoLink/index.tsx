@@ -3,6 +3,7 @@ import style from './link.module.less';
 import ReoIcon from '../ReoIcon';
 import classnames from 'classnames';
 import { IProps } from './interface';
+import { suffixPx } from '@/dom-utils';
 
 const defaultProps = {
     iconWidth: 10,
@@ -22,7 +23,7 @@ const ReoLink = (props: IProps): React.ReactElement => {
 
     const cssStyle = useMemo(() => {
         return {
-            '--link-font': p.fontSize,
+            '--link-font': suffixPx(p.fontSize),
             '--link-color': p.color,
             '--link-hover-color': p.hoverColor ?? p.color,
         } as React.CSSProperties;

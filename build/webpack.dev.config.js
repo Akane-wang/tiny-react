@@ -2,6 +2,8 @@ const { merge } = require('webpack-merge');
 const { resolve } = require('./utils');
 const { basicConfig } = require('./webpack.base.config');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+// 在配置中加入 webpack-dashboard 的 plugin
+const DashboardPlugin = require("webpack-dashboard/plugin");
 module.exports = merge(basicConfig, {
     mode: 'development',
     // 优化
@@ -20,12 +22,15 @@ module.exports = merge(basicConfig, {
     devServer: {
         static: resolve(__dirname, 'dist'),
         port: 520,
+        hot: true
     },
+    devtool: 'cheap-module-source-map',
     plugins: [
         new HtmlWebpackPlugin(
             {
                 template: 'src/demo/index.html'
             }
-        )
+        ),
+        new DashboardPlugin() // 运行时漂亮的脚本
     ],
 })

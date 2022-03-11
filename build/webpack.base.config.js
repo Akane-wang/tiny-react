@@ -6,14 +6,15 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const basicConfig = {
     context: path.join(__dirname, '..'),
     resolve: {
-        extensions: ['.js', '.ts', '.tsx', '.jsx', '.json', '.d.ts', '.css', '.less', '.module.less'],
+        // 寻找时应该将用的比较多的后缀放前面
+        extensions: ['.ts', '.tsx', '.module.less', '.less', '.css', '.json', '.js', '.jsx'],
         alias: {
             '@': resolve('./src'),
             react: resolve('./node_modules/react'),
             'react-dom': resolve('./node_modules/react-dom')
         },
     },
-    devtool: 'source-map',
+    devtool: 'eval-source-map',
     stats: "detailed",
     module: {
         rules: [
@@ -36,7 +37,7 @@ const basicConfig = {
             },
             {
                 test: /\.css$/i,
-                exclude: /node_modules/,
+                // exclude: /node_modules/,
                 use: [ // 运行顺序是从下到上
                     // 因为这个插件需要干涉模块转换的内容，所以需要使用它对应的 loader
                     MiniCssExtractPlugin.loader, // 单独把css分离出来, 不让他打包进js里
@@ -46,6 +47,9 @@ const basicConfig = {
                         }
                     },
                     'postcss-loader'
+                ],
+                include: [
+                    resolve('src') // 限定loader范围，提升构建速度
                 ],
             },
             {
