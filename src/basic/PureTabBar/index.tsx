@@ -22,8 +22,9 @@ class PureTabBar extends React.Component<IProps> {
                             color={ '#333' }
                             type='ghost'
                             size='medium'
-                            iconRightClassName={ style['carousel-button-right'] }
-                            iconLeftClassName={ style['carousel-button-left'] }
+                            iconRightClassName={ classnames(style['carousel-button-right'], this.props.iconRightClassName) }
+                            iconLeftClassName={ classnames(style['carousel-button-left'], this.props.iconLeftClassName) }
+                            className={ classnames(style['button-container'], this.props.childrenClassName) }
                             childrenContainerClassName={ this.props.childrenContainerClassName }
                         >
                             {

@@ -3,22 +3,23 @@ import { CSSProperties, ReactNode } from 'react';
 
 export type Types = 'primary' | 'gradientRedPrimary' | 'linkButton' | 'unset';
 
+export type IIconPosition = 'left' | 'right';
 export type BorderRadius = 'rounded' | 'square';
 
 export interface IProps {
     type?: Types;
-    size?: 'large' | 'medium' | 'small';
+    size?: Size;
     borderRadius?: BorderRadius; // 圆边或者是方边
     loading?: boolean;
     disabled?: boolean;
     ghost?: boolean;
     toggleGhost?: boolean;
-    hoverFloat?: boolean;
+    hoverFloat?: boolean; // 暂时不用配置，现在都变成了toggle换颜色
     lightShadow?: boolean;
     icon?: EIconType;
     iconColor?: string;
     iconHoverColor?: string;
-    iconPosition?: 'left' | 'right';
+    iconPosition?: IIconPosition;
     iconWidth?: number | string;
     iconHeight?: number | string;
     width?: number | string;
@@ -112,3 +113,5 @@ export interface IChildrenNode {
     buttonHover: boolean;
 
 }
+
+export type ICarouselButtonType = 'dark' | 'light' | 'unset' | 'ghost';

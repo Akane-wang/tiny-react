@@ -33,6 +33,7 @@
         "strictNullChecks": true,
         "sourceMap": true,
         "target": "es5",
+        "skipLibCheck": true,
         "plugins": [
             { "transform": "typescript-transform-paths" },
             // Transform paths in output .d.ts files (Include this line if you output declarations files)

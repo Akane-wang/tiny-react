@@ -1,104 +1,21 @@
 const path = require('path');
 const webpack = require('webpack');
-const { merge } = require('webpack-merge');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { resolve } = require('./utils');
-const ESLintPlugin = require('eslint-webpack-plugin');
-
-const defaultConfig = {
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const basicConfig = {
     context: path.join(__dirname, '..'),
-    devtool: 'eval-source-map',
     resolve: {
-        extensions: ['.js', '.ts', '.tsx', '.jsx', '.json', '.d.ts', '.css', '.less', '.module.less'],
+        // 寻找时应该将用的比较多的后缀放前面
+        extensions: ['.ts', '.tsx', '.module.less', '.less', '.css', '.json', '.js', '.jsx'],
         alias: {
-            '@': resolve('src'),
-            'STYLES': resolve('src/vm/assets/styles'),
-            'BASIC': resolve('src/vm/basic'),
-            'COMPONENTS': resolve('src/vm/components'),
-            'LANGS': resolve('src/langs'),
-            'ENVCONFIG': resolve(`src/config/${process.env.REO_ENV}`),
-        }
-    },
-    // configuration regarding modules
-    module: {
-        // configure loaders, parser options, etc.
-        rules: [
-            {
-                test: /\.tsx?$/,
-                loader: 'ts-loader',
-                include: [
-                    resolve('src')
-                ]
-            },
-            {
-                test: /\.jsx?$/,
-                loader: 'babel-loader',
-                include: [
-                    resolve('src')
-                ]
-            },
-            {
-                test: /\.(png|jpg|gif)$/,
-                loader: 'url-loader',
-                options: {
-                    limit: 500000
-                }
-            }
-        ]
-    },
-    plugins: [
-        new webpack.DefinePlugin({
-            'ENV': JSON.stringify(process.env.REO_ENV)
-        }),
-        new CleanWebpackPlugin({
-            cleanOnceBeforeBuildPatterns: [path.join(__dirname, '../dist/**/*')]
-        }),
-        new ESLintPlugin({
-            extensions: ['ts', 'js', 'tsx'],
-            exclude: ['node_modules', 'dist']
-        })
-    ]
-};
-
-const clientConfig = merge(defaultConfig, {
-    context: path.join(__dirname, '..'),
-    entry: [resolve('src/index.tsx')],
-    output: {
-        path: resolve('dist/client'),
-        filename: 'js/index.js',
-        chunkFilename: 'js/[name].[chunkhash].js',
-        library: 'Rafa',
-        libraryTarget: 'umd',
-        environment: {
-            arrowFunction: false,
-            bigIntLiteral: false,
-            const: false,
-            destructuring: false,
-            dynamicImport: false,
-            forOf: false,
-            module: false
-        }
-    },
-    resolve: {
-        alias: {
-            '$': 'jQuery'
+            '@': resolve('./src'),
+            react: resolve('./node_modules/react'),
+            'react-dom': resolve('./node_modules/react-dom')
         },
     },
-    externals: [
-        {
-            jquery: 'jQuery'
-        }
-    ],
     devtool: 'eval-source-map',
-    target: 'web',
-    plugins: [
-        new MiniCssExtractPlugin({
-            filename: 'css/[name].css',
-            chunkFilename: 'css/[name].css',
-            ignoreOrder: true
-        })
-    ],
+    stats: "detailed",
     module: {
         rules: [
             {
@@ -107,6 +24,7 @@ const clientConfig = merge(defaultConfig, {
                     // 'style-loader', // only for development
                     MiniCssExtractPlugin.loader,
                     {
+                        // 解析css代码，处理css依赖，如@import和url()
                         loader: 'css-loader', options: {
                             url: false,
                         }
@@ -119,9 +37,10 @@ const clientConfig = merge(defaultConfig, {
             },
             {
                 test: /\.css$/i,
-                exclude: /node_modules/,
-                use: [
-                    MiniCssExtractPlugin.loader,
+                // exclude: /node_modules/,
+                use: [ // 运行顺序是从下到上
+                    // 因为这个插件需要干涉模块转换的内容，所以需要使用它对应的 loader
+                    MiniCssExtractPlugin.loader, // 单独把css分离出来, 不让他打包进js里
                     {
                         loader: 'css-loader', options: {
                             importLoaders: 1,
@@ -129,76 +48,35 @@ const clientConfig = merge(defaultConfig, {
                     },
                     'postcss-loader'
                 ],
-            }
-        ]
-    }
-});
-
-const serverConfig = merge(defaultConfig, {
-    mode: 'none',
-    target: 'node',
-    entry: ['babel-polyfill', resolve('src/server.tsx')],
-    output: {
-        filename: 'js/index.js',
-        chunkFilename: 'js/[name].js',
-        path: resolve('dist/server'),
-        libraryTarget: 'commonjs'
-    },
-    module: {
-        rules: [
-            {
-                test: /\.less$/,
-                use: [
-                    // 'style-loader', // only for development
-                    {
-                        loader: "css-loader",
-                        options: {
-                            modules: {
-                                exportOnlyLocals: true,
-                            }
-                        },
-                    },
-                    'less-loader',
-                ],
                 include: [
-                    resolve('src')
-                ]
+                    resolve('src') // 限定loader范围，提升构建速度
+                ],
             },
             {
-                test: /\.css$/i,
-                exclude: /node_modules/,
-                use: [
-                    {
-                        loader: "css-loader",
-                        options: {
-                            modules: {
-                                exportOnlyLocals: true,
-                            }
-                        },
-                    }
+                test: /\.tsx?$/,
+                loader: 'ts-loader',
+                include: [
+                    resolve('src')
                 ],
+                options: {
+                    compiler: 'ttypescript',
+                },
             }
         ]
-    }
-});
+    },
+    plugins: [
+        // 将 css 文件单独抽离的 plugin
+        new MiniCssExtractPlugin({
+            filename: 'css/[name].css',
+            chunkFilename: 'css/[name].css',
+            ignoreOrder: true
+        }),
+        new webpack.ProgressPlugin(),
+        // new BundleAnalyzerPlugin({
+        //     analyzerMode: 'static',
+        //     openAnalyzer: false
+        // })
+    ],
+}
 
-const httpManager = merge(defaultConfig, {
-    entry: resolve('src/core/api/client.ts'),
-    output: {
-        path: resolve('dist/httpManager'),
-        filename: 'js/index.js',
-        library: 'RafaHttpManager',
-        libraryTarget: 'window',
-        environment: {
-            arrowFunction: false,
-            bigIntLiteral: false,
-            const: false,
-            destructuring: false,
-            dynamicImport: false,
-            forOf: false,
-            module: false
-        }
-    }
-});
-
-module.exports = [clientConfig, serverConfig, httpManager];
+module.exports = { basicConfig };

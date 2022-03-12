@@ -9,7 +9,9 @@ export type {
     Types as ButtonTypes,
     BorderRadius as ButtonBorderRadius,
     ICloseProps as IButtonCloseProps,
-    ICarouselButtonProps
+    IIconPosition as IButtonIconPosition,
+    ICarouselButtonProps,
+    ICarouselButtonType
 } from '@/basic/ReoButton';
 export { default as ReoBadge } from '@/basic/ReoBadge';
 export type { IProps as ReoBadgeProps } from '@/basic/ReoBadge';
@@ -43,7 +45,6 @@ export { ReoCheckbox, SingleCheckbox } from '@/basic/ReoCheckbox';
 
 export type {
     IProps as IReoBalloonProps,
-    EPlacement,
     Type,
     Trigger,
     IOffsetAndProps,
@@ -51,7 +52,7 @@ export type {
     IPlacement,
     IArrowPoint
 } from '@/basic/ReoBalloon';
-export { default as ReoBalloon } from '@/basic/ReoBalloon';
+export { default as ReoBalloon, EPlacement } from '@/basic/ReoBalloon';
 
 export { default as ReoCounter } from '@/basic/ReoCounter';
 export type { IProps as IReoCounterProps, IAction } from '@/basic/ReoCounter';

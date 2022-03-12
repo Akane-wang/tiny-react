@@ -106,6 +106,10 @@
                 .publicButtonFontAndBg(#00ADE5, rgb(0 173 229 / 8%), 1px solid #00ADE5);
             }
         }
+        &:not(.ghost), &:not(:disabled) {
+
+            border-right-color: #1DC4E4;
+        }
         // ghost为true， 或者toggleGhost为true的hover情况
         &.ghost {
             .publicButtonFontAndBg(#00ade5, transparent, 1px solid #00ade5);
@@ -114,10 +118,7 @@
         & {
             .publicButtonFontAndBg(#fff, linear-gradient(148deg, #1E7FF2 0%, #1DC4E4 100%), 1px solid transparent);
         }
-        &:not(.ghost), &:not(:disabled) {
 
-            border-right-color: #1DC4E4;
-        }
     }
 
     &.gradientRedPrimary {
@@ -129,16 +130,25 @@
                 .publicButtonFontAndBg(#E74300, rgb(231 67 0 / 8%), 1px solid #E74300);
             }
         }
+        &:not(.ghost), &:not(:disabled) {
+            border-right-color: #F45C43;
+
+        }
         &.ghost {
             .publicButtonFontAndBg(#E74300, transparent, 1px solid #E74300);
         }
         & {
             .publicButtonFontAndBg(#fff, linear-gradient(90deg, #EB3349 0%, #F45C43 100%), 1px solid transparent);
         }
-        &:not(.ghost), &:not(:disabled) {
-            border-right-color: #F45C43;
 
-        }
+    }
+
+    // 处理disabled和loading状态
+    &.primary:disabled,
+    &.gradientRedPrimary:disabled,
+    &.primary.loading,
+    &.gradientRedPrimary.loading {
+        border-right-color: #ccc;
     }
 
     // size

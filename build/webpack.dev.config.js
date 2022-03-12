@@ -1,38 +1,36 @@
-'use strict';
-const fs = require('fs');
 const { merge } = require('webpack-merge');
-const [ rafa ] = require('./webpack.base.config');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { resolve } = require('./utils');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-
-module.exports = merge(rafa, {
+const { basicConfig } = require('./webpack.base.config');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+// 在配置中加入 webpack-dashboard 的 plugin
+const DashboardPlugin = require("webpack-dashboard/plugin");
+module.exports = merge(basicConfig, {
     mode: 'development',
-    devtool: 'cheap-module-source-map',
-    devServer: {
-        host: '127.0.0.1',
-        port: 474,
-        // open: 'chrome',
-        // Enable webpack's Hot Module Replacement feature
-        hot: true,
-        historyApiFallback: false,
-        https: {
-            key: fs.readFileSync(resolve('ssl/wq-local.reolink.dev.key')),
-            cert: fs.readFileSync(resolve('ssl/wq-local.reolink.dev.crt')),
-            ca: fs.readFileSync((resolve('ssl/myCA.pem')))
-
-        },
-        allowedHosts: 'all',
-        devMiddleware: {
-            writeToDisk: true
-        }
+    // 优化
+    optimization: {
+        usedExports: true, // tree shaking, 未使用的部分不进行导出
+        concatenateModules: true // 告知webpack 去寻找模块图形中的片段，哪些是可安全的合并到单一模块中
     },
+    // TODO：要不要动态entry
+    entry: resolve('src/pages/index'),
+    output: { // 出口
+        path: resolve("dist"),
+        filename: 'index.js',
+        // libraryTarget: 'commonjs2'
+    },
+    // 本地化开发
+    devServer: {
+        static: resolve(__dirname, 'dist'),
+        port: 520,
+        hot: true
+    },
+    devtool: 'cheap-module-source-map',
     plugins: [
-        // will generate a HTML file named [filename]
-        new HtmlWebpackPlugin({
-            filename: resolve('dist/client/index.html'),
-            template: resolve('src/demo/index.html')
-        }),
-        new CleanWebpackPlugin()
-    ]
-});
+        new HtmlWebpackPlugin(
+            {
+                template: 'src/demo/index.html'
+            }
+        ),
+        new DashboardPlugin() // 运行时漂亮的脚本
+    ],
+})

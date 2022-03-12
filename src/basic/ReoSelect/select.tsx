@@ -301,7 +301,7 @@ const ReoSelect: React.FC<IProps<TOptionKey> & IICon> = (props) => {
                 currentState={ p.currentState }
                 tips={ p.tips }
                 infoMsg={ p.infoMsg }
-                inputClassName={ classNames('cursor-pointer', p.inputClassName) }
+                inputClassName={ classNames(style.has_icon_set_padding, p.inputClassName) }
             >
                 {/* 为select下拉icon占位 */}
                 <span className={ classNames(style.iconBgClass) }>
