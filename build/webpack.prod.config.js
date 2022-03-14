@@ -12,10 +12,10 @@ module.exports = merge(basicConfig,{
         libraryTarget: 'commonjs2'
     },
     context: path.join(__dirname, '..'),
-    externals: {
-        react: 'react',
-        'react-dom': 'react-dom'
-    },
+    // externals: {
+    //     react: 'react',
+    //     'react-dom': 'react-dom'
+    // },
     plugins: [
         // new BundleAnalyzerPlugin({
         //     analyzerMode: 'static',
