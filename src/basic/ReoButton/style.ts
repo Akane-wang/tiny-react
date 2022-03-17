@@ -104,4 +104,11 @@ const loadingHeight = {
     small: 30
 };
 
-export { defaultIcon, iconSizeSpace, loadingWidth, iconWidth, loadingHeight };
+const color = {
+    ghostDisabled: '#ccc',
+    whiteColor: '#fff',
+    primaryColor: '#00ade5',
+    gradientRedPrimary: '#EB3349'
+};
+
+export { defaultIcon, iconSizeSpace, loadingWidth, iconWidth, loadingHeight, color };

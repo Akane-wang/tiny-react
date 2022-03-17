@@ -1,8 +1,8 @@
 import React, { CSSProperties, useCallback, useMemo } from 'react';
-import { ICloseProps, Size } from './interface';
+import { ICloseProps } from './interface';
 import { suffixPx } from '@/dom-utils';
 import classnames from 'classnames';
-import ReoIcon from '../ReoIcon';
+import { ReoIcon, Size } from '@/index';
 import style from './button.module.less';
 
 const defaultProps = {

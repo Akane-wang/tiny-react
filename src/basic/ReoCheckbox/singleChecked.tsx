@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import classnames from 'classnames';
-import ReoIcon from '@/basic/ReoIcon';
+import { ReoIcon } from '@/index';
 import style from './checkbox.module.less';
 import classNames from 'classnames';
 import { ISingleCheckedProps } from './interface';

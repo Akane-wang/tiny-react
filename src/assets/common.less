@@ -21,3 +21,30 @@
 .must-be-hidden {
     display: none !important;
 }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.scrollbarConfig(@scrollbarWidth, @scrollbarTrackBg, @scrollbarTrackRadius, @scrollbarTrackMargin, @scrollbarThumbBg, @scrollbarThumbOutline, @scrollbarThumbRadius, @scrollbarHeight: 'unset') {
+    &::-webkit-scrollbar {
+        width: @scrollbarWidth;
+        height: @scrollbarHeight;
+    }
+    &::-webkit-scrollbar-track {
+        background: @scrollbarTrackBg;
+        border-radius: @scrollbarTrackRadius;
+        margin: @scrollbarTrackMargin;
+      }
+    &::-webkit-scrollbar-thumb {
+        background-color: @scrollbarThumbBg;
+        outline: @scrollbarThumbOutline;
+        border-radius: @scrollbarTrackRadius;
+    }
+}
+
+.reoSearchScrollbar {
+    .scrollbarConfig(6px, #fff, 5px, 4px, #ccc, none, 7px, none);
+}

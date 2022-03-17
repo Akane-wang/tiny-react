@@ -1,8 +1,8 @@
 import { CSSProperties } from 'react';
-import { EIconType } from '.';
+import { EIconType } from '@/index';
 
 export interface IPath {
-    iconName: EIconType;
+    name: EIconType;
     width: number | string;
     height?: number | string;
     color: string;
@@ -27,3 +27,8 @@ export interface IProps {
     onMouseEnter?: (e: any) => any;
     onMouseLeave?: (e: any) => any;
 }
+
+// 键重映射
+type AddPreIconProps<T1> = { [P in keyof T1 & string as `icon${Capitalize<P>}`]?: T1[P] };
+
+export type PreIconIconProps = AddPreIconProps<IProps>;

@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import style from './balloon.module.less';
 import { getOffSet, suffixPx } from '@/dom-utils';
-import { EPlacement as E, Type, Trigger, IProps, IPlacement, IArrowPoint, IOffsetAndProps, IBalloon } from './interface';
+import { EPlacement as E, Type, Trigger, IProps, IPlacement, IArrowPoint, IOffsetAndProps } from './interface';
 import { useClickAway } from '@/hooks';
+import { getPosition, getPlacementPotion } from './utils';
 
 const defaultProps = {
     type: 'singleLine' as Type,
@@ -13,115 +14,24 @@ const defaultProps = {
     showArrow: false
 };
 
-function getPlacementPotion(propsPlacement: E, positionType: 'placement' | 'arrowPoint'): string  {
-    const placement: IPlacement = {
-        top: [E.TOP_LEFT, E.TOP_CENTER, E.TOP_RIGHT],
-        bottom: [E.BOTTOM_LEFT, E.BOTTOM_CENTER, E.BOTTOM_RIGHT],
-        right: [E.RIGHT_TOP, E.RIGHT_MIDDLE, E.RIGHT_BOTTOM],
-        left: [E.LEFT_TOP, E.LEFT_MIDDLE, E.LEFT_BOTTOM]
-    };
-
-    const arrowPoint: IArrowPoint = {
-        left: [E.TOP_LEFT, E.BOTTOM_LEFT],
-        top: [E.RIGHT_TOP, E.LEFT_TOP],
-        right: [E.TOP_RIGHT, E.BOTTOM_RIGHT],
-        bottom: [E.RIGHT_BOTTOM, E.LEFT_BOTTOM],
-        middle: [E.RIGHT_MIDDLE, E.LEFT_MIDDLE, E.TOP_CENTER, E.BOTTOM_CENTER]
-    };
-
-    let res = '';
-    if(positionType === 'placement') {
-        for(const [k, v] of Object.entries(placement)) {
-            if(v.includes(propsPlacement)) {
-                res = k;
-                break;
-            }
-        }
-    }
-    else {
-        for(const [k, v] of Object.entries(arrowPoint)) {
-            if(v.includes(propsPlacement)) {
-                res = k;
-                break;
-            }
-        }
-    }
-    return res;
-}
-
-function getPosition(prop: IOffsetAndProps, balloonRef: React.RefObject<HTMLDivElement>): IBalloon {
-    let x = 0, y = 0;
-    const balloonRefWidth = balloonRef.current?.offsetWidth ?? 0;
-    const balloonRefHeight = balloonRef.current?.offsetHeight ?? 0;
-    const targetWidth = Number(prop.targetWidth) ?? 0;
-    const arrowPointWidth = 10;
-    const arrowPointHeight = 5;
-    const arrowPointAndIconSpace = 2;
-    const topBottomArrowOffset = 14;
-    const leftRightArrowOffset = 5;
-    switch(prop.placement) {
-        case E.TOP_RIGHT:
-            x = prop.offsetLeft! - balloonRefWidth + topBottomArrowOffset + arrowPointWidth / 2 + targetWidth / 2;
-            y = prop.offsetTop! - balloonRefHeight - arrowPointHeight - arrowPointAndIconSpace;
-            break;
-        case E.TOP_LEFT:
-            x = prop.offsetLeft! - topBottomArrowOffset - arrowPointWidth / 2 + targetWidth / 2;
-            y = prop.offsetTop! - balloonRefHeight - arrowPointHeight - arrowPointAndIconSpace;
-            break;
-        case E.TOP_CENTER:
-            x = prop.offsetLeft! + targetWidth / 2;
-            y = prop.offsetTop! - balloonRefHeight - arrowPointHeight - arrowPointAndIconSpace;
-            break;
-        case E.BOTTOM_RIGHT:
-            x = prop.offsetLeft! - balloonRefWidth + topBottomArrowOffset + arrowPointWidth / 2 + targetWidth / 2;
-            y = prop.offsetTop! + targetWidth + arrowPointHeight + arrowPointAndIconSpace;
-            break;
-        case E.BOTTOM_CENTER:
-            x = prop.offsetLeft! + targetWidth / 2;
-            y = prop.offsetTop! + targetWidth + arrowPointHeight + arrowPointAndIconSpace;
-            break;
-        case E.BOTTOM_LEFT:
-            x = prop.offsetLeft! - topBottomArrowOffset - arrowPointWidth / 2 + targetWidth / 2;
-            y = prop.offsetTop! + targetWidth + arrowPointHeight + arrowPointAndIconSpace;
-            break;
-        case E.RIGHT_TOP:
-            x = prop.offsetLeft! + targetWidth + arrowPointHeight + arrowPointAndIconSpace;
-            y = prop.offsetTop! + targetWidth / 2 - arrowPointHeight / 2 - leftRightArrowOffset;
-            break;
-        case E.RIGHT_MIDDLE:
-            x = prop.offsetLeft! + targetWidth + arrowPointHeight + arrowPointAndIconSpace;
-            y = prop.offsetTop! + targetWidth / 2;
-            break;
-        case E.RIGHT_BOTTOM:
-            x = prop.offsetLeft! + targetWidth + arrowPointHeight + arrowPointAndIconSpace;
-            y = prop.offsetTop! - balloonRefHeight + arrowPointWidth / 2 + leftRightArrowOffset + targetWidth / 2;
-            break;
-        case E.LEFT_TOP:
-            x = prop.offsetLeft! - arrowPointAndIconSpace - balloonRefWidth - arrowPointHeight;
-            y = prop.offsetTop! + targetWidth / 2 - arrowPointHeight / 2 - leftRightArrowOffset;
-            break;
-        case E.LEFT_MIDDLE:
-            x = prop.offsetLeft! - balloonRefWidth - arrowPointHeight - arrowPointAndIconSpace;
-            y = prop.offsetTop! + targetWidth / 2;
-            break;
-        case E.LEFT_BOTTOM:
-            x = prop.offsetLeft! - balloonRefWidth - arrowPointHeight - arrowPointAndIconSpace;
-            y = prop.offsetTop! - balloonRefHeight + targetWidth / 2 + 5;
-            break;
-        default: break;
-    }
-
-    return {x, y};
-}
-
 const PopContent = forwardRef((props: IOffsetAndProps, ref ) => {
+    const balloonRef = useRef<HTMLDivElement>(null);
+    const [balloon, setBalloon] = useState({x: 0, y: 0});
     const prop = useMemo(() => {
         return {...defaultProps, ...props};
     }, [props]);
-    const balloonRef = useRef<HTMLDivElement>(null);
-    const [balloon, setBalloon] = useState({x: 0, y: 0});
-    const popContentTopBottomArrowMiddle = [E.TOP_CENTER, E.BOTTOM_CENTER].includes(prop.placement);
-    const popContentLeftRightArrowMiddle = [E.LEFT_MIDDLE, E.RIGHT_MIDDLE].includes(prop.placement);
+
+    const popContentTopBottomArrowMiddle = useMemo(() => {
+
+        return [E.TOP_CENTER, E.BOTTOM_CENTER].includes(prop.placement);
+
+    }, [prop.placement]);
+
+    const popContentLeftRightArrowMiddle = useMemo(() => {
+
+        return [E.LEFT_MIDDLE, E.RIGHT_MIDDLE].includes(prop.placement);
+
+    }, [prop.placement]);
 
     useEffect(() => {
         // 获取到计算出来的结果
@@ -233,8 +143,7 @@ const ReoBalloon: React.FC<IProps> = function(props) {
     const initialPos = useMemo(() => {
         return { top: 0, left: 0};
     }, []);
-    const width = {width: 0};
-    const [offset, setOffset] = useState(Object.assign(initialPos, width));
+    const [offset, setOffset] = useState(Object.assign( initialPos, { width: 0 } ));
     const [visible, setVisible] = useState(false);
     const IconRef = useRef<HTMLDivElement>(null);
     const portalsRef = useRef<HTMLDivElement>(null);

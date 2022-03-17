@@ -1,16 +1,16 @@
 import { CSSProperties, ReactNode } from 'react';
-import { EIconType } from '@/basic/ReoIcon';
+import { EIconType, TOptionKey, PreIconIconProps, Size } from '@/index';
 
-export interface IProps {
+export interface IProps extends PreIconIconProps {
     type?: Types;
     tips?: TipState;
     icon?: EIconType;
-    iconWidth?: number | string;
+    // iconWidth?: number | string;
     loading?: boolean;
     placeholder?: string;
     disabled?: boolean;
     size?: Size;
-    value?: string | number;
+    value?: TOptionKey;
     id?: string;
     width?: number | string;
     currentState?: CurrentState;
@@ -32,4 +32,3 @@ export interface IProps {
 export type Types = 'normalInput' | 'darkInput' | 'lightInput' | 'grayInput' | 'searchInput' | 'blueIconSearch';
 export type TipState = 'error' | 'success' | 'warning' | 'info';
 export type CurrentState = 'normal' | 'inputing' | 'error' | 'succeeded';
-export type Size = 'large' | 'small' | 'medium';

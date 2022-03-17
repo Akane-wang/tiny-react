@@ -1,3 +1,4 @@
+import { Size } from '@/index';
 export default interface IProps {
     size?: Size;
     disabled?: boolean;
@@ -8,7 +9,7 @@ export default interface IProps {
     maxValue?: number;
     minValue?: number;
     className?: string | React.CSSProperties;
-    float?: boolean;
+    float?: boolean; // input框，不能输入小数点，float为false时
 }
 
 export interface IAction {
@@ -16,5 +17,3 @@ export interface IAction {
     step?: number;
     counter?: number;
 }
-
-export type Size = 'large' | 'medium' | 'small';

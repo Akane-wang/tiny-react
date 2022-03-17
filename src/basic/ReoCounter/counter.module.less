@@ -13,22 +13,27 @@
         pointer-events: none;
     }
     // icon
-    .icon {
-        @media (min-width: 1280px) {
-            &:hover {
-                background-color: #f0f0f0;
+    .icon_class {
+        &.icon {
+            @media (min-width: 1280px) {
+                &:hover {
+                    background-color: #f0f0f0;
+                }
+            }
+            &.counterHandle {
+                &-small {
+                    padding: 10px;
+                }
+                // &-medium {
+                    // 无padding
+                // }
+                &-large {
+                    padding: 14px;
+                }
             }
         }
-        &.counterHandle {
-            &-small {
-                padding: 10px;
-            }
-            // &-medium {
-                // 无padding
-            // }
-            &-large {
-                padding: 14px;
-            }
+        &.disabled {
+            pointer-events: none;
         }
         &.leftSpacing {
             padding-right: 16px;
@@ -36,9 +41,7 @@
         &.rightSpacing {
             padding-left: 16px;
         }
-        &.disabled {
-            pointer-events: none;
-        }
+
     }
 
     // input

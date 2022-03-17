@@ -1,6 +1,5 @@
 import React, { useMemo, useRef, useCallback } from 'react';
-import ReoIcon from '../ReoIcon';
-import ReoInput from '../ReoInput';
+import { ReoIcon, ReoInput } from '@/index';
 import classnames from 'classnames';
 import { IProps } from './interface';
 import style from './search.module.less';

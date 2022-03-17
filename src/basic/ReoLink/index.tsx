@@ -1,38 +1,55 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, forwardRef, useRef, useImperativeHandle } from 'react';
 import style from './link.module.less';
-import ReoIcon from '../ReoIcon';
+import { ReoIcon } from '@/index';
 import classnames from 'classnames';
-import { IProps } from './interface';
+import { IProps, Target } from './interface';
 import { suffixPx } from '@/dom-utils';
 
 const defaultProps = {
     iconWidth: 10,
-    fontSize: '16px',
+    fontSize: 16,
     color: '#00ADE5',
     target: '_self',
-    underline: true,
+    hoverUnderline: true,
+    underline: false
 };
 
-const ReoLink = (props: IProps): React.ReactElement => {
+const ReoLink = forwardRef((props: IProps, ref) => {
 
+    const reolinkRef = useRef<HTMLAnchorElement>(null);
     const p = useMemo(() => {
-        return {...defaultProps, ...{ transition: !!props.icon }, ...props};
-    }, [props]);
-    const isIconExist = !!p.icon;
-    const isNormalLink = isIconExist || (!p.transition);
 
+        return {...defaultProps, ...props};
+
+    }, [props]);
     const cssStyle = useMemo(() => {
+
         return {
             '--link-font': suffixPx(p.fontSize),
             '--link-color': p.color,
             '--link-hover-color': p.hoverColor ?? p.color,
         } as React.CSSProperties;
+
     }, [p.color, p.fontSize, p.hoverColor]);
+
     const linkBottomStyle = useMemo(() => {
+
         return {
-            '--link-border-bottom-color': p.underline ? p.color : 'transparent'
+            '--link-border-bottom-color': (p.underline || p.hoverUnderline) ? p.color : 'transparent'
         } as React.CSSProperties;
-    }, [p.color, p.underline]);
+
+    }, [p.color, p.hoverUnderline, p.underline]);
+
+    const isIconExist = useMemo(() => {
+
+        return !!p.icon;
+
+    }, [p.icon]);
+    const isNormalLink = useMemo(() => {
+
+        return isIconExist || (!p.transition);
+
+    }, [isIconExist, p.transition]);
 
     const handleClick = useCallback(
         (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
@@ -41,6 +58,11 @@ const ReoLink = (props: IProps): React.ReactElement => {
         },
         [p],
     );
+
+    useImperativeHandle(ref, () => {
+        return reolinkRef.current;
+    });
+
     return (
         <a
             className={ classnames( style.linkClass, p.className ) }
@@ -49,14 +71,18 @@ const ReoLink = (props: IProps): React.ReactElement => {
             onClick={ (e) => handleClick(e) }
             target={ p.target }
             title={ p.title }
+            ref={ reolinkRef }
         >
             <span
                 className={ classnames(
+                    style.link_span,
                     style[isNormalLink ? 'link' : 'link-right-arrow'],
                     p.classInnerName,
                     {
                         [classnames(style.hasIcon)]: isIconExist && isNormalLink,
-                        [style.noUnderline]: !p.underline
+                        [style.noUnderline]: !(p.underline && p.hoverUnderline),
+                        [style.underline]: p.underline,
+                        [classnames(style.transition, 'transition')]: p.transition
                     }
                 ) }
                 style={ linkBottomStyle }
@@ -69,8 +95,8 @@ const ReoLink = (props: IProps): React.ReactElement => {
                     <ReoIcon
                         name={
                             isIconExist
-                            ? p.icon!
-                            : 'icon-icon_arrow-right'
+                                ? p.icon!
+                                : 'icon-icon_arrow-right'
                         }
                         width={ p.iconWidth }
                         color={ p.color }
@@ -82,9 +108,10 @@ const ReoLink = (props: IProps): React.ReactElement => {
         </a>
     );
 
-};
+});
 
 export {
-    IProps
+    IProps,
+    Target
 };
 export default ReoLink;

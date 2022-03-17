@@ -1,29 +1,33 @@
-import { EIconType } from '@/basic/ReoIcon';
+import { PreIconIconProps, EIconType, Size, Shape } from '@/index';
 import { CSSProperties, ReactNode } from 'react';
 
-export type Types = 'primary' | 'gradientRedPrimary' | 'linkButton' | 'unset';
+export type Types = 'primary' | 'gradientRedPrimary' | 'link' | 'unset';
 
 export type IIconPosition = 'left' | 'right';
-export type BorderRadius = 'rounded' | 'square';
 
-export interface IProps {
+export type ICarouselButtonType = 'dark' | 'light' | 'unset' | 'ghost';
+
+export type IWidthPadding = Partial<Record<Size, number>>;
+
+export interface IProps extends PreIconIconProps {
     type?: Types;
     size?: Size;
-    borderRadius?: BorderRadius; // 圆边或者是方边
+    shape?: Shape; // 圆边或者是方边
     loading?: boolean;
     disabled?: boolean;
     ghost?: boolean;
-    toggleGhost?: boolean;
-    hoverFloat?: boolean; // 暂时不用配置，现在都变成了toggle换颜色
+    toggleGhost?: boolean; // 文档不配置, 默认为true
+    hoverFloat?: boolean; // 暂时不用配置，现在都变成了toggle换颜色, 默认为false
     lightShadow?: boolean;
     icon?: EIconType;
-    iconColor?: string;
-    iconHoverColor?: string;
+    // iconColor?: string;
+    // iconHoverColor?: string;
     iconPosition?: IIconPosition;
-    iconWidth?: number | string;
-    iconHeight?: number | string;
+    // iconWidth?: number | string;
+    // iconHeight?: number | string;
     width?: number | string;
     className?: string | CSSProperties;
+    // iconClassName?: string | CSSProperties;
     style?: CSSProperties;
     backgroundColor?: string;
     color?: string;
@@ -32,19 +36,17 @@ export interface IProps {
     onClick?: (e: any) => any;
 }
 
-export interface ICloseProps {
-    iconColor?: string;
+export interface ICloseProps extends PreIconIconProps { // TODO: 拖出去作为ReoClose
+    // iconColor?: string;
     size?: Size;
-    iconWidth?: number | string;
+    // iconWidth?: number | string;
     width?: number | string;
     height?: number | string;
     buttonColor?: string;
     onClick?: (e?: any) => any;
 }
 
-export type Size = 'large' | 'small' | 'medium';
-
-export interface ICarouselButtonProps {
+export interface ICarouselButtonProps { // TODO：待定
     className?: string | CSSProperties;
     childrenClassName?: string | CSSProperties; // 作用于children
     childrenContainerClassName?: string | CSSProperties; // 作用于children的外层，当没有showCount的时候
@@ -96,12 +98,6 @@ export interface IUnset extends ICarouselButtonProps {
 
 }
 
-export interface IWidthPadding {
-    large?: number;
-    small?: number;
-    medium?: number;
-}
-
 export interface IAction {
     type: 'next' | 'prev';
     showCount: number;
@@ -113,5 +109,3 @@ export interface IChildrenNode {
     buttonHover: boolean;
 
 }
-
-export type ICarouselButtonType = 'dark' | 'light' | 'unset' | 'ghost';

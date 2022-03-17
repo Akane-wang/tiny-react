@@ -1,4 +1,4 @@
-import { IProps as IIconProps } from '@/basic/ReoIcon';
+import { IIconProps } from '@/index';
 
 export interface IProps extends Partial<IIconProps> {
     className?: string | React.CSSProperties;

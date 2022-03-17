@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useReducer } from 'react';
-import IProps, { Size, IAction } from './interface';
+import IProps, { IAction } from './interface';
 import classnames from 'classnames';
-import ReoIcon from '@/basic/ReoIcon';
+import { Size, ReoIcon } from '@/index';
 import style from './counter.module.less';
 const defaultProps = {
     size: 'large',
@@ -123,8 +123,8 @@ const ReoCounter: React.FC<IProps> = (props) => {
                     [classnames(style.bordered)]: prop.bordered,
                     [classnames(
                         prop.bordered
-                        ? style.disabledBorderWrap
-                        : '',
+                            ? style.disabledBorderWrap
+                            : '',
                         style.disabled
                     )]: prop.disabled,
                 },
@@ -134,6 +134,7 @@ const ReoCounter: React.FC<IProps> = (props) => {
         >
             <ReoIcon
                 className={ classnames(
+                    style.icon_class,
                     {
                         [classnames(style.icon, style[`counterHandle-${prop.size}`])]: prop.bordered,
                         [classnames(style.leftSpacing)]: !prop.bordered,
@@ -169,7 +170,9 @@ const ReoCounter: React.FC<IProps> = (props) => {
                 onChange={ handleChange }
             />
             <ReoIcon
-                className={ classnames( {
+                className={ classnames(
+                    style.icon_class,
+                    {
                     [classnames(style.icon, style[`counterHandle-${prop.size}`])]: prop.bordered,
                     [classnames(style.rightSpacing)]: !prop.bordered,
                     [classnames(style.disabled)]: prop.disabled || (prop.step + value > prop.maxValue)

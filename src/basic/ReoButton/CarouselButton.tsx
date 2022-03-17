@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import React, { CSSProperties, useCallback, useEffect, useMemo, useReducer, useRef, useState } from 'react';
-import ReoIcon, { EIconType } from '@/basic/ReoIcon';
-import { Size, IGhost, IDark, ILight, IUnset, IAction } from './interface';
+import { Size, ReoIcon, EIconType } from '@/index';
+import { IGhost, IDark, ILight, IUnset, IAction } from './interface';
 import style from './button.module.less';
 import { defaultIcon } from './style';
 import { suffixPx } from '@/dom-utils';
