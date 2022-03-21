@@ -1,7 +1,10 @@
 export interface IProps {
     children: React.ReactNode;
-    class?: string; // 内容区容器样式
+    className?: string; // 内容区容器样式
     static?: boolean; // 是否为position: static
     mask?: boolean; // 是否有遮罩
-    onOutsideClick?: () => void; // 弹窗内容除外区域的点击事件
+    center?: boolean; // 是否屏幕居中
+    pcAnimation?: boolean; // pc端是否从左边展开弹窗
+    mobileAnimation?: boolean; // 移动端是否从底部展开弹窗
+    onClose?: () => void;
 }
