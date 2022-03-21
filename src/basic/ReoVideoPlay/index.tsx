@@ -1,9 +1,9 @@
 import React, { useCallback, useMemo } from 'react';
-import ReoIcon from '@/basic/ReoIcon';
+import { ReoIcon, Size } from '@/index';
 import classnames from 'classnames';
 import styleTsx from './style';
 import style from './videoPlay.module.less';
-import { IProps, Size } from './interface';
+import { IProps } from './interface';
 
 const ReoVideoPlay: React.FC<IProps> = (prop) => {
     const props = useMemo(() => {

@@ -10,9 +10,9 @@ import React, {
 } from 'react';
 import style from './input.module.less';
 import classnames from 'classnames';
-import ReoIcon from '../ReoIcon';
+import { ReoIcon, Size } from '@/index';
 import { suffixPx } from '@/dom-utils';
-import { IProps, Size, CurrentState, Types, TipState } from './interface';
+import { IProps, CurrentState, Types, TipState } from './interface';
 import { infoMsg } from './style';
 
 const defaultProps: IProps = {
@@ -49,52 +49,68 @@ const Input = forwardRef((props: IProps, ref): React.ReactElement => {
     const [hasValueFlag, setValueFlag] = useState(!!props.value);
 
     const widthStyle = useMemo(() => {
+
         return {
             '--width': suffixPx(props.width!),
             '--bg-color': props.backgroundColor
         } as CSSProperties;
+
     }, [props.backgroundColor, props.width]);
 
     const labelBeforeHeight = useMemo(() => {
+
         return {
             '--height': sizeObj[props.size!],
             '--max-width': suffixPx(props.width!)
+
         } as CSSProperties;
     }, [props.size, props.width]);
 
     const infoMsgColor = useMemo(() => {
+
         return {
             '--info-color': props.infoMsgColor ?? infoMsg[props.tips!]
         } as CSSProperties;
+
     }, [props.infoMsgColor, props.tips]);
 
     useEffect(() => {
+
         setValueFlag(Boolean(inputRef.current?.value));
+
     }, [inputRef, props.value]);
 
     useImperativeHandle( ref, () => {
+
         return inputRef.current;
+
     });
     const handleBlurFn = useCallback((): any => {
+
         setValueFlag(Boolean(inputRef.current?.value));
+
     }, []);
 
     const handleFocusFn = useCallback((): any => {
+
         props.onFocus?.();
+
     }, [props]);
 
     const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>): any => {
+
         props.onChange?.(e.target.value);
+
     }, [props]);
 
     return (
         <div
             className={ classnames(
-            style.inputWrap,
-            style[props.type!],
-            {
-                [style.errorInput]: props.tips === 'error'
-            }
+                style.inputWrap,
+                style[props.type!],
+                {
+                    [style.errorInput]: props.tips === 'error'
+                }
             ) }
             style={{...widthStyle, ...infoMsgColor}}
         >
@@ -102,12 +118,13 @@ const Input = forwardRef((props: IProps, ref): React.ReactElement => {
             <input
                 id={ props.id }
                 type={ props.type }
-                className={
-                    classnames(
-                        style[props.size!], {
-                            [style.hasValueClass]: hasValueFlag
-                        }, props.inputClassName)
-                 }
+                className={ classnames(
+                    style[props.size!],
+                    {
+                        [style.hasValueClass]: hasValueFlag
+                    },
+                    props.inputClassName
+                ) }
                 ref={ inputRef }
                 placeholder={ props.label ? '' : props.placeholder }
                 onChange={ e => handleChange(e) }
@@ -117,53 +134,53 @@ const Input = forwardRef((props: IProps, ref): React.ReactElement => {
                 onFocus={ handleFocusFn }
                 autoComplete={ props.autoComplete }
                 name={ props.name }
-                style={{...widthStyle, ...infoMsgColor}}
+                style={{ ...widthStyle, ...infoMsgColor }}
             />
             {
                 props.children
-                ? props.children
-                : null
+                    ? props.children
+                    : null
             }
             {
                 props.icon
-                ? (
-                    <div className={ classnames(style.iconWrap, style[props.size!]) }>
-                        <ReoIcon
-                            name={ props.icon }
-                            width={ props.iconWidth }
-                            color={ props.color ?? '#555555' }
-                        />
-                    </div>
-                )
-                : null
+                    ? (
+                        <div className={ classnames(style.iconWrap, style[props.size!]) }>
+                            <ReoIcon
+                                name={ props.icon }
+                                width={ props.iconWidth }
+                                color={ props.color ?? '#555555' }
+                            />
+                        </div>
+                    )
+                    : null
             }
             {
                 props.label
-                ? (
-                    <p
-                        className={ classnames(style.inputLabel, {[style.showLabel]: props.label}) }
-                        style={ labelBeforeHeight }
-                        data-label={ props.placeholder }
-                    >
-                    </p>
-)
-                : null
+                    ? (
+                        <p
+                            className={ classnames(style.inputLabel, { [style.showLabel]: props.label }) }
+                            style={ labelBeforeHeight }
+                            data-label={ props.placeholder }
+                        >
+                        </p>
+                    )
+                    : null
             }
             {
                 props.infoMsg
-                ? (
-                    <p
-                        className={ classnames(
-                            style[props.tips!],
-                            style.infoMsg,
-                            'text-left'
-                        ) }
-                        style={ infoMsgColor }
-                    >
-                        { props.infoMsg }
-                    </p>
-                )
-                : null
+                    ? (
+                        <p
+                            className={ classnames(
+                                style[props.tips!],
+                                style.infoMsg,
+                                'text-left'
+                            ) }
+                            style={ infoMsgColor }
+                        >
+                            { props.infoMsg }
+                        </p>
+                    )
+                    : null
             }
         </div>
     );

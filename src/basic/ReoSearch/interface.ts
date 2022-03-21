@@ -1,11 +1,11 @@
-import { EIconType } from '@/basic/ReoIcon';
+import { EIconType, Size } from '@/index';
 import { CSSProperties } from 'react';
 
 export interface IProps {
     placeholder?: string;
     disabled?: boolean;
     width?: number | string;
-    size?: 'large' | 'medium' | 'small';
+    size?: Size;
     className?: string | CSSProperties;
     icon?: EIconType;
     iconWidth?: number | string;

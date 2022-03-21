@@ -1,17 +1,16 @@
 import React, {useState, useRef, useEffect, forwardRef, useCallback, useReducer, useMemo, CSSProperties} from 'react';
 import { IProps, TOptionKey, IICon, IDropDown, IOption, IUpdateAction, IInitAction } from './interface';
-import { getOffSet, getVisualRange } from '@/dom-utils';
+import { getOffSet, getVisualRange, suffixPx } from '@/dom-utils';
 import { useScroll, useClickAway } from '@/hooks';
-import ReoInput from '../ReoInput';
 import classNames from 'classnames';
 import { selectNum as N } from './style';
 import style from './select.module.less';
-import ReoIcon from '../ReoIcon';
+import { ReoIcon, ReoInput } from '@/index';
 import ReactDOM from 'react-dom';
 import { getCurrentText, getCurrentOptions, getParentOption, getTarget } from './selectUtils';
-import {DropDown} from './selectComponent';
+import { DropDown } from './selectComponent';
 const defaultProps: IProps<TOptionKey> & IICon  = {
-    borderRadius: 'normal',
+    shape: 'square',
     id: '',
     options: [],
     value: '',
@@ -231,7 +230,7 @@ const ReoSelect: React.FC<IProps<TOptionKey> & IICon> = (props) => {
 
     const selectWrapWidthStyle = useMemo(() => {
         return {
-            '--width': p.width ?? 'max-content'
+            '--width': suffixPx(p.width ?? 'max-content')
         };
     }, [p.width]) as CSSProperties;
 
@@ -296,7 +295,7 @@ const ReoSelect: React.FC<IProps<TOptionKey> & IICon> = (props) => {
                 label={ p.label }
                 placeholder={ p.placeholder }
                 size={ p.size }
-                type={ p.borderRadius === 'round' ? 'grayInput' : 'normalInput' }
+                type={ p.shape === 'round' ? 'grayInput' : 'normalInput' }
                 width={ p.width }
                 currentState={ p.currentState }
                 tips={ p.tips }
@@ -309,9 +308,12 @@ const ReoSelect: React.FC<IProps<TOptionKey> & IICon> = (props) => {
                         name={ p.name! }
                         width={ p.iconWidth }
                         color={ p.color }
-                        className={
-                            classNames({ [classNames(style.hasSelectListClass)]: dnVisible }, style.iconClass)
-                        }
+                        className={ classNames(
+                            {
+                                [classNames(style.hasSelectListClass)]: dnVisible
+                            },
+                            style.iconClass
+                        ) }
                         onClick={ handleSetClick }
                     />
                 </span>

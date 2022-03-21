@@ -3,7 +3,7 @@ const { resolve } = require('./utils');
 const { basicConfig } = require('./webpack.base.config');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // 在配置中加入 webpack-dashboard 的 plugin
-const DashboardPlugin = require("webpack-dashboard/plugin");
+// const DashboardPlugin = require("webpack-dashboard/plugin");
 module.exports = merge(basicConfig, {
     mode: 'development',
     // 优化
@@ -31,6 +31,6 @@ module.exports = merge(basicConfig, {
                 template: 'src/demo/index.html'
             }
         ),
-        new DashboardPlugin() // 运行时漂亮的脚本
+        // new DashboardPlugin() // 运行时漂亮的脚本
     ],
 })

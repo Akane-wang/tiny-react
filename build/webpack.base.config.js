@@ -14,7 +14,6 @@ const basicConfig = {
             'react-dom': resolve('./node_modules/react-dom')
         },
     },
-    devtool: 'eval-source-map',
     stats: "detailed",
     module: {
         rules: [

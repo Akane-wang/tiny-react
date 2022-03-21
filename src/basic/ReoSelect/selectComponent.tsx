@@ -3,8 +3,7 @@ import classNames from 'classnames';
 import style from './select.module.less';
 import { selectNum as N } from './style';
 import { suffixPx } from '@/dom-utils';
-import ReoIcon from '../ReoIcon';
-import { ReoSearch } from '../ReoSearch';
+import { ReoIcon, ReoSearch } from '@/index';
 import { TOptionKey, IDropDown, IInnerOption, IOptionsList } from './interface';
 const Li: React.FC<IInnerOption<TOptionKey>> = (propLi) => {
 
@@ -25,13 +24,17 @@ const Li: React.FC<IInnerOption<TOptionKey>> = (propLi) => {
             ) }
             onClick={ (event) => handleClick(event) }
         >
-            { propLi.text }
+            {
+                propLi.hocRender ?? propLi.text
+            }
             {
                 propLi.children
                 ? (
                     <ReoIcon
                         name={
-                            propLi.backParent ? 'icon-icon_arrow-left' : 'icon-icon_arrow-right'
+                            propLi.backParent
+                                ? 'icon-icon_arrow-left'
+                                : 'icon-icon_arrow-right'
                         }
                         width='12px'
                         color="#777777"
@@ -192,6 +195,7 @@ const DropDown = forwardRef((props: IDropDown<TOptionKey>, ref) => {
 
     return (
         <div
+            id="drop-down-wrap"
             className={
                 classNames(
                     style.selectOptionWrap,

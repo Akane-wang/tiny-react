@@ -1,5 +1,5 @@
-import { EIconType } from '../ReoIcon';
-import { CurrentState, TipState } from '../ReoInput';
+import React from 'react';
+import { EIconType, CurrentState, TipState, Size, Shape } from '@/index';
 export interface IDropDown<T> extends IOptionsList<T> {
     dnVisible: boolean;
     optionsBeTop: boolean; // options列表是否应该在select框上面
@@ -14,7 +14,7 @@ export interface IDropDown<T> extends IOptionsList<T> {
 }
 
 export interface IProps<T> {
-    borderRadius?: 'normal' | 'round';
+    shape?: Shape; // 默认normal,且现在不再设置圆框
     fullDropDownWords?: boolean; // 下拉文案显示全
     id?: string;
     options: Array<IOption<T>>; // options 作为数组传入，以实现列表项的按序排列
@@ -29,7 +29,7 @@ export interface IProps<T> {
     placeholder?: string;
     label?: boolean;
     onChange?: (value: T) => any;
-    size?: 'large' | 'small' | 'medium';
+    size?: Size;
     width?: string | number;
     currentState?: CurrentState;
     tips?: TipState;
@@ -66,6 +66,7 @@ export interface IOption<T> {
     key: T;
     text: React.ReactNode | string;
     disabled?: boolean;
+    hocRender?: React.ReactElement<any, string | React.JSXElementConstructor<any>>;
     children?: Array<IOption<T>>;
 }
 

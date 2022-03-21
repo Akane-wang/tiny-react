@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { IProps, IRangeItem, IState, IActionType } from './interface';
-import ReoIcon from '@/basic/ReoIcon';
+import { ReoIcon } from '@/index';
 import classnames from 'classnames';
 import { iconConfig, disabledIconConfig } from './style';
 import style from './paginationConfig.module.less';

@@ -1,5 +1,5 @@
 import React from 'react';
-import ReoIcon, { EIconType } from '@/basic/ReoIcon';
+import { ReoIcon, EIconType } from '@/index';
 import classnames from 'classnames';
 import { tipObj } from './style';
 import { IProps } from './interface';

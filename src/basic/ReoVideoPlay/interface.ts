@@ -1,3 +1,4 @@
+import { Size } from '@/index';
 export interface IProps {
     type?: Type;
     onClick?: () => any;
@@ -6,4 +7,3 @@ export interface IProps {
 }
 
 export type Type = 'play' | 'replay';
-export type Size = 'large' | 'medium' | 'small';

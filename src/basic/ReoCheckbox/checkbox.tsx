@@ -1,6 +1,6 @@
 import React, { useMemo, useCallback, useState, useEffect } from 'react';
 import classnames from 'classnames';
-import ReoIcon from '@/basic/ReoIcon';
+import { ReoIcon } from '@/index';
 import style from './checkbox.module.less';
 import { IProps } from './interface';
 import { handleInputChange } from './utils';
