@@ -7,7 +7,7 @@ import { ReoIcon, ReoSearch } from '@/index';
 import { TOptionKey, IDropDown, IInnerOption, IOptionsList } from './interface';
 const Li: React.FC<IInnerOption<TOptionKey>> = (propLi) => {
 
-    const handleClick = useCallback((event: React.MouseEvent<HTMLLIElement, MouseEvent>): void => {
+    const handleClick = useCallback((event: React.MouseEvent<HTMLLIElement>): void => {
         event?.stopPropagation();
         propLi.onClick?.(propLi.dataKey);
     }, [propLi]);

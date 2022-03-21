@@ -66,7 +66,7 @@ export interface IOption<T> {
     key: T;
     text: React.ReactNode | string;
     disabled?: boolean;
-    hocRender?: React.ReactElement<any, string | React.JSXElementConstructor<any>>;
+    hocRender?: React.ReactElement;
     children?: Array<IOption<T>>;
 }
 

@@ -52,7 +52,7 @@ const ReoLink = forwardRef((props: IProps, ref) => {
     }, [isIconExist, p.transition]);
 
     const handleClick = useCallback(
-        (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+        (e: React.MouseEvent<HTMLAnchorElement>) => {
             e.stopPropagation();
             p.onClick?.();
         },

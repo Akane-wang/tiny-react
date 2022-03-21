@@ -34,7 +34,7 @@ const TabBar = forwardRef((props: ITabItem & ITabBar, ref) => {
                 { [classnames(animated ? style.activeAnimatedItem : style.activeItem, style.activeColor)]: value === active },
                 { [classnames(style.normalItem, style.color)]: value !== active },
             ) }
-            onClick={ (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => handleClick(e) }
+            onClick={ (e: React.MouseEvent<HTMLDivElement>) => handleClick(e) }
             style={ cssStyle }
             ref={ positionRef }
         >

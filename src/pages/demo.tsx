@@ -1,13 +1,12 @@
 /* eslint-disable max-len */
 import CarouselDemo, { IProps } from '@/basic/ReoButton/demo/carouselButton';
-// import ReoTable, { IProps } from '@/basic/ReoTable';
+import { ReoLink, ReoSelect, ISelectProps,  } from '@/index';
 // import classnames from 'classnames';
 import React from 'react';
-// import style from './demo.module.less';
 
 class App extends React.Component {
 
-    public state: IProps = {
+    public state: IProps & ISelectProps<string> = {
         title: 'From Our Customers',
         userCommentList: [
             {
@@ -83,100 +82,100 @@ class App extends React.Component {
                 href: '/product/argus-2'
             }
         ],
-        // columns: [
-        //     {
-        //         value: 'rowTitle',
-        //         title: '',
+        options: [
+            {
+                key: 'Products',
+                text: 'Products',
+                disabled: true
+            },
+            {
+                key: 'Categories',
+                text: 'Categories',
+                children: [
+                    {
+                        key: 'Categories-children',
+                        text: 'Categories-children',
 
-        //     },
-        //     {
-        //         value: 'argus-2e',
-        //         title: 'Argus 2E',
-        //     },
-        //     {
-        //         value: 'argus-3-pro',
-        //         title: 'Argus 3 Pro',
-        //     },
-        //     {
+                    }
+                ]
+            },
+            {
+                key: 'Media',
+                text: 'Media-Media-Media-Media-Media-Media-Media'
+            },
+            {
+                key: 'FAQs',
+                text: 'FAQs'
+            },
+            {
+                key: 'Reviews',
+                text: 'Reviews'
+            },
 
-        //         value: 'argus-eco',
-        //         title: 'Argus Eco',
+            {
+                key: 'Products-1',
+                text: 'Products-2'
+            },
+            {
+                key: 'Categories-1',
+                text: 'Categories-2'
+            },
+            {
+                key: 'Media-1',
+                text: 'Media-2'
+            },
+            {
+                key: 'FAQs-1',
+                text: 'FAQs-2'
+            },
+            {
+                key: 'Reviews-1',
+                text: 'Reviews-2'
+            }
+        ]
 
-        //     },
-        //     {
-        //         value: 'argus-pt',
-        //         title: 'Argus PT',
-        //     },
-        //     {
-
-        //         value: 'argus-pt-pro',
-        //         title: 'Argus PT Pro',
-        //     },
-        //     {
-
-        //         value: 'reolink-go_plus',
-        //         title: 'Reolink Go/Reolink Go Plus',
-        //     },
-        //     {
-
-        //         value: 'reolink-go-pt_plus',
-        //         title: 'Reolink Go PT/Reolink Glus',
-
-        //     },
-        //     {
-        //         value: 'reolink-duo',
-        //         title: 'Reolink Duo',
-        //     },
-        //     {
-        //         value: 'reolink-duo-4g',
-        //         title: 'Reolink Duo 4G',
-        //     },
-
-        // ], // 显示数据： 数据显示类型
-        // // 对齐方式： 居中
-        // dataSource: [
-        //     {
-        //         rowTitle: 'For Continuous Recording (Approximately)',
-        //         'argus-2e': '15h',
-        //         'argus-3-pro': '13h',
-        //         'argus-eco': '15h',
-        //         'argus-pt': '15h',
-        //         'argus-pt-pro': '12h',
-        //         'reolink-go_plus': '12h',
-        //         'reolink-go-pt_plus': '10h',
-        //         'reolink-duo': '12h',
-        //         'reolink-duo-4g': '10h'
-        //     },
-        //     {
-        //         rowTitle: 'In Standby Mode (Approximately)',
-        //         'argus-2e': '6 Months',
-        //         'argus-3-pro': '6 Months',
-        //         'argus-eco': '6 Months',
-        //         'argus-pt': '6 Months',
-        //         'argus-pt-pro': '6 Months',
-        //         'reolink-go_plus': '1.5 Months',
-        //         'reolink-go-pt_plus': '1 Month',
-        //         'reolink-duo': '12 Months',
-        //         'reolink-duo-4g': '3 Months'
-        //     },
-        //     {
-        //         rowTitle: 'For Normal Use (Approximately)',
-        //         'argus-2e': '3 Months',
-        //         'argus-3-pro': '3 Months',
-        //         'argus-eco': '3 Months',
-        //         'argus-pt': '3 Months',
-        //         'argus-pt-pro': '3 Months',
-        //         'reolink-go_plus': '1 Month',
-        //         'reolink-go-pt_plus': '20 Days',
-        //         'reolink-duo': '3 Months',
-        //         'reolink-duo-4g': '15 Months'
-        //     },
-        // ]
     };
     public render(): React.ReactElement {
 
         return (
             <div className={ 'app-wrap' }>
+                <ReoSelect
+                    options={ this.state.options }
+                    fullDropDownWords={ true }
+                    size={ 'medium' }
+                />
+                <ReoSelect
+                    options={ this.state.options }
+                    isSearchable={ true }
+                />
+
+                <ReoLink underline={ true }>
+                    Learn more
+                </ReoLink>
+                <ReoLink>
+                    # Learn more
+                </ReoLink>
+                <ReoLink underline={ false }>
+                    Learn more
+                </ReoLink>
+                <ReoLink
+                    // transition={ true }
+                    icon={ 'icon-icon_contact-support' }
+                >
+                    Learn more
+                </ReoLink>
+                {/* TODO: transition为true时应缓动 */}
+                <ReoLink
+                    transition={ true }
+                    title="nihk"
+                    // icon={ 'icon-icon_contact-support' }
+                    color={ 'red' }
+                    underline={ true }
+                    hoverUnderline={ false }
+                >
+                    Learn more
+                </ReoLink>
+
                 <CarouselDemo { ...this.state } />
                 {/* <ReoTable
                     columns={ this.state.columns }
