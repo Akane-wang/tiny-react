@@ -11,10 +11,11 @@ const basicConfig = {
         alias: {
             '@': resolve('./src'),
             react: resolve('./node_modules/react'),
-            'react-dom': resolve('./node_modules/react-dom')
+            'react-dom': resolve('./node_modules/react-dom'),
+            'tiny-react': resolve('./src/tinyReact')
         },
     },
-    stats: "detailed",
+    target: "web",
     module: {
         rules: [
             {
@@ -31,7 +32,8 @@ const basicConfig = {
                     'less-loader',
                 ],
                 include: [
-                    resolve('src')
+                    resolve('src'),
+                    
                 ]
             },
             {
@@ -48,18 +50,32 @@ const basicConfig = {
                     'postcss-loader'
                 ],
                 include: [
-                    resolve('src') // 限定loader范围，提升构建速度
+                    resolve('src'), // 限定loader范围，提升构建速度
+                    
                 ],
             },
             {
                 test: /\.tsx?$/,
-                loader: 'ts-loader',
-                include: [
-                    resolve('src')
+                use: [
+                    {
+                        loader: 'babel-loader',
+                    },
+                    {
+                        loader: 'ts-loader'
+                    }
                 ],
-                options: {
-                    compiler: 'ttypescript',
-                },
+                include: [
+                    resolve('src'),
+                    
+                ]
+            },
+            {
+                test: /\.jsx?$/,
+                loader: 'babel-loader',
+                include: [
+                    resolve('src'),
+                    
+                ]
             }
         ]
     },

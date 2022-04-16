@@ -3,6 +3,9 @@
         "./src/**.ts",
         "./src/**/**.ts",
         "./src/**/**.tsx",
+        "src/tinyReact/**.ts",
+        "src/tinyReact/**/**.ts",
+        "src/tinyReact/**/**.tsx",
     ],
     "compilerOptions": {
         "allowSyntheticDefaultImports": true,
@@ -22,11 +25,14 @@
         "noUnusedParameters": true,
         "noImplicitAny": true,
         "noEmitOnError": true,
-        "rootDir": "src",
+        "rootDirs": ["src", "src/tinyReact"],
         "outDir": "dist",
         "paths": {
             "@/*": [
                 "src/*"
+            ],
+            "tiny-react": [
+                "src/tinyReact/*"
             ]
         },
         "resolveJsonModule": true,

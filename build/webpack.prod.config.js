@@ -9,7 +9,7 @@ module.exports = merge(basicConfig,{
     output: { // 出口
         path: resolve("dist"),
         filename: 'index.js',
-        libraryTarget: 'commonjs2'
+        libraryTarget: 'umd'
     },
     context: path.join(__dirname, '..'),
     externals: {
