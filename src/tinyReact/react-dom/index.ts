@@ -1,1 +1,5 @@
-export { render } from './render';
+import render from './render';
+
+export default {
+    render
+};

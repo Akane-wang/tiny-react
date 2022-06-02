@@ -1,25 +1,28 @@
-import { ReactElement } from 'react';
+import { TEXT } from '../const';
 
-export function render(
-    element: ReactElement<unknown>,
-    container: Element | Document | DocumentFragment | null,
+function createNode(vnode: { props?: any; type?: any; }): Node {
+    let node;
+    const { type } = vnode;
+    if(type === TEXT) {
+        node = document.createTextNode(vnode.props.nodeValue);
+    }
+    node = document.createElement(type);
+    return node;
+}
+
+function render(
+    vnode: any,
+    container: Element | Document | DocumentFragment,
     // callback?: () => void
 ): void {
     // element => node
-    console.log(element);
+    console.log(vnode);
 
-    console.log(container);
+    const element = createNode(vnode);
+    container.appendChild(element);
 
     // const node = createNode(element);
     // container?.appendChild(element);
 }
 
-// function createNode(vnode) {
-//     let node;
-//     const { type } = vnode;
-//     if(type ===TEXT) {
-//         node = document.createTextNode()
-//     }
-//     node = document.createElement(type);
-//     return node;
-// }
+export default render;
