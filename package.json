@@ -78,7 +78,6 @@
         "@reolink/web.doc-cli": "^0.0.22-beta",
         "@reolink/web.fe.utils": "^1.0.0-beta.23",
         "classnames": "^2.3.1",
-        "react": "^17.0.2",
-        "react-dom": "^16.4.0"
+        "ttypescript": "^1.5.13"
     }
 }

@@ -30,9 +30,6 @@
         "paths": {
             "@/*": [
                 "src/*"
-            ],
-            "tiny-react": [
-                "src/tinyReact/*"
             ]
         },
         "resolveJsonModule": true,

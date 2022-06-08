@@ -61,12 +61,14 @@ const basicConfig = {
                         loader: 'babel-loader',
                     },
                     {
-                        loader: 'ts-loader'
+                        loader: 'ts-loader',
+                        options: {
+                            compiler: 'ttypescript',
+                        },
                     }
                 ],
                 include: [
-                    resolve('src'),
-                    
+                    resolve('src')
                 ]
             },
             {
