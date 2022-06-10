@@ -1,10 +1,24 @@
-import React from '@/tinyReact/react';
+import React, { useState } from '@/tinyReact/react';
 import ReactDOM from '@/tinyReact/react-dom';
 import { CSSProperties } from 'react';
 
-const JsxFunc = () => {
+const JsxFunc = (props: {name: string}) => {
+    const [count, setCount] = useState(0);
     return (
-        <div className={ 'jsxFunction' }>jsxFunction</div>
+        <div className="border">
+            {props.name}
+            <button onClick={() => setCount(count + 1)}> {count}: count add</button>
+            <div className="border">
+                { count % 2
+                    ? (
+                        <button onClick={() => console.log("omg")}>click</button>
+                    )
+                    : (
+                        <div>omg</div>
+                    )
+                }
+            </div>
+        </div>
     )
 
 };
@@ -40,7 +54,7 @@ App.defaultProps = {
 
 const jsx = (
     <div className={ 'jsx-color' }>
-        <JsxFunc />
+        <JsxFunc name={ 'jsx-function' }/>
         <App color={ 'pink' }/>
         <JsxClass />
     </div>
