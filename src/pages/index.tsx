@@ -2,16 +2,17 @@ import React
 // { useState }
 from '@/tinyReact/react';
 import ReactDOM from '@/tinyReact/react-dom';
+import { useState } from '@/tinyReact/react-dom/render';
 import { CSSProperties } from 'react';
 
 const JsxFunc = (props: {name: string}) => {
-    // const [count, setCount] = useState(0);
-    const count = 0;
+    const [count, setCount] = useState(0);
+    // const count = 0;
     return (
         <div className="border">
             {props.name}
             <button
-                // onClick={() => setCount(count + 1)}
+                onClick={() => setCount(count + 1)}
             > {count}: count add</button>
             <div className="border">
                 { count % 2
