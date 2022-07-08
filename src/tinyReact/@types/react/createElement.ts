@@ -93,13 +93,13 @@ export interface Fiber<P = any> { // 25个属性
     elementType?: any; // 和reactElement组件的type一致
     type?: any; // 和fiber.elementType一致；为兼容热更新会对function,class,forwardRef类型的ReactElement做一定处理，此时将会有别于elementType
     stateNode: any; // 与fiber关联的局部状态节点（HostComponent类型指向与fiber节点对应的dom节点；根节点fiber.stateNode指向firstRoot; class类型节点其stateNode指向的是class实例）
-    return: Fiber; // 父节点
-    child: Fiber | null; // 指向第一个子节点
-    sibling: Fiber | null; // 指向下一个兄弟节点
+    return?: Fiber; // 父节点
+    child?: Fiber | null; // 指向第一个子节点
+    sibling?: Fiber | null; // 指向下一个兄弟节点
     index?: number; // fiber在兄弟节点中的索引，如果是单节点，则默认为0
     props: P;
     base: Fiber | null;
-    flags: Flags;
+    flags?: Flags;
 }
 
 

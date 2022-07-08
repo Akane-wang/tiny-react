@@ -2,23 +2,29 @@ import { DELETION, PLACEMENT, TEXT, UPDATE } from '../const';
 import { Container } from '@/tinyReact/@types/react-dom/render';
 import { Fiber } from '../@types/react/createElement';
 
+// TODO:1.fiber的结构是什么
 let nextUnitOfWork: any = null; // 下一单元任务
-let workInProgressRoot: any = null; // work in progress fiber root FiberRoot | null
-let workInProgress: Fiber | null = null; // 正在处理的fiber节点
-let currentRoot: any = null; // 现在的根节点
+let workInProgressRoot: any = null; // 当前root节点
+let workInProgress: Fiber | null = null; // 当前正在构造的fiber节点(fiber树指针)
+let currentRoot: any = null; // 现在的根节点（DOM树指针）
 let deletions: any = null;
 
 /**
+*   fiber树有两棵，分别是
+* 正在构造的fiber树（workInProgress）
+* 当前页面的fiber树（已经渲染，被挂载到fiberRoot.current上）
+*/
+/**
  * fiber结构
  *
- * type: 标记fiber的类型
- * key: 标记当前层级下的唯一性
+ * type: 标记fiber的类型，是reactElement对象的type, 与其他的key如elementType, tag是同一个值
+ * key: 标记当前层级下的唯一性，与reactElement的key一致
  * props：fiber属性
  * base: 上一次更新的fiber节点
  * child: 第一个子元素
  * sibling 下一个兄弟节点
  * return 父节点
- * stateNode: 真实dom节点
+ * stateNode: 与fiber关联的局部状态节点（如：HostComponent类型指向与fiber节点对应的DOM节点；根节点fiber.stateNode指向FiberRoot; class类型节点的stateNode指向class实例）
  *
   */
 
@@ -132,10 +138,10 @@ function updateNode(node: Container, preVal: any, nextVal: any) {
 
 function updateClassComponent(fiber: any): Container {
     const { type, props } = fiber;
-    console.log(fiber);
 
     const vvnode = new type(props).render();
     const node = createNode(vvnode);
+    console.log(node);
     return node;
 }
 
@@ -196,60 +202,116 @@ function createNode(fiber: Fiber): Container {
 
 // 1. 执行render, 通过reactDom执行挂载；实现目的，将nextUnitOfWork赋值
 function render(
-    vnode: any,
+    element: any,
     container: Container | null,
     // callback?: () => void
 ): void {
 
-    workInProgressRoot = {
+    // return legacyRenderSubtreeIntoContainer(null, element, container, false, callback);
+    // 创建fiberRoot
+    // 首次没有type, 首次源码中是执行updateHostRot();暂时不明白有什么实质操作，所以暂且没有被处理
+    workInProgress = {
         stateNode: container, // 真实dom节点
         props: {
-            children: [vnode]
+            children: [element]
         },
-        base: currentRoot // 上次更新的dom节点(现在的根节点)
+        base: currentRoot // 上次更新的dom节点(现在的根节点)初始时为null
     };
-
-    nextUnitOfWork = workInProgressRoot; // 下一单元任务
     deletions = [];
-    // element => node
-    // const element = createNode(vnode, container);
-    // container?.appendChild(element);
+}
+
+function completeWork(fiber: Fiber) {
+    if(typeof fiber.type === 'function') {
+        return null;
+    }
+    else {
+        return null;
+    }
+}
+
+function completeUnitOfWork(fiber: Fiber) {
+    let completedWork: Fiber | null = fiber;
+    do {
+
+        let next = completeWork(completedWork);
+        if(next !== null) {
+            workInProgress = next;
+            return;
+        }
+
+        const siblingFiber = completedWork.sibling;
+        if(siblingFiber) {
+            workInProgress = siblingFiber;
+            return;
+        }
+        completedWork = completedWork.return ?? null;
+        workInProgress = completedWork;
+    } while (completedWork != null)
 }
 
 /**
- * 执行当前任务
- * 返回下一个任务
-  */
+ * 深度优先遍历阶段（两个阶段共同完成每一个fiber的创建）
+ * beginWork 探寻阶段
+ * completeWork 回溯阶段
+ * 返回下一个fiber节点
+ */
 function performUnitOfWork(fiber: Fiber) {
-    // 执行当前任务
-    const { type } = fiber;
 
-    // console.log('perform-unit-work' + type);
-    // console.log(fiber);
+    // 1. 探寻(通过requestIdleCallback发起探寻)
+    let nextFiber = beginWork(fiber);
 
-
-    if(typeof type === 'function') {
-        type.isReactComponent
-            ? updateClassComponent(fiber) /* class组件 */
-            : updateFunctionComponent(fiber) /* function 组件 */
+    if(nextFiber) {
+        workInProgress = nextFiber;
     }
     else {
-        updateHostComponent(fiber);
+        /**
+         * 2.回溯
+         * 2.1 处理fiber节点，会调用渲染器（调用react-dom包，关联fiber节点和dom对象，绑定事件等）
+         *
+         */
+        completeUnitOfWork(fiber);
     }
 
-    // 任务2： 返回下一个要更新的fiber
-    // 顺序是： 子节点，兄弟，父节点，或者祖先的兄弟
-    if(fiber.child) {
-        return fiber.child;
+    // if(fiber.child) {
+    //     return fiber.child;
+    // }
+    // let nextFiber = fiber;
+    // while(nextFiber) {
+    //     if(nextFiber.sibling) {
+    //         return nextFiber.sibling;
+    //     }
+    //     nextFiber = nextFiber.return;
+    // }
+
+}
+
+/**
+ * 探寻阶段
+ * 1. 根据reactElement对象创建fiber节点；构造fiber树形结构
+ * 2. 设置fiber.flag标记增删改查等，等待completeWork阶段处理
+ * 3. 设置fiber.stateNode 局部状态（如class类型节点fiber.stateNode = new Class())
+ */
+function beginWork(workInProgress: Fiber) {
+    const { type } = workInProgress;
+    if(typeof type === 'function') {
+        type.isReactComponent
+            ? updateClassComponent(workInProgress)
+            : updateFunctionComponent(workInProgress);
     }
-    let nextFiber = fiber;
-    while(nextFiber) {
-        if(nextFiber.sibling) {
-            return nextFiber.sibling;
-        }
-        nextFiber = nextFiber.return;
+    else {
+        updateHostComponent(workInProgress);
     }
 
+    if(workInProgress.child) {
+        return workInProgress.child;
+    }
+    return null;
+    // else if(workInProgress.sibling) {
+    //     return workInProgress.sibling;
+    // }
+    // else {
+    //     return workInProgress.return;
+    // }
 }
 
 interface IDeadLine {
@@ -257,6 +319,7 @@ interface IDeadLine {
     timeRemaining(): number;
 }
 
+// 渲染节点
 function commitRoot() {
     deletions.forEach(commitWorker);
     commitWorker(workInProgressRoot?.child);
@@ -300,14 +363,18 @@ function commitWorker(fiber: Fiber | null) {
     commitWorker(fiber.sibling ?? null);
 }
 
+/**
+ * 循环构造
+ * @param deadline: 可以通过timeRemaining实现时间切片和可中断渲染；属于concurrent机制
+ */
 function workLoop (deadline: IDeadLine) {
 
-    // 如果nextUnitOfWork和时间:deadline的剩余时间还够
-    while(nextUnitOfWork && deadline.timeRemaining() > 1) {
-        nextUnitOfWork = performUnitOfWork(nextUnitOfWork);
+    // 如果workInProgress和时间:deadline的剩余时间还够
+    while(workInProgress && deadline.timeRemaining() > 1) {
+        workInProgress = performUnitOfWork(workInProgress);
     }
 
-    if(!nextUnitOfWork && workInProgressRoot) {
+    if(!workInProgress && workInProgressRoot) {
         commitRoot();
     }
 
